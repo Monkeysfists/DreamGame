@@ -7,7 +7,7 @@ namespace GameLibrary {
 	/// <summary>
 	/// An actual entity that is placed in the game world.
 	/// </summary>
-	public class Entity : Loopable {
+	public class Entity : Updatable, Drawable {
 		/// <summary>
 		/// The parent Entity that this is a child of.
 		/// </summary>
@@ -91,12 +91,12 @@ namespace GameLibrary {
 			// TODO: Handle input
 		}
 
-		public override void Update() {
+		public void Update() {
 			// Move
 			Position += GlobalVelocity;
         }
 		
-		public override void Draw() {
+		public void Draw() {
 			// TODO: Draw
 		}
 	}

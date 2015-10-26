@@ -5,7 +5,7 @@ namespace GameLibrary {
 	/// <summary>
 	/// Handles all input.
 	/// </summary>
-	public class InputHandler : Loopable {
+	public class InputHandler : Updatable {
 		/// <summary>
 		/// All available mouse buttons.
 		/// </summary>
@@ -28,7 +28,7 @@ namespace GameLibrary {
 		private KeyboardState _CurrentKeyboardState;
 		private KeyboardState _PreviousKeyboardState;
 		
-		public override void Update() {
+		public void Update() {
 			_PreviousMouseState = _CurrentMouseState;
 			_PreviousKeyboardState = _CurrentKeyboardState;
 			_CurrentMouseState = Mouse.GetState();
