@@ -35,6 +35,10 @@ namespace GameLibrary {
 		protected override void Update(GameTime gameTime) {
 			base.Update(gameTime);
 
+			Update();
+		}
+
+		public void Update() {
 			// Update input
 			InputHandler.Update();
 
@@ -45,13 +49,13 @@ namespace GameLibrary {
 			Scene.Update();
 		}
 
-		public void Update() {
-
-		}
-
 		protected override void Draw(GameTime gameTime) {
 			base.Draw(gameTime);
 
+			Draw();
+		}
+
+		public void Draw() {
 			// Clear screen
 			GraphicsDevice.Clear(Color.Black);
 
