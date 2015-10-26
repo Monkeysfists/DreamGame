@@ -82,12 +82,14 @@ namespace GameLibrary {
 			Size = Vector2.Zero;
 			Velocity = Vector2.Zero;
 			Texture = _GameHandler.GraphicsHandler.GetColoredTexture(Color.Transparent);
+
+
 		}
 
 		/// <summary>
 		/// Handles input.
 		/// </summary>
-		public void HandleInput() {
+		public virtual void HandleInput(InputHandler inputHandler) {
 			// TODO: Handle input
 		}
 
