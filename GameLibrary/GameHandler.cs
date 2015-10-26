@@ -43,7 +43,7 @@ namespace GameLibrary {
 			InputHandler.Update();
 
 			// Handle input
-			Scene.HandleInput();
+			Scene.HandleInput(InputHandler);
 
 			// Update
 			Scene.Update();
