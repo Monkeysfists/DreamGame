@@ -16,13 +16,12 @@ namespace GameLibrary
             Texture = texture;
             Size = new Vector2(texture.Width, texture.Height);
         }
-        //Fix draw
-        /*
-        public override void Draw(GameTime gameTime)
+
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            Game.SpriteBatch.Draw(Texture, new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, (int)GlobalSize.X, (int)GlobalSize.Y), Tint * Opacity);
+            spriteBatch.Draw(Texture, new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, Width, Height), Tint * Opacity);
         }
-        */
+        
 
         public Vector2 Center
         {

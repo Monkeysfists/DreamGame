@@ -98,7 +98,7 @@ namespace GameLibrary {
 			Position += GlobalVelocity;
         }
 		
-		public void Draw() {
+		public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime) {
 			// TODO: Draw
 		}
 	}

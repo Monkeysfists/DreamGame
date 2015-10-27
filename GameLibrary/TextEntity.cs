@@ -19,12 +19,12 @@ namespace GameLibrary
             Text = text;
         }
         //Fix draw
-        /*
-        public override void Draw(GameTime gameTime)
+        
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-			SpriteBatch.DrawString(Font, Text, GlobalPosition, Color);
+			spriteBatch.DrawString(Font, Text, GlobalPosition, Color);
         }
-        */
+        
         public Color Color
         {
             get { return color; }
