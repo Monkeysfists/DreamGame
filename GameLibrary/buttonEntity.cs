@@ -7,11 +7,11 @@ using System.Text;
 
 namespace GameLibrary
 {
-    class buttonEntity : TextureEntity
+    class ButtonEntity : TextureEntity
     {
         protected bool pressed;
 
-        public buttonEntity(GameHandler gameHandler, string id, Vector2 position, Texture2D texture)
+        public ButtonEntity(GameHandler gameHandler, string id, Vector2 position, Texture2D texture)
         : base(gameHandler, id, position, texture)
     {
             pressed = false;
