@@ -59,6 +59,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimatedEntity.cs" />
     <Compile Include="AssetHandler.cs" />
     <Compile Include="AudioHandler.cs" />
     <Compile Include="buttonEntity.cs" />

@@ -10,11 +10,15 @@ namespace GameLibrary
     class TextureEntity : Entity
     {
         public float Opacity = 1F;
+        public SpriteSheetEntity sprite;
 
-        public TextureEntity(GameHandler gameHandler, string id, Vector2 position, Texture2D texture) : base(gameHandler)
+        public TextureEntity(GameHandler gameHandler, string id, string texturename, int sheetIndex) : base(gameHandler)
         {
-            Texture = texture;
-            Size = new Vector2(texture.Width, texture.Height);
+            if (texturename != "")
+                sprite = new SpriteSheetEntity(gameHandler, texturename, sheetIndex);
+            else
+                sprite = null;
+            Size = new Vector2(sprite.Width, sprite.Height);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -32,7 +36,7 @@ namespace GameLibrary
         {
             get
             {
-                return Texture.Width;
+                return sprite.Width;
             }
         }
 
@@ -40,7 +44,7 @@ namespace GameLibrary
         {
             get
             {
-                return Texture.Height;
+                return sprite.Height;
             }
         }
         

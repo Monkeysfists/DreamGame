@@ -21,8 +21,7 @@ namespace GameLibrary
             SheetIndex = sheetIndex;
             SheetColumns = 1;
             SheetRows = 1;
-            /// <summary>
-            /// </summary>
+
             /// <summary>
             /// split string to get columns and rows
             /// </summary>
