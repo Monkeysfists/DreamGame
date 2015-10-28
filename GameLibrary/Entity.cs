@@ -11,7 +11,23 @@ namespace GameLibrary {
 		/// <summary>
 		/// The parent Entity that this is a child of.
 		/// </summary>
-		public Entity Parent;
+		public Entity Parent {
+			get {
+				return _Parent;
+			}
+		}
+		/// <summary>
+		/// The parent that is at the root of the Entity tree.
+		/// </summary>
+		public Entity RootParent {
+			get {
+				if(Parent == null) {
+					return this;
+				} else {
+					return Parent.RootParent;
+				}
+			}
+		}
 		/// <summary>
 		/// A list of child Entities.
 		/// </summary>
@@ -21,11 +37,26 @@ namespace GameLibrary {
 			}
 		}
 		/// <summary>
+		/// A recursive list of child Entities.
+		/// </summary>
+		public List<Entity> GlobalChildren {
+			get {
+				List<Entity> result = new List<Entity>();
+
+				foreach(Entity entity in Children) {
+					result.Add(entity);
+					result.AddRange(entity.GlobalChildren);
+				}
+
+				return result;
+			}
+		}
+		/// <summary>
 		/// The position of the Entity, relative to its parent's position.
 		/// </summary>
 		public Vector2 Position;
 		/// <summary>
-		/// The position of the Entity in global space.
+		/// The position of the Entity relative to the upper-left corner of the game window.
 		/// </summary>
 		public Vector2 GlobalPosition {
 			get {
@@ -41,11 +72,31 @@ namespace GameLibrary {
 		/// </summary>
 		public Vector2 Size;
 		/// <summary>
+		/// The hitbox of the Entity, relative to its parent's hitbox.
+		/// </summary>
+		public RectangleF Hitbox {
+			get {
+				return new RectangleF(Position.X, Position.Y, Size.X, Size.Y);
+			}
+		}
+		/// <summary>
+		/// The hitbox of the Entity relative to the upper-left corner of the game window.
+		/// </summary>
+		public RectangleF GlobalHitbox {
+			get {
+				if(Parent == null) {
+					return Hitbox;
+				} else {
+					return new RectangleF(Hitbox.X - Parent.GlobalHitbox.X, Hitbox.Y - Parent.GlobalHitbox.Y, Hitbox.Width, Hitbox.Height);
+				}
+			}
+		}
+		/// <summary>
 		/// The velocity of the Entity, relative to its parent's velocity.
 		/// </summary>
 		public Vector2 Velocity;
 		/// <summary>
-		/// The velocity of the Entity in global space.
+		/// The velocity of the Entity relative to the upper-left corner of the game window.
 		/// </summary>
 		public Vector2 GlobalVelocity {
 			get {
@@ -65,23 +116,21 @@ namespace GameLibrary {
 		/// </summary>
 		public Color Tint;
 
-		private GameHandler _GameHandler;
+		private Entity _Parent;
 		private List<Entity> _Children;
 
 		/// <summary>
 		/// Creates a new Entity.
 		/// </summary>
 		/// <param name="gameHandler">The GameHandler.</param>
-		public Entity(GameHandler gameHandler) {
-			_GameHandler = gameHandler;
-
-			Parent = null;
+		public Entity() {
+			_Parent = null;
 			_Children = new List<Entity>();
 
 			Position = Vector2.Zero;
 			Size = Vector2.Zero;
 			Velocity = Vector2.Zero;
-			Texture = _GameHandler.GraphicsHandler.GetColoredTexture(Color.Transparent);
+			Texture = GameHandler.GraphicsHandler.GetColoredTexture(Color.Transparent);
 		}
 
 		/// <summary>
@@ -94,10 +143,56 @@ namespace GameLibrary {
 		public void Update() {
 			// Move
 			Position += GlobalVelocity;
+
+			// Update child entities
+			foreach(Entity entity in Children) {
+				entity.Update();
+			}
         }
 		
 		public void Draw() {
-			// TODO: Draw
+			GameHandler.GraphicsHandler.DrawTexture(GlobalPosition, Size, Texture, Tint);
+
+			// Draw child entities
+			foreach (Entity entity in Children) {
+				entity.Draw();
+			}
+		}
+
+		/// <summary>
+		/// Adds a child Entity.
+		/// </summary>
+		/// <param name="entity">The entity to add.</param>
+		public void AddChild(Entity entity) {
+			_Children.Add(entity);
+			entity._Parent = this;
+		}
+
+		/// <summary>
+		/// Removes a child Entity.
+		/// </summary>
+		/// <param name="entity">The entity to remove.</param>
+		public void RemoveChild(Entity entity) {
+			entity._Parent = null;
+			_Children.Remove(entity);
+		}
+
+		/// <summary>
+		/// Gets a list of Entities that are colliding with this Entity.
+		/// </summary>
+		/// <param name="entities"></param>
+		/// <returns>A list of entities that intersect.</returns>
+		public List<Entity> GetCollidingEntities(List<Entity> entities) {
+			List<Entity> result = new List<Entity>();
+
+			foreach(Entity entity in entities) {
+				if(GlobalHitbox.Intersects(entity.GlobalHitbox)) {
+					// INTERSECTION!
+					result.Add(entity);
+				}
+			}
+
+			return result;
 		}
 	}
 }

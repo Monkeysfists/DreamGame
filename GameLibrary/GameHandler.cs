@@ -7,22 +7,28 @@ namespace GameLibrary {
 	/// Contains all objects that allow manipulation of aspects of the game.
 	/// </summary>
 	public class GameHandler : Game, Updatable, Drawable {
-		public AssetHandler AssetHandler;
-		public AudioHandler AudioHandler;
-		public GraphicsHandler GraphicsHandler;
-		public InputHandler InputHandler;
-		public Random Random;
-		public Entity Scene;
-		public SpriteBatch SpriteBatch;
+		static public AssetHandler AssetHandler;
+		static public AudioHandler AudioHandler;
+		static public GraphicsHandler GraphicsHandler;
+		static public InputHandler InputHandler;
+		static public Random Random;
+		static public Entity Scene;
 
 		public GameHandler() {
 			Content.RootDirectory = "Content";
 
 			AssetHandler = new AssetHandler(Content);
 			AudioHandler = new AudioHandler();
-			GraphicsHandler = new GraphicsHandler(GraphicsDevice, new GraphicsDeviceManager(this));
+			GraphicsHandler = new GraphicsHandler(new GraphicsDeviceManager(this));
 			InputHandler = new InputHandler();
 			Random = new Random();
+		}
+
+		/// <summary>
+		/// Initialize the game.
+		/// </summary>
+		protected override void Initialize() {
+			base.Initialize();
 		}
 
 		/// <summary>
@@ -30,6 +36,8 @@ namespace GameLibrary {
 		/// </summary>
 		protected override void LoadContent() {
 			base.LoadContent();
+
+			GraphicsHandler.LoadContent();
 		}
 
 		protected override void Update(GameTime gameTime) {
@@ -42,11 +50,14 @@ namespace GameLibrary {
 			// Update input
 			InputHandler.Update();
 
-			// Handle input
-			Scene.HandleInput();
+			// Check if a scene is set
+			if(Scene != null) {
+				// Handle input
+				Scene.HandleInput();
 
-			// Update
-			Scene.Update();
+				// Update
+				Scene.Update();
+			}
 		}
 
 		protected override void Draw(GameTime gameTime) {
@@ -57,12 +68,15 @@ namespace GameLibrary {
 
 		public void Draw() {
 			// Clear screen
-			GraphicsDevice.Clear(Color.Black);
+			GraphicsHandler.Clear(Color.Black);
 
 			// Draw game
-			SpriteBatch.Begin();
-			Scene.Draw();
-			SpriteBatch.End();
+			// Check if a scene is set
+			if (Scene != null) {
+				GraphicsHandler.SpriteBatch.Begin();
+				Scene.Draw();
+				GraphicsHandler.SpriteBatch.End();
+			}
 		}
 	}
 }

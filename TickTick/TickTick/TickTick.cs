@@ -1,4 +1,5 @@
 using GameLibrary;
+using TickTick.Scenes;
 
 namespace TickTick {
 	public class TickTick : GameHandler {
@@ -7,8 +8,16 @@ namespace TickTick {
 			game.Run();
 		}
 
-		public TickTick() {
+		protected override void Initialize() {
+			base.Initialize();
+
 			IsMouseVisible = true;
+		}
+
+		protected override void LoadContent() {
+			base.LoadContent();
+
+			Scene = new Level1();
 		}
 	}
 }

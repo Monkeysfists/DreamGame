@@ -6,7 +6,15 @@ namespace GameLibrary {
 	/// Handles graphics-related operations.
 	/// </summary>
 	public class GraphicsHandler {
-		private GraphicsDevice _GraphicsDevice;
+		/// <summary>
+		/// The SpriteBatch.
+		/// </summary>
+		public SpriteBatch SpriteBatch {
+			get {
+				return _SpriteBatch;
+			}
+		}
+
 		private GraphicsDeviceManager _GraphicsDeviceManager;
 		private SpriteBatch _SpriteBatch;
 
@@ -15,10 +23,23 @@ namespace GameLibrary {
 		/// </summary>
 		/// <param name="graphicsDevice">The GraphicsDevice to use.</param>
 		/// <param name="graphicsDeviceManager">The GraphicsDeviceManager to use.</param>
-		public GraphicsHandler(GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) {
-			_GraphicsDevice = graphicsDevice;
+		public GraphicsHandler(GraphicsDeviceManager graphicsDeviceManager) {
 			_GraphicsDeviceManager = graphicsDeviceManager;
-			_SpriteBatch = new SpriteBatch(_GraphicsDevice);
+		}
+
+		/// <summary>
+		/// Must be executed upon loading content.
+		/// </summary>
+		public void LoadContent() {
+			_SpriteBatch = new SpriteBatch(_GraphicsDeviceManager.GraphicsDevice);
+		}
+
+		/// <summary>
+		/// Clears the screen to a certain color.
+		/// </summary>
+		/// <param name="color"></param>
+		public void Clear(Color color) {
+			_GraphicsDeviceManager.GraphicsDevice.Clear(color);
 		}
 
 		/// <summary>
@@ -29,7 +50,7 @@ namespace GameLibrary {
 		/// <param name="texture">The texture to draw.</param>
 		/// <param name="tint">The tint to apply to the texture.</param>
 		public void DrawTexture(Vector2 position, Vector2 size, Texture2D texture, Color? tint = null) {
-			_SpriteBatch.Draw(texture, new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y), tint ?? Color.White);
+			_SpriteBatch.Draw(texture, new RectangleF(position.X, position.Y, size.X, size.Y), tint ?? Color.White);
 		}
 
 		/// <summary>
@@ -73,7 +94,7 @@ namespace GameLibrary {
 		/// <param name="color">The color.</param>
 		/// <returns>A 1 by 1 texture.</returns>
 		public Texture2D GetColoredTexture(Color color) {
-			Texture2D texture = new Texture2D(_GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+			Texture2D texture = new Texture2D(_GraphicsDeviceManager.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
 			// Set color
 			texture.SetData<Color>(new Color[] {
