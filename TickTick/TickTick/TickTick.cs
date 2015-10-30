@@ -17,6 +17,7 @@ namespace TickTick {
 			//GraphicsHandler.FullScreen = true;
 			// TODO: Enable fullscreen
 			GraphicsHandler.Resolution = new Point(1440, 825);
+            GraphicsHandler.FullScreen = true;
 
 			// Start game
 			StateHandler.AddState("titleMenu", new TitleMenuState());
