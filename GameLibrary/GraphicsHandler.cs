@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameLibrary.Types;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace GameLibrary {
 	/// <summary>
@@ -7,16 +9,86 @@ namespace GameLibrary {
 	/// </summary>
 	public class GraphicsHandler {
 		/// <summary>
-		/// The SpriteBatch.
+		/// Switch the game between windowed and fullscreen.
 		/// </summary>
-		public SpriteBatch SpriteBatch {
+		public bool FullScreen {
 			get {
-				return _SpriteBatch;
+				return _GraphicsDeviceManager.IsFullScreen;
+			}
+			set {
+				Vector2 scale = new Vector2((float)ScreenSize.X / (float)Resolution.X, (float)ScreenSize.Y / (float)Resolution.Y);
+				float finalScale = 1F;
+
+				if (value) {
+					finalScale = scale.X;
+					if (Math.Abs(1 - scale.Y) < Math.Abs(1 - scale.X)) {
+						finalScale = scale.Y;
+					}
+				} else {
+					if (scale.X < 1f || scale.Y < 1f) {
+						finalScale = Math.Min(scale.X, scale.Y);
+					}
+				}
+
+				_GraphicsDeviceManager.PreferredBackBufferWidth = (int)(finalScale * Resolution.X);
+				_GraphicsDeviceManager.PreferredBackBufferHeight = (int)(finalScale * Resolution.Y);
+				_GraphicsDeviceManager.IsFullScreen = value;
+				_GraphicsDeviceManager.ApplyChanges();
+				Scale = new Vector2((float)Viewport.Width / (float)Resolution.X, (float)Viewport.Height / (float)Resolution.Y);
+			}
+		}
+		/// <summary>
+		/// The actual size of the screen in pixels.
+		/// </summary>
+		public Point ScreenSize {
+			get {
+				return new Point(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+			}
+		}
+		/// <summary>
+		/// The resolution at which to draw the game.
+		/// </summary>
+		public Point Resolution {
+			get {
+				return _Resolution;
+			}
+			set {
+				_Resolution = value;
+
+				// Refresh fullscreen
+				FullScreen = FullScreen;
+			}
+		}
+		/// <summary>
+		/// The current visible portion of the game.
+		/// </summary>
+		public Rectangle Viewport {
+			get {
+				return new Rectangle(_GraphicsDeviceManager.GraphicsDevice.Viewport.X, _GraphicsDeviceManager.GraphicsDevice.Viewport.Y, _GraphicsDeviceManager.GraphicsDevice.Viewport.Width, _GraphicsDeviceManager.GraphicsDevice.Viewport.Height);
+			}
+			set {
+				_GraphicsDeviceManager.GraphicsDevice.Viewport = new Viewport(value.X, value.Y, value.Width, value.Height);
+			}
+		}
+		/// <summary>
+		/// The scale at which everything is drawn.
+		/// </summary>
+		public Vector2 Scale {
+			get {
+				return _Scale;
+			}
+			set {
+				_Scale = value;
+				_Matrix = Matrix.CreateScale(Scale.X, Scale.Y, 1);
 			}
 		}
 
+		private bool _Drawing;
 		private GraphicsDeviceManager _GraphicsDeviceManager;
 		private SpriteBatch _SpriteBatch;
+		private Point _Resolution;
+		private Vector2 _Scale;
+		private Matrix _Matrix;
 
 		/// <summary>
 		/// Creates a new GraphicsHandler.
@@ -24,6 +96,9 @@ namespace GameLibrary {
 		/// <param name="graphicsDevice">The GraphicsDevice to use.</param>
 		/// <param name="graphicsDeviceManager">The GraphicsDeviceManager to use.</param>
 		public GraphicsHandler(GraphicsDeviceManager graphicsDeviceManager) {
+			_Drawing = false;
+			_Resolution = new Point(1280, 1020);
+
 			_GraphicsDeviceManager = graphicsDeviceManager;
 		}
 
@@ -32,6 +107,32 @@ namespace GameLibrary {
 		/// </summary>
 		public void LoadContent() {
 			_SpriteBatch = new SpriteBatch(_GraphicsDeviceManager.GraphicsDevice);
+			FullScreen = false;
+		}
+
+		/// <summary>
+		/// Begins drawing a frame.
+		/// </summary>
+		public void Begin() {
+			_SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _Matrix);
+			_Drawing = true;
+		}
+
+		/// <summary>
+		/// Ends drawing a frame and renders it.
+		/// </summary>
+		public void End() {
+			_Drawing = false;
+			_SpriteBatch.End();
+		}
+
+		/// <summary>
+		/// Checks if a frame is being drawn, and if not, begins one.
+		/// </summary>
+		private void CheckDrawing() {
+			if(!_Drawing) {
+				Begin();
+			}
 		}
 
 		/// <summary>
@@ -50,7 +151,20 @@ namespace GameLibrary {
 		/// <param name="texture">The texture to draw.</param>
 		/// <param name="tint">The tint to apply to the texture.</param>
 		public void DrawTexture(Vector2 position, Vector2 size, Texture2D texture, Color? tint = null) {
+			CheckDrawing();
 			_SpriteBatch.Draw(texture, new RectangleF(position.X, position.Y, size.X, size.Y), tint ?? Color.White);
+		}
+
+		/// <summary>
+		/// Draws some text on the screen.
+		/// </summary>
+		/// <param name="position">The position to draw the text at.</param>
+		/// <param name="text">The text to draw.</param>
+		/// <param name="font">The font of the text to draw.</param>
+		/// <param name="color">The color of the text to draw.</param>
+		public void DrawText(Vector2 position, string text, SpriteFont font, Color? color = null) {
+			CheckDrawing();
+			_SpriteBatch.DrawString(font, text, position, color ?? Color.White);
 		}
 
 		/// <summary>
@@ -60,7 +174,7 @@ namespace GameLibrary {
 		/// <param name="size">The size of the rectangle.</param>
 		/// <param name="color">The color of the rectangle.</param>
 		public void DrawRectangle(Vector2 position, Vector2 size, Color color) {
-			DrawTexture(position, size, GetColoredTexture(color));
+			DrawTexture(position, size, GetColoredTexture(color, new Point(1, 1)));
 		}
 
 		/// <summary>
@@ -89,12 +203,13 @@ namespace GameLibrary {
 		}
 
 		/// <summary>
-		/// Gets a 1 by 1 texture of the given color.
+		/// Gets a texture of the given color.
 		/// </summary>
 		/// <param name="color">The color.</param>
-		/// <returns>A 1 by 1 texture.</returns>
-		public Texture2D GetColoredTexture(Color color) {
-			Texture2D texture = new Texture2D(_GraphicsDeviceManager.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+		/// <param name="dimensions">The dimensions of the texture.</param>
+		/// <returns>A colored texture.</returns>
+		public Texture2D GetColoredTexture(Color color, Point dimensions) {
+			Texture2D texture = new Texture2D(_GraphicsDeviceManager.GraphicsDevice, dimensions.X, dimensions.Y, false, SurfaceFormat.Color);
 
 			// Set color
 			texture.SetData<Color>(new Color[] {

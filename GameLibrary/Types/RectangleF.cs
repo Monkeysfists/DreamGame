@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GameLibrary {
+namespace GameLibrary.Types {
 	public class RectangleF {
 		/// <summary>
 		/// The X coordinate.
@@ -74,10 +74,19 @@ namespace GameLibrary {
 		}
 
 		/// <summary>
+		/// Gets whether this RectangleF contains the specified vector.
+		/// </summary>
+		/// <param name="vector">The vector to check.</param>
+		/// <returns>Whether the rectangle contains the vector.</returns>
+		public bool Contains(Vector2 vector) {
+			return vector.X >= X && vector.Y >= Y && vector.X <= X + Width && vector.Y <= Y + Height;
+		}
+
+		/// <summary>
 		/// Gets whether this RectangleF intersects with another RectangleF.
 		/// </summary>
-		/// <param name="rectangle"></param>
-		/// <returns></returns>
+		/// <param name="rectangle">The rectangle to check.</param>
+		/// <returns>Whether the rectangles intersect.</returns>
 		public bool Intersects(RectangleF rectangle) {
 			return !(rectangle.Left > Right ||
 					rectangle.Right < Left ||

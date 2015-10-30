@@ -1,19 +1,39 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace GameLibrary {
 	/// <summary>
 	/// Contains all objects that allow manipulation of aspects of the game.
 	/// </summary>
 	public class GameHandler : Game, Updatable, Drawable {
+		/// <summary>
+		/// Used for loading and retrieving assets.
+		/// </summary>
 		static public AssetHandler AssetHandler;
+		/// <summary>
+		/// Used for playing and managing audio.
+		/// </summary>
 		static public AudioHandler AudioHandler;
+		/// <summary>
+		/// Used for displaying and manipulating graphics.
+		/// </summary>
 		static public GraphicsHandler GraphicsHandler;
+		/// <summary>
+		/// Used for handling input.
+		/// </summary>
 		static public InputHandler InputHandler;
+		/// <summary>
+		/// Used to generate random numbers.
+		/// </summary>
 		static public Random Random;
-		static public Entity Scene;
+		/// <summary>
+		/// Used to switch between game states.
+		/// </summary>
+		static public StateHandler StateHandler;
 
+		/// <summary>
+		/// Creates a new GameHandler.
+		/// </summary>
 		public GameHandler() {
 			Content.RootDirectory = "Content";
 
@@ -22,6 +42,7 @@ namespace GameLibrary {
 			GraphicsHandler = new GraphicsHandler(new GraphicsDeviceManager(this));
 			InputHandler = new InputHandler();
 			Random = new Random();
+			StateHandler = new StateHandler();
 		}
 
 		/// <summary>
@@ -50,14 +71,8 @@ namespace GameLibrary {
 			// Update input
 			InputHandler.Update();
 
-			// Check if a scene is set
-			if(Scene != null) {
-				// Handle input
-				Scene.HandleInput();
-
-				// Update
-				Scene.Update();
-			}
+			// Update state
+			StateHandler.Update();
 		}
 
 		protected override void Draw(GameTime gameTime) {
@@ -70,13 +85,10 @@ namespace GameLibrary {
 			// Clear screen
 			GraphicsHandler.Clear(Color.Black);
 
-			// Draw game
-			// Check if a scene is set
-			if (Scene != null) {
-				GraphicsHandler.SpriteBatch.Begin();
-				Scene.Draw();
-				GraphicsHandler.SpriteBatch.End();
-			}
+			// Draw state
+			GraphicsHandler.Begin();
+			StateHandler.Draw();
+			GraphicsHandler.End();
 		}
 	}
 }

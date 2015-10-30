@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace GameLibrary {
 	/// <summary>
@@ -19,7 +20,36 @@ namespace GameLibrary {
 		/// </summary>
 		public Vector2 MousePosition {
 			get {
-				return new Vector2(_CurrentMouseState.X, _CurrentMouseState.Y);
+				// We'll need to correct for any scaling, and thus we divide by the drawing scale
+				return new Vector2(_CurrentMouseState.X, _CurrentMouseState.Y) / GameHandler.GraphicsHandler.Scale;
+			}
+		}
+		/// <summary>
+		/// A list of mouse buttons that are down.
+		/// </summary>
+		public List<MouseButton> MouseButtonsDown {
+			get {
+				List<MouseButton> result = new List<MouseButton>();
+
+				if(MouseButtonDown(MouseButton.Left)) {
+					result.Add(MouseButton.Left);
+				}
+				if (MouseButtonDown(MouseButton.Middle)) {
+					result.Add(MouseButton.Middle);
+				}
+				if (MouseButtonDown(MouseButton.Right)) {
+					result.Add(MouseButton.Right);
+				}
+
+				return result;
+			}
+		}
+		/// <summary>
+		/// A list of keys that are down.
+		/// </summary>
+		public List<Keys> KeysDown {
+			get {
+				return new List<Keys>(_CurrentKeyboardState.GetPressedKeys());
 			}
 		}
 

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
-
+//TODO: Maybe add a way to load sounds with a specific ID. Same for other assets.
 namespace GameLibrary {
 	/// <summary>
 	/// Handles loading and retrieving of game assets.
