@@ -4,19 +4,25 @@ using TickTick.Entities.Buttons;
 
 namespace TickTick.Entities.States {
 	public class TitleMenuState : State {
+		/// <summary>
+		/// Creates a new TitleMenuState.
+		/// </summary>
 		public TitleMenuState() : base("titleMenu") {
 			// Add the background
-			Texture = GameHandler.AssetHandler.GetTexture("Backgrounds/spr_title");
+			TextureEntity background = new TextureEntity();
+			background.Texture = GameHandler.AssetHandler.GetTexture("Backgrounds/spr_title");
+			background.ResizeToTexture();
+			AddChild(background);
 			ResizeToContents();
 
 			// Add a play button
 			PlayButton playButton = new PlayButton();
-			playButton.Position = new Vector2((GameHandler.GraphicsHandler.Resolution.X - playButton.Size.X) / 2, 540);
+			playButton.Position = new Vector2((Size.X - playButton.Size.X) / 2, 540);
 			AddChild(playButton);
 
 			// Add a help button
 			HelpButton helpButton = new HelpButton();
-			helpButton.Position = new Vector2((GameHandler.GraphicsHandler.Resolution.X - helpButton.Size.X) / 2, 600);
+			helpButton.Position = new Vector2((Size.X - helpButton.Size.X) / 2, 600);
 			AddChild(helpButton);
 		}
 	}

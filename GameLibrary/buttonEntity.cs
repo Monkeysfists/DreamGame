@@ -2,7 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 
 namespace GameLibrary {
-	public class ButtonEntity : Entity {
+	/// <summary>
+	/// Can be clicked. Has specific images for different click-states.
+	/// </summary>
+	public class ButtonEntity : TextureEntity {
 		/// <summary>
 		/// The texture that is displayed by default.
 		/// </summary>
@@ -25,71 +28,62 @@ namespace GameLibrary {
 		/// <summary>
 		/// The texture that is displayed when the mouse is clicking the button.
 		/// </summary>
-		public Texture2D ClickedTexture {
+		public Texture2D ClickTexture {
 			get {
-				if(_ClickedTexture == null) {
+				if (_ClickTexture == null) {
 					return DefaultTexture;
 				} else {
-					return _ClickedTexture;
+					return _ClickTexture;
 				}
 			}
 			set {
-				_ClickedTexture = value;
+				_ClickTexture = value;
 			}
 		}
-		/// <summary>
-		/// The SoundEffect to play when hovered.
-		/// </summary>
-		public SoundEffect HoverSoundEffect;
 		/// <summary>
 		/// The SoundEffect to play when clicked.
 		/// </summary>
 		public SoundEffect ClickedSoundEffect;
 
 		private Texture2D _HoverTexture;
-		private Texture2D _ClickedTexture;
+		private Texture2D _ClickTexture;
 
 		public override void Update() {
-			base.Update();
-
-			if(Active) {
-				// Check if the mouse is on top of the button
-				if (GlobalHitbox.Contains(GameHandler.InputHandler.MousePosition)) {
-					// Set correct texture
-					if (GameHandler.InputHandler.OnMouseButtonDown(InputHandler.MouseButton.Left)) {
-						// Set clicked texture
-						if (Texture != ClickedTexture) {
-							Texture = ClickedTexture;
-						}
-
-						// Play clicked sound
-						if (ClickedSoundEffect != null) {
-							GameHandler.AudioHandler.PlaySoundEffect(ClickedSoundEffect);
-						}
-
-						OnMouseButtonDown();
-					} else if (Texture != HoverTexture) {
-						// Set hover texture
-						Texture = HoverTexture;
-
-						// Play hover sound
-						if (HoverSoundEffect != null) {
-							GameHandler.AudioHandler.PlaySoundEffect(HoverSoundEffect);
-						}
-					} else if (Texture != DefaultTexture) {
-						// Set default texture
-						Texture = DefaultTexture;
+			// Check if the mouse is on top of the button
+			if (GlobalBoundingBox.Contains(GameHandler.InputHandler.MousePosition)) {
+				// Set correct texture
+				if (GameHandler.InputHandler.MouseButtonDown(InputHandler.MouseButton.Left)) {
+					// Set clicked texture
+					if (Texture != ClickTexture) {
+						Texture = ClickTexture;
 					}
 
+					OnMouseButtonDown();
+				} else if (Texture != HoverTexture) {
+					// Set hover texture
+					Texture = HoverTexture;
+				}
 
-					if (GameHandler.InputHandler.OnMouseButtonHold(InputHandler.MouseButton.Left)) {
-						OnMouseButtonHold();
-					}
-					if (GameHandler.InputHandler.OnMouseButtonUp(InputHandler.MouseButton.Left)) {
-						OnMouseButtonUp();
+				if (GameHandler.InputHandler.OnMouseButtonHold(InputHandler.MouseButton.Left)) {
+					OnMouseButtonHold();
+				}
+				if (GameHandler.InputHandler.OnMouseButtonUp(InputHandler.MouseButton.Left)) {
+					OnMouseButtonUp();
+				}
+
+				// Play sounds
+				if (GameHandler.InputHandler.OnMouseButtonDown(InputHandler.MouseButton.Left)) {
+					// Play clicked sound
+					if (ClickedSoundEffect != null) {
+						GameHandler.AudioHandler.PlaySoundEffect(ClickedSoundEffect);
 					}
 				}
+			} else if (Texture != DefaultTexture) {
+				// Set default texture
+				Texture = DefaultTexture;
 			}
+
+			base.Update();
 		}
 
 		/// <summary>

@@ -82,8 +82,18 @@ namespace GameLibrary {
 				_Matrix = Matrix.CreateScale(Scale.X, Scale.Y, 1);
 			}
 		}
-
-		private bool _Drawing;
+		/// <summary>
+		/// The amount of frames per second.
+		/// </summary>
+		public int Fps {
+			get {
+				return _Fps;
+			}
+		}
+		
+		private int _Fps;
+		private DateTime _DrawStart;
+		private int _Frames;
 		private GraphicsDeviceManager _GraphicsDeviceManager;
 		private SpriteBatch _SpriteBatch;
 		private Point _Resolution;
@@ -96,7 +106,9 @@ namespace GameLibrary {
 		/// <param name="graphicsDevice">The GraphicsDevice to use.</param>
 		/// <param name="graphicsDeviceManager">The GraphicsDeviceManager to use.</param>
 		public GraphicsHandler(GraphicsDeviceManager graphicsDeviceManager) {
-			_Drawing = false;
+			_DrawStart = DateTime.Now;
+			_Fps = 0;
+			_Frames = 0;
 			_Resolution = new Point(1280, 1020);
 
 			_GraphicsDeviceManager = graphicsDeviceManager;
@@ -114,24 +126,24 @@ namespace GameLibrary {
 		/// Begins drawing a frame.
 		/// </summary>
 		public void Begin() {
+			// Clear screen
+			Clear(Color.Black);
 			_SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _Matrix);
-			_Drawing = true;
 		}
 
 		/// <summary>
 		/// Ends drawing a frame and renders it.
 		/// </summary>
 		public void End() {
-			_Drawing = false;
 			_SpriteBatch.End();
-		}
 
-		/// <summary>
-		/// Checks if a frame is being drawn, and if not, begins one.
-		/// </summary>
-		private void CheckDrawing() {
-			if(!_Drawing) {
-				Begin();
+			// Calculate FPS
+			if ((DateTime.Now - _DrawStart).TotalMilliseconds < 1000) {
+				_Frames++;
+			} else {
+				_Fps = _Frames;
+				_DrawStart = DateTime.Now;
+				_Frames = 0;
 			}
 		}
 
@@ -147,12 +159,30 @@ namespace GameLibrary {
 		/// Draws a texture on the screen.
 		/// </summary>
 		/// <param name="position">The position to draw the texture at.</param>
+		/// <param name="rotation">How much to rotate the drawn texture.</param>
 		/// <param name="size">The size of the texture.</param>
 		/// <param name="texture">The texture to draw.</param>
+		/// <param name="section">The part of the texture to draw.</param>
 		/// <param name="tint">The tint to apply to the texture.</param>
-		public void DrawTexture(Vector2 position, Vector2 size, Texture2D texture, Color? tint = null) {
-			CheckDrawing();
-			_SpriteBatch.Draw(texture, new RectangleF(position.X, position.Y, size.X, size.Y), tint ?? Color.White);
+		/// <param name="effects">Effects to apply to the texture.</param>
+		public void DrawTexture(Vector2 position, float rotation, Vector2 size, Texture2D texture, RectangleF section = null, Color? tint = null, SpriteEffects effects = SpriteEffects.None) {
+			// Draws using a Vector to avoid per-pixel movement. Calculates scale based on section size.
+			if(section == null) {
+				section = new RectangleF(0, 0, texture.Width, texture.Height);
+            }
+			_SpriteBatch.Draw(texture, position, section, tint ?? Color.White, rotation, Vector2.Zero, new Vector2(size.X / section.Width, size.Y / section.Height), effects, 0F);
+		}
+
+		/// <summary>
+		/// Draws a part of a SpriteSheet on the screen.
+		/// </summary>
+		/// <param name="position">The position to draw the extracted part at</param>
+		/// <param name="size">The size of the extracted part.</param>
+		/// <param name="cell">The cell of the SpriteSheet to extract.</param>
+		/// <param name="spriteSheet">The SpriteSheet.</param>
+		/// <param name="effects">Effects to apply to the texture.</param>
+		public void DrawSpriteSheet(Vector2 position, Vector2 size, Point cell, SpriteSheet spriteSheet, Color? tint = null, SpriteEffects effects = SpriteEffects.None) {
+			DrawTexture(position, 0F, size, spriteSheet.Texture, new RectangleF(cell.X * spriteSheet.CellSize.X, cell.Y * spriteSheet.CellSize.Y, spriteSheet.CellSize.X, spriteSheet.CellSize.Y), tint, effects);
 		}
 
 		/// <summary>
@@ -162,19 +192,20 @@ namespace GameLibrary {
 		/// <param name="text">The text to draw.</param>
 		/// <param name="font">The font of the text to draw.</param>
 		/// <param name="color">The color of the text to draw.</param>
-		public void DrawText(Vector2 position, string text, SpriteFont font, Color? color = null) {
-			CheckDrawing();
-			_SpriteBatch.DrawString(font, text, position, color ?? Color.White);
+		/// <param name="effects">Effects to apply to the texture.</param>
+		public void DrawText(Vector2 position, float rotation, Vector2 size, String text, SpriteFont font, Color? color = null, SpriteEffects effects = SpriteEffects.None) {
+			_SpriteBatch.DrawString(font, text, position, color ?? Color.White, rotation, Vector2.Zero, new Vector2(size.X / font.MeasureString(text).X, size.Y / font.MeasureString(text).Y), SpriteEffects.None, 0F);
 		}
 
 		/// <summary>
 		/// Draws a rectangle on the screen.
 		/// </summary>
 		/// <param name="position">The position to draw the rectangle at.</param>
+		/// <param name="rotation">The amount to rotate the rectangle.</param>
 		/// <param name="size">The size of the rectangle.</param>
 		/// <param name="color">The color of the rectangle.</param>
 		public void DrawRectangle(Vector2 position, Vector2 size, Color color) {
-			DrawTexture(position, size, GetColoredTexture(color, new Point(1, 1)));
+			DrawTexture(position, 0F, size, GetColoredPixel(color));
 		}
 
 		/// <summary>
@@ -203,20 +234,38 @@ namespace GameLibrary {
 		}
 
 		/// <summary>
-		/// Gets a texture of the given color.
+		/// Gets an empty texture.
 		/// </summary>
-		/// <param name="color">The color.</param>
-		/// <param name="dimensions">The dimensions of the texture.</param>
+		/// <param name="size">The size of the texture.</param>
+		/// <returns>An empty texture.</returns>
+		public Texture2D GetEmptyTexture(Point size) {
+			return new Texture2D(_GraphicsDeviceManager.GraphicsDevice, size.X, size.Y);
+		}
+
+		/// <summary>
+		/// Gets a texture of the given colors.
+		/// </summary>
+		/// <param name="colorData">The colors.</param>
+		/// <param name="size">The size of the texture.</param>
 		/// <returns>A colored texture.</returns>
-		public Texture2D GetColoredTexture(Color color, Point dimensions) {
-			Texture2D texture = new Texture2D(_GraphicsDeviceManager.GraphicsDevice, dimensions.X, dimensions.Y, false, SurfaceFormat.Color);
+		public Texture2D GetColoredTexture(Color[] colorData, Point size) {
+			Texture2D result = GetEmptyTexture(size);
 
 			// Set color
-			texture.SetData<Color>(new Color[] {
-				color
-			});
+			result.SetData<Color>(colorData);
 
-			return texture;
+			return result;
+		}
+
+		/// <summary>
+		/// Gets a 1x1 texture of the given color.
+		/// </summary>
+		/// <param name="color">The color.</param>
+		/// <returns>A colored 1x1 texture.</returns>
+		public Texture2D GetColoredPixel(Color color) {
+			return GetColoredTexture(new Color[] {
+				color
+			}, new Point(1, 1));
 		}
 	}
 }

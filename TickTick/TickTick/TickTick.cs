@@ -14,11 +14,12 @@ namespace TickTick {
 
 			// Set up environment
 			IsMouseVisible = true;
-			//GraphicsHandler.FullScreen = true;
-			// TODO: Enable fullscreen
 			GraphicsHandler.Resolution = new Point(1440, 825);
+			//GraphicsHandler.FullScreen = true;
+			// TODO: Add fullscreen
 
 			// Start game
+			StateHandler.AddState("playing", new PlayingState());
 			StateHandler.AddState("titleMenu", new TitleMenuState());
 			StateHandler.AddState("helpMenu", new HelpMenuState());
 			StateHandler.AddState("levelMenu", new LevelMenuState());

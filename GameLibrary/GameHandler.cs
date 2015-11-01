@@ -1,11 +1,12 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace GameLibrary {
 	/// <summary>
 	/// Contains all objects that allow manipulation of aspects of the game.
 	/// </summary>
-	public class GameHandler : Game, Updatable, Drawable {
+	public class GameHandler : Game {
 		/// <summary>
 		/// Used for loading and retrieving assets.
 		/// </summary>
@@ -14,6 +15,10 @@ namespace GameLibrary {
 		/// Used for playing and managing audio.
 		/// </summary>
 		static public AudioHandler AudioHandler;
+		/// <summary>
+		/// Latest GameTime.
+		/// </summary>
+		static public GameTime GameTime;
 		/// <summary>
 		/// Used for displaying and manipulating graphics.
 		/// </summary>
@@ -30,6 +35,22 @@ namespace GameLibrary {
 		/// Used to switch between game states.
 		/// </summary>
 		static public StateHandler StateHandler;
+		/// <summary>
+		/// Used to change information about the game, such as window title.
+		/// </summary>
+		static public InfoHandler InfoHandler;
+		/// <summary>
+		/// The amount of ticks per second.
+		/// </summary>
+		static public int Tps {
+			get {
+				return _Tps;
+			}
+		}
+
+		static private int _Tps;
+		private DateTime _TickStart;
+		private int _Ticks;
 
 		/// <summary>
 		/// Creates a new GameHandler.
@@ -43,13 +64,9 @@ namespace GameLibrary {
 			InputHandler = new InputHandler();
 			Random = new Random();
 			StateHandler = new StateHandler();
-		}
+			InfoHandler = new InfoHandler(Window);
 
-		/// <summary>
-		/// Initialize the game.
-		/// </summary>
-		protected override void Initialize() {
-			base.Initialize();
+			_TickStart = DateTime.Now;
 		}
 
 		/// <summary>
@@ -64,26 +81,31 @@ namespace GameLibrary {
 		protected override void Update(GameTime gameTime) {
 			base.Update(gameTime);
 
-			Update();
-		}
+			GameTime = gameTime;
 
-		public void Update() {
 			// Update input
 			InputHandler.Update();
 
+			// Check fullscreen
+			if(InputHandler.OnKeyDown(Keys.F11)) {
+				GraphicsHandler.FullScreen = !GraphicsHandler.FullScreen;
+			}
+
 			// Update state
 			StateHandler.Update();
-		}
 
+			// Update TPS
+			if ((DateTime.Now - _TickStart).TotalMilliseconds < 1000) {
+				_Ticks++;
+			} else {
+				_Tps = _Ticks;
+				_TickStart = DateTime.Now;
+				_Ticks = 0;
+			}
+		}
+		
 		protected override void Draw(GameTime gameTime) {
 			base.Draw(gameTime);
-
-			Draw();
-		}
-
-		public void Draw() {
-			// Clear screen
-			GraphicsHandler.Clear(Color.Black);
 
 			// Draw state
 			GraphicsHandler.Begin();

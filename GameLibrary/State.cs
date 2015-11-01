@@ -1,6 +1,12 @@
-﻿namespace GameLibrary {
+﻿using System;
+
+namespace GameLibrary {
 	public class State : Entity {
-		public State(string name) : base(name) {
+		/// <summary>
+		/// Creates a new State.
+		/// </summary>
+		/// <param name="name"></param>
+		public State(String name) : base(name) {
 		}
 	}
 }

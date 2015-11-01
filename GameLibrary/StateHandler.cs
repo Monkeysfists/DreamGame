@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace GameLibrary {
-	public class StateHandler : Updatable, Drawable {
+	/// <summary>
+	/// Handles different game states.
+	/// </summary>
+	public class StateHandler {
 		/// <summary>
 		/// The state that is currently active. Set to null to disable.
 		/// </summary>
@@ -23,30 +26,30 @@ namespace GameLibrary {
 		/// <summary>
 		/// A list of all loaded states.
 		/// </summary>
-		public Dictionary<string, Entity> States {
+		public Dictionary<String, Entity> States {
 			get {
-				return new Dictionary<string, Entity>(_States);
+				return new Dictionary<String, Entity>(_States);
 			}
 		}
 
 		private Entity _CurrentState;
-		private Dictionary<string, Entity> _States;
+		private Dictionary<String, Entity> _States;
 
 		/// <summary>
 		/// Creates a new StateHandler.
 		/// </summary>
 		public StateHandler() {
-			_States = new Dictionary<string, Entity>();
+			_States = new Dictionary<String, Entity>();
 		}
 
 		public void Update() {
-			if(CurrentState != null) {
+			if(CurrentState != null && CurrentState.Active) {
 				CurrentState.Update();
 			}
 		}
 
 		public void Draw() {
-			if (CurrentState != null) {
+			if (CurrentState != null && CurrentState.Visible) {
 				CurrentState.Draw();
 			}
 		}
@@ -56,7 +59,7 @@ namespace GameLibrary {
 		/// </summary>
 		/// <param name="id">The ID of the state to add.</param>
 		/// <param name="state">The state to add.</param>
-		public void AddState(string id, Entity state) {
+		public void AddState(String id, Entity state) {
 			_States.Add(id, state);
 		}
 
@@ -64,7 +67,7 @@ namespace GameLibrary {
 		/// Removes a state from the StateHandler.
 		/// </summary>
 		/// <param name="id">The ID of the state to remove.</param>
-		public void RemoveState(string id) {
+		public void RemoveState(String id) {
 			_States.Remove(id);
 		}
 	}

@@ -6,7 +6,7 @@ namespace GameLibrary {
 	/// <summary>
 	/// Handles all input.
 	/// </summary>
-	public class InputHandler : Updatable {
+	public class InputHandler {
 		/// <summary>
 		/// All available mouse buttons.
 		/// </summary>
@@ -31,7 +31,7 @@ namespace GameLibrary {
 			get {
 				List<MouseButton> result = new List<MouseButton>();
 
-				if(MouseButtonDown(MouseButton.Left)) {
+				if (MouseButtonDown(MouseButton.Left)) {
 					result.Add(MouseButton.Left);
 				}
 				if (MouseButtonDown(MouseButton.Middle)) {
@@ -57,7 +57,7 @@ namespace GameLibrary {
 		private MouseState _PreviousMouseState;
 		private KeyboardState _CurrentKeyboardState;
 		private KeyboardState _PreviousKeyboardState;
-		
+
 		public void Update() {
 			_PreviousMouseState = _CurrentMouseState;
 			_PreviousKeyboardState = _CurrentKeyboardState;
@@ -155,12 +155,70 @@ namespace GameLibrary {
 		}
 
 		/// <summary>
+		/// Gets whether key was just pressed down.
+		/// </summary>
+		/// <returns>Whether a key was just pressed down.</returns>
+		public bool OnAKeyDown() {
+			foreach(Keys key in KeysDown) {
+				if(OnKeyDown(key)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Gets whether any of the keys was just pressed down.
+		/// </summary>
+		/// <param name="keys">The keys to check.</param>
+		/// <returns>Whether any of the keys was just pressed down.</returns>
+		public bool OnAnyKeyDown(List<Keys> keys) {
+			foreach(Keys key in keys) {
+				if(OnKeyDown(key)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Gets whether the key is being held down.
 		/// </summary>
 		/// <param name="button">The key to check.</param>
 		/// <returns>Whether the key is being held down.</returns>
 		public bool OnKeyHold(Keys key) {
 			return KeyDown(key) && _PreviousKeyboardState.IsKeyDown(key);
+		}
+
+		/// <summary>
+		/// Gets whether a key is being held down.
+		/// </summary>
+		/// <returns>Whether a key is being held down.</returns>
+		public bool OnAKeyHold() {
+			foreach (Keys key in KeysDown) {
+				if (KeyDown(key) && _PreviousKeyboardState.IsKeyDown(key)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Gets whether any of the keys is being held down.
+		/// </summary>
+		/// <param name="keys">The keys to check.</param>
+		/// <returns>Whether any of the keys is being held down.</returns>
+		public bool OnAnyKeyHold(List<Keys> keys) {
+			foreach (Keys key in keys) {
+				if (OnKeyHold(key)) {
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		/// <summary>
@@ -173,6 +231,35 @@ namespace GameLibrary {
 		}
 
 		/// <summary>
+		/// Gets whether a key was just released.
+		/// </summary>
+		/// <returns>Whether a key was just released.</returns>
+		public bool OnAKeyUp() {
+			foreach (Keys key in _PreviousKeyboardState.GetPressedKeys()) {
+				if (_CurrentKeyboardState.IsKeyUp(key)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Gets whether any of the keys was just released.
+		/// </summary>
+		/// <param name="keys">The keys to check.</param>
+		/// <returns>Whether any of the keys was just released.</returns>
+		public bool OnAnyKeyUp(List<Keys> keys) {
+			foreach (Keys key in keys) {
+				if (OnKeyUp(key)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Gets whether the key is down.
 		/// </summary>
 		/// <param name="button">The key to check.</param>
@@ -182,12 +269,42 @@ namespace GameLibrary {
 		}
 
 		/// <summary>
+		/// Gets whether any of the keys are down.
+		/// </summary>
+		/// <param name="keys">The keys to check.</param>
+		/// <returns>Whether any of the keys are down.</returns>
+		public bool AnyKeyDown(List<Keys> keys) {
+			foreach (Keys key in keys) {
+				if (KeyDown(key)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Gets whether the key is up.
 		/// </summary>
 		/// <param name="button">The key to check.</param>
 		/// <returns>Whether the key is up.</returns>
 		public bool KeyUp(Keys key) {
 			return _CurrentKeyboardState.IsKeyUp(key);
+		}
+
+		/// <summary>
+		/// Gets whether any of the keys are up.
+		/// </summary>
+		/// <param name="keys">The keys to check.</param>
+		/// <returns>Whether any of the keys are up.</returns>
+		public bool AnyKeyUp(List<Keys> keys) {
+			foreach (Keys key in keys) {
+				if (KeyUp(key)) {
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 }

@@ -4,7 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/// <summary>
+/// Useful game programming types.
+/// </summary>
 namespace GameLibrary.Types {
+	/// <summary>
+	/// A rectangle wit float values.
+	/// </summary>
 	public class RectangleF {
 		/// <summary>
 		/// The X coordinate.

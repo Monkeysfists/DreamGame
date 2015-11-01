@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using System;
 using System.Collections.Generic;
+using System.IO;
 //TODO: Maybe add a way to load sounds with a specific ID. Same for other assets.
 namespace GameLibrary {
 	/// <summary>
@@ -10,10 +12,11 @@ namespace GameLibrary {
 	/// </summary>
 	public class AssetHandler {
 		private ContentManager _ContentManager;
-		private Dictionary<string, Song> _Songs = new Dictionary<string, Song>();
-		private Dictionary<string, SoundEffect> _SoundEffects = new Dictionary<string, SoundEffect>();
-		private Dictionary<string, SpriteFont> _SpriteFonts = new Dictionary<string, SpriteFont>();
-		private Dictionary<string, Texture2D> _Textures = new Dictionary<string, Texture2D>();
+		private Dictionary<String, Song> _Songs = new Dictionary<String, Song>();
+		private Dictionary<String, SoundEffect> _SoundEffects = new Dictionary<String, SoundEffect>();
+		private Dictionary<String, SpriteFont> _SpriteFonts = new Dictionary<String, SpriteFont>();
+		private Dictionary<String, Texture2D> _Textures = new Dictionary<String, Texture2D>();
+		private Dictionary<String, SpriteSheet> _SpriteSheets = new Dictionary<String, SpriteSheet>();
 
 		/// <summary>
 		/// Creates a new AssetManager.
@@ -28,7 +31,7 @@ namespace GameLibrary {
 		/// </summary>
 		/// <param name="name">The name of the Song.</param>
 		/// <returns>The Song.</returns>
-		public Song GetSong(string name) {
+		public Song GetSong(String name) {
 			// Load if it hasn't been loaded yet
 			if (!_Songs.ContainsKey(name)) {
 				_Songs[name] = _ContentManager.Load<Song>(name);
@@ -42,7 +45,7 @@ namespace GameLibrary {
 		/// </summary>
 		/// <param name="name">The name of the SoundEffect.</param>
 		/// <returns>The SoundEffect.</returns>
-		public SoundEffect GetSoundEffect(string name) {
+		public SoundEffect GetSoundEffect(String name) {
 			// Load if it hasn't been loaded yet
 			if (!_SoundEffects.ContainsKey(name)) {
 				_SoundEffects[name] = _ContentManager.Load<SoundEffect>(name);
@@ -56,7 +59,7 @@ namespace GameLibrary {
 		/// </summary>
 		/// <param name="name">The name of the SpriteFont.</param>
 		/// <returns>The SpriteFont.</returns>
-		public SpriteFont GetSpriteFont(string name) {
+		public SpriteFont GetSpriteFont(String name) {
 			// Load if it hasn't been loaded yet
 			if (!_SpriteFonts.ContainsKey(name)) {
 				_SpriteFonts[name] = _ContentManager.Load<SpriteFont>(name);
@@ -70,13 +73,52 @@ namespace GameLibrary {
 		/// </summary>
 		/// <param name="name">The name of the texture.</param>
 		/// <returns>The texture.</returns>
-		public Texture2D GetTexture(string name) {
+		public Texture2D GetTexture(String name) {
 			// Load if it hasn't been loaded yet
 			if (!_Textures.ContainsKey(name)) {
 				_Textures[name] = _ContentManager.Load<Texture2D>(name);
 			}
 
 			return _Textures[name];
+		}
+
+		/// <summary>
+		/// Gets a SpriteSheet. If the SpriteSheet has been loaded before, that instance will be used, otherwise a new instance will be loaded.
+		/// </summary>
+		/// <param name="name">The name of the SpriteSheet.</param>
+		/// <returns>The SpriteSheet.</returns>
+		public SpriteSheet GetSpriteSheet(String name) {
+			// Load if it hasn't been loaded yet
+			if (!_SpriteSheets.ContainsKey(name)) {
+				_SpriteSheets[name] = new SpriteSheet(name);
+			}
+
+			return _SpriteSheets[name];
+		}
+
+		/// <summary>
+		/// Gets the contents of a resource file.
+		/// </summary>
+		/// <param name="path">The path of the file, relative to the game.</param>
+		/// <returns>The file's contents.</returns>
+		public String ReadFile(String path) {
+			StreamReader reader = new StreamReader(_ContentManager.RootDirectory + "/" + path);
+			string result = reader.ReadToEnd();
+			reader.Close();
+
+			return result;
+		}
+
+		/// <summary>
+		/// Writes text to a file.
+		/// </summary>
+		/// <param name="path">The path of the file, relative to the game.</param>
+		/// <param name="text">The contents to write.</param>
+		/// <param name="append">Whether to append to the end or overwrite.</param>
+		public void WriteFile(String path, String text, bool append) {
+			StreamWriter writer = new StreamWriter(_ContentManager.RootDirectory + "/" + path, append);
+			writer.Write(text);
+			writer.Close();
 		}
 	}
 }
