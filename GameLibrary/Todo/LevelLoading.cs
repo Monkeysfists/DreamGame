@@ -75,6 +75,10 @@ partial class Level : GameObjectList
                 return LoadRocketTile(x, y, false);
             case 'S':
                 return LoadSparkyTile(x, y);
+            case 'k':
+                return LoadShieldTile(x, y);
+            case 'z':
+                return LoadBananaTile(x, y);
             case 'A':
             case 'B':
             case 'C':
@@ -168,6 +172,30 @@ partial class Level : GameObjectList
         w.Position = new Vector2(x * tiles.CellWidth, y * tiles.CellHeight - 10);
         w.Position += new Vector2(tiles.CellWidth, tiles.CellHeight) / 2;
         waterdrops.Add(w);
+        return new Tile();
+    }
+
+    private Tile LoadShieldTile(int x, int y)
+    {
+        GameObjectList shield = this.Find("shield") as GameObjectList;
+        TileField tiles = this.Find("tiles") as TileField;
+        Shield w = new Shield();
+        w.Origin = w.Center;
+        w.Position = new Vector2(x * tiles.CellWidth, y * tiles.CellHeight - 10);
+        w.Position += new Vector2(tiles.CellWidth, tiles.CellHeight) / 2;
+        shield.Add(w);
+        return new Tile();
+    }
+
+    private Tile LoadBananaTile(int x, int y)
+    {
+        GameObjectList banana = this.Find("banana") as GameObjectList;
+        TileField tiles = this.Find("tiles") as TileField;
+        Shield w = new Shield();
+        w.Origin = w.Center;
+        w.Position = new Vector2(x * tiles.CellWidth, y * tiles.CellHeight - 10);
+        w.Position += new Vector2(tiles.CellWidth, tiles.CellHeight) / 2;
+        banana.Add(w);
         return new Tile();
     }
 }

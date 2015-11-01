@@ -4,6 +4,7 @@ class Rocket : AnimatedGameObject
 {
     protected double spawnTime;
     protected Vector2 startPosition;
+    protected Rectangle colliding;
 
     public Rocket(bool moveToLeft, Vector2 startPosition)
     {
@@ -45,6 +46,14 @@ class Rocket : AnimatedGameObject
     {
         Player player = GameWorld.Find("player") as Player;
         if (this.CollidesWith(player) && this.Visible)
-            player.Die(false);
+        {
+            if(player.Velocity.Y > 0)
+            {
+                colliding = Rectangle.Intersect(player.BoundingBox, BoundingBox);
+                if (colliding.Width > colliding.Height)
+                    return;
+                player.Die(false);  
+            }
+        }
     }
 }
