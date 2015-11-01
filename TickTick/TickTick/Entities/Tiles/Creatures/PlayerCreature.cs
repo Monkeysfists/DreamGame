@@ -96,9 +96,9 @@ namespace TickTick.Entities.Tiles.Creatures {
 		private bool _Won;
         private bool _Banana;
         private float SlowTimer;
-        private bool _Invincible;
         private float ShieldTimer;
         private int TemporaryHealth;
+        private float BombTimer;
 
 		/// <summary>
 		/// Creates a new PlayerCreature.
@@ -163,10 +163,8 @@ namespace TickTick.Entities.Tiles.Creatures {
                     ShieldTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
                     Health = TemporaryHealth;
                 }
-                else if (ShieldTimer <= 0)
-                {
-                    _Invincible = false;
-                }
+                if(BombTimer > 0)
+                    BombTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
 
                 if (Animation != CelebrateAnimation) {
@@ -258,8 +256,9 @@ namespace TickTick.Entities.Tiles.Creatures {
                     speedMultiplier = 0.5F;
 
 				// Handle input
-				if (GameHandler.InputHandler.OnKeyDown(Keys.Enter)) {
+				if (GameHandler.InputHandler.OnKeyDown(Keys.Enter) && BombTimer <= 0) {
 					BombEntity bomb = new BombEntity();
+                    BombTimer = 2;
 					bomb.Position = Position;
 					bomb.Velocity = Velocity;
 					bomb.Velocity.Y -= 1000F;
@@ -319,7 +318,6 @@ namespace TickTick.Entities.Tiles.Creatures {
                         if(entity is ShieldTile)
                         {
                             Parent.RemoveChild(entity);
-                            _Invincible = true;
                             ShieldTimer = 7;
                             TemporaryHealth = Health;
                         }
@@ -331,7 +329,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 							if (Health <= 99) {
 								Health += 1;
 							}
-						} else {
+						} else if(!(entity is BombEntity)&& !(entity is CreatureTileEntity)){
 							RectangleF playerBounds = GlobalCollisionBox;
 							RectangleF tileBounds = entity.GlobalCollisionBox;
 							playerBounds.Height++;

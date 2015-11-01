@@ -530,13 +530,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tiles\shield8%402.png">
-      <Name>shield8%402</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Tiles\spr_shield.png">
       <Name>spr_shield</Name>
       <Importer>TextureImporter</Importer>
