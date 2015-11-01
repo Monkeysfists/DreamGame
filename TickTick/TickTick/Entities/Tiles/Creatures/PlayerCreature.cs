@@ -100,7 +100,6 @@ namespace TickTick.Entities.Tiles.Creatures {
 		/// </summary>
 		public PlayerCreature() {
 			Health = 100;
-			CanCollide = true;
 			_PreviousY = GlobalCollisionBox.Bottom;
 			Name = "player";
 			_Won = false;
@@ -229,6 +228,19 @@ namespace TickTick.Entities.Tiles.Creatures {
 				}
 
 				// Handle input
+				if (GameHandler.InputHandler.OnKeyDown(Keys.Enter)) {
+					BombEntity bomb = new BombEntity();
+					bomb.Position = Position;
+					bomb.Velocity = Velocity;
+					bomb.Velocity.Y -= 1000F;
+					if(IdleAnimation.FlipHorizontally) {
+						bomb.Velocity.X = Velocity.X - 500F;
+					} else {
+						bomb.Velocity.X = Velocity.X + 500F;
+					}
+					bomb.Layer = 10;
+					Parent.AddChild(bomb);
+				}
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey)) {
 					Velocity.X = LeftSpeed * speedMultiplier;
 				} else if (GameHandler.InputHandler.AnyKeyDown(RightKey)) {
@@ -265,7 +277,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 							Animation = CelebrateAnimation;
 							break;
 						}
-					} else {
+					} else if(!(entity is BombEntity) && !(entity is CreatureTileEntity)) {
 						// Collect water
 						if (entity is WaterTile) {
 							Parent.RemoveChild(entity);

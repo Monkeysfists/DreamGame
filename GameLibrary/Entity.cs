@@ -342,6 +342,7 @@ namespace GameLibrary {
 
 			foreach (Entity entity in entities) {
 				RectangleF entityBoundingBox = new RectangleF(entity.GlobalCollisionBox.X + entityOffset.X, entity.GlobalCollisionBox.Y + entityOffset.Y, entity.GlobalCollisionBox.Width, entity.GlobalCollisionBox.Height);
+
 				if (entity != this && entity.CanCollide && boundingBox.Intersects(entityBoundingBox)) {
 					// INTERSECTION!
 					result.Add(entity);

@@ -9,5 +9,12 @@ namespace TickTick.Entities.Tiles.Creatures {
 		/// The animation to play when idle.
 		/// </summary>
 		public Animation IdleAnimation;
+
+		/// <summary>
+		/// Creates a new CreatureTileEntity.
+		/// </summary>
+		public CreatureTileEntity() {
+			CanCollide = true;
+		}
 	}
 }
