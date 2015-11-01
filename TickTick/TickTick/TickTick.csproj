@@ -87,11 +87,13 @@
     <Compile Include="Entities\Tiles\Creatures\TurtleCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\WildFlame.cs" />
     <Compile Include="Entities\Tiles\GoalTile.cs" />
+    <Compile Include="Entities\Tiles\Creatures\BananaTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\DefaultPlatform.cs" />
     <Compile Include="Entities\Tiles\Platforms\HotPlatform.cs" />
     <Compile Include="Entities\Tiles\Platforms\IcePlatform.cs" />
     <Compile Include="Entities\Tiles\Platforms\PlatformTile.cs" />
     <Compile Include="Entities\States\PlayingState.cs" />
+    <Compile Include="Entities\Tiles\Platforms\ShieldTile.cs" />
     <Compile Include="Entities\Tiles\TileEntity.cs" />
     <Compile Include="Entities\Tiles\Walls\DefaultWall.cs" />
     <Compile Include="Entities\Tiles\Walls\HotWall.cs" />

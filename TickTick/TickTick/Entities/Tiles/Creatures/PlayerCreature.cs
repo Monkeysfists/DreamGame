@@ -94,6 +94,11 @@ namespace TickTick.Entities.Tiles.Creatures {
 		private bool _OnHot;
 		private float _PreviousY;
 		private bool _Won;
+        private bool _Banana;
+        private float SlowTimer;
+        private bool _Invincible;
+        private float ShieldTimer;
+        private int TemporaryHealth;
 
 		/// <summary>
 		/// Creates a new PlayerCreature.
@@ -126,6 +131,9 @@ namespace TickTick.Entities.Tiles.Creatures {
 			RightSpeed = 400F;
 			JumpSpeed = -1100F;
 
+            //Timer
+            SlowTimer = 0;
+
 			// Input
 			LeftKey = new List<Keys>();
 			RightKey = new List<Keys>();
@@ -143,7 +151,26 @@ namespace TickTick.Entities.Tiles.Creatures {
 			if (Health > 0) {
 				HandleInput();
 
-				if(Animation != CelebrateAnimation) {
+                //Update timer if needed
+                if(SlowTimer > 0)
+                {
+                    SlowTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+                }else if(SlowTimer <= 0)
+                {
+                    _Banana = false;
+                }
+                if (ShieldTimer > 0)
+                {
+                    ShieldTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+                    Health = TemporaryHealth;
+                }
+                else if (ShieldTimer <= 0)
+                {
+                    _Invincible = false;
+                }
+
+
+                if (Animation != CelebrateAnimation) {
 					// Animation directions
 					if (Velocity.X > 0) {
 						IdleAnimation.FlipHorizontally = false;
@@ -228,6 +255,9 @@ namespace TickTick.Entities.Tiles.Creatures {
 					speedMultiplier = 1.5F;
 				}
 
+                if (_Banana)
+                    speedMultiplier = 0.5F;
+
 				// Handle input
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey)) {
 					Velocity.X = LeftSpeed * speedMultiplier;
@@ -266,6 +296,21 @@ namespace TickTick.Entities.Tiles.Creatures {
 							break;
 						}
 					} else {
+                        // Woops you just slipped on a banana
+                        if(entity is BananaTile)
+                        {
+                            Parent.RemoveChild(entity);
+                            _Banana = true;
+                            SlowTimer = 3;
+                        }
+                        //WOOOHOOOO INVICIBLE
+                        if(entity is ShieldTile)
+                        {
+                            Parent.RemoveChild(entity);
+                            _Invincible = true;
+                            ShieldTimer = 7;
+                            TemporaryHealth = Health;
+                        }
 						// Collect water
 						if (entity is WaterTile) {
 							Parent.RemoveChild(entity);

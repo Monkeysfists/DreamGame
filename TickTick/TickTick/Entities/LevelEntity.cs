@@ -161,6 +161,10 @@ namespace TickTick.Entities {
 					return new StalkerFlame();
 				case 'C':
 					return new FlameCreature();
+                case 'k':
+                    return new ShieldTile();
+                case 'z':
+                    return new BananaTile();
 				default:
 					TileEntity tile = new TileEntity();
 					tile.CanCollide = false;
