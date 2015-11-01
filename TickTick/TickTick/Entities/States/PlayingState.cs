@@ -125,7 +125,7 @@ namespace TickTick.Entities.States {
 			background.Size = Size;
 
 			// Load levels
-			for (int i = 1; i <= 11; i++) {
+			for (int i = 1; i <= 12; i++) {
 				LevelEntity level = new LevelEntity(i);
 				level.Active = false;
 				level.Visible = false;

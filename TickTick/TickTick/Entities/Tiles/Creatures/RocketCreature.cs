@@ -106,9 +106,13 @@ namespace TickTick.Entities.Tiles.Creatures {
 						PlayerCreature player = (PlayerCreature)entity;
 
 						if (player.Health > 0) {
-							player.Health -= 50;
-							Reset();
-							_SpawnTime = 10F;
+							if(player.Velocity.Y > 0 && player.GlobalBoundingBox.Bottom < GlobalBoundingBox.Bottom) {
+								player.Jump(-1000);
+							} else {
+								player.Health -= 50;
+							}
+
+							Parent.RemoveChild(this);
 						}
 					}
 				}
