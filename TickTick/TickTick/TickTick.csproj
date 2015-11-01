@@ -69,6 +69,7 @@
     <Compile Include="Animations\SparkyIdleAnimation.cs" />
     <Compile Include="Animations\TurtleIdleAnimation.cs" />
     <Compile Include="Animations\TurtleSneezeAnimation.cs" />
+    <Compile Include="Entities\BombEntity.cs" />
     <Compile Include="Entities\Buttons\BackButton.cs" />
     <Compile Include="Entities\Buttons\HelpButton.cs" />
     <Compile Include="Entities\Buttons\LevelButton.cs" />

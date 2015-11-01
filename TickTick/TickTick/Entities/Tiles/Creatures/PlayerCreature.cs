@@ -105,7 +105,6 @@ namespace TickTick.Entities.Tiles.Creatures {
 		/// </summary>
 		public PlayerCreature() {
 			Health = 100;
-			CanCollide = true;
 			_PreviousY = GlobalCollisionBox.Bottom;
 			Name = "player";
 			_Won = false;
@@ -259,6 +258,19 @@ namespace TickTick.Entities.Tiles.Creatures {
                     speedMultiplier = 0.5F;
 
 				// Handle input
+				if (GameHandler.InputHandler.OnKeyDown(Keys.Enter)) {
+					BombEntity bomb = new BombEntity();
+					bomb.Position = Position;
+					bomb.Velocity = Velocity;
+					bomb.Velocity.Y -= 1000F;
+					if(IdleAnimation.FlipHorizontally) {
+						bomb.Velocity.X = Velocity.X - 500F;
+					} else {
+						bomb.Velocity.X = Velocity.X + 500F;
+					}
+					bomb.Layer = 10;
+					Parent.AddChild(bomb);
+				}
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey)) {
 					Velocity.X = LeftSpeed * speedMultiplier;
 				} else if (GameHandler.InputHandler.AnyKeyDown(RightKey)) {
@@ -332,6 +344,9 @@ namespace TickTick.Entities.Tiles.Creatures {
 							} else {
 								if (_PreviousY - 1 <= tileBounds.Top && Velocity.Y >= 0) {
 									_OnGround = true;
+									if(Velocity.Y > 1500) {
+										Health -= (int)((Velocity.Y - 1500) / 10);
+									}
 									Velocity.Y = 0F;
 
 									_OnIce = entity is IcePlatform || entity is IceWall;
