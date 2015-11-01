@@ -299,6 +299,9 @@ namespace TickTick.Entities.Tiles.Creatures {
 							} else {
 								if (_PreviousY - 1 <= tileBounds.Top && Velocity.Y >= 0) {
 									_OnGround = true;
+									if(Velocity.Y > 1500) {
+										Health -= (int)((Velocity.Y - 1500) / 10);
+									}
 									Velocity.Y = 0F;
 
 									_OnIce = entity is IcePlatform || entity is IceWall;
