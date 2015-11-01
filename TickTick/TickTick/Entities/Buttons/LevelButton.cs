@@ -85,6 +85,8 @@ namespace TickTick.Entities.Buttons {
 					}
 				}
 			}
+
+			Size = new Vector2(108, 108);
 		}
 	}
 }

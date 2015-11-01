@@ -126,11 +126,35 @@ namespace TickTick.Entities {
 		private Entity ConvertTiles(char character) {
 			switch (character) {
 				case '-':
-					return new DefaultPlatform();
+				case '$':
+				case '%':
+					DefaultPlatform defaultPlatform = new DefaultPlatform();
+					if(character == '$') {
+						defaultPlatform.Velocity.X = 100F;
+					} else if(character == '%') {
+						defaultPlatform.Velocity.X = -100F;
+					}
+					return defaultPlatform;
 				case '+':
-					return new HotPlatform();
+				case '&':
+				case '(':
+					HotPlatform hotPlatform = new HotPlatform();
+					if (character == '&') {
+						hotPlatform.Velocity.X = 100F;
+					} else if (character == '(') {
+						hotPlatform.Velocity.X = -100F;
+					}
+					return hotPlatform;
 				case '@':
-					return new IcePlatform();
+				case '!':
+				case '~':
+					IcePlatform icePlatform = new IcePlatform();
+					if (character == '!') {
+						icePlatform.Velocity.X = 100F;
+					} else if (character == '~') {
+						icePlatform.Velocity.X = -100F;
+					}
+					return icePlatform;
 				case 'X':
 					return new GoalTile();
 				case 'W':
@@ -138,11 +162,35 @@ namespace TickTick.Entities {
 				case '1':
 					return new PlayerCreature();
 				case '#':
-					return new DefaultWall();
+				case '/':
+				case '>':
+					DefaultWall defaultWall = new DefaultWall();
+					if (character == '/') {
+						defaultWall.Velocity.X = 100F;
+					} else if (character == '>') {
+						defaultWall.Velocity.X = -100F;
+					}
+					return defaultWall;
 				case '^':
-					return new HotWall();
+				case '<':
+				case '\\':
+					HotWall hotWall = new HotWall();
+					if (character == '<') {
+						hotWall.Velocity.X = 100F;
+					} else if (character == '\\') {
+						hotWall.Velocity.X = -100F;
+					}
+					return hotWall;
 				case '*':
-					return new IceWall();
+				case '[':
+				case ']':
+					IceWall iceWall = new IceWall();
+					if (character == '[') {
+						iceWall.Velocity.X = 100F;
+					} else if (character == ']') {
+						iceWall.Velocity.X = -100F;
+					}
+					return iceWall;
 				case 'T':
 					return new TurtleCreature();
 				case 'R':

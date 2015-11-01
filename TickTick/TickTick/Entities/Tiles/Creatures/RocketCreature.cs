@@ -101,7 +101,6 @@ namespace TickTick.Entities.Tiles.Creatures {
 			if(Visible) {
 				// Handle collisions
 				foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero)) {
-					// Collect water
 					if (entity is PlayerCreature) {
 						PlayerCreature player = (PlayerCreature)entity;
 

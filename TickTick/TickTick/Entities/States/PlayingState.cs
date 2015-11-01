@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using TickTick.Entities.Buttons;
 
 namespace TickTick.Entities.States {
@@ -125,7 +126,7 @@ namespace TickTick.Entities.States {
 			background.Size = Size;
 
 			// Load levels
-			for (int i = 1; i <= 12; i++) {
+			for (int i = 1; i <= GameHandler.AssetHandler.CountFiles("Levels") - 1; i++) {
 				LevelEntity level = new LevelEntity(i);
 				level.Active = false;
 				level.Visible = false;

@@ -120,5 +120,14 @@ namespace GameLibrary {
 			writer.Write(text);
 			writer.Close();
 		}
+
+		/// <summary>
+		/// Gets the amount of files in the specified content directory.
+		/// </summary>
+		/// <param name="path">The path of the directory.</param>
+		/// <returns>The amount of files.</returns>
+		public int CountFiles(String path) {
+			return Directory.GetFiles(@_ContentManager.RootDirectory + "/" + path).Length;
+        }
 	}
 }

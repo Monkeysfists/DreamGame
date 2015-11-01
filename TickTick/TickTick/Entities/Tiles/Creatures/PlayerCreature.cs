@@ -261,11 +261,11 @@ namespace TickTick.Entities.Tiles.Creatures {
                     BombTimer = 2;
 					bomb.Position = Position;
 					bomb.Velocity = Velocity;
-					bomb.Velocity.Y -= 1000F;
+					bomb.Velocity.Y -= 500F;
 					if(IdleAnimation.FlipHorizontally) {
-						bomb.Velocity.X = Velocity.X - 500F;
+						bomb.Velocity.X = Velocity.X - 1000F;
 					} else {
-						bomb.Velocity.X = Velocity.X + 500F;
+						bomb.Velocity.X = Velocity.X + 1000F;
 					}
 					bomb.Layer = 10;
 					Parent.AddChild(bomb);

@@ -21,9 +21,10 @@ namespace TickTick.Entities.States {
 			AddChild(backButton);
 
 			// Load buttons
-			for(int i = 0; i < ((PlayingState)GameHandler.StateHandler.States["playing"]).Levels.Count; i++) {
-				int row = i / 4;
-				int column = i % 4;
+			int levels = ((PlayingState)GameHandler.StateHandler.States["playing"]).Levels.Count;
+            for (int i = 0; i < levels; i++) {
+				int row = i / 5;
+				int column = i % 5;
 
 				LevelButton button = new LevelButton(((PlayingState)GameHandler.StateHandler.States["playing"]).Levels[i]);
 				button.Position = new Vector2(column * (button.Size.X + 20F), row * (button.Size.Y + 20F)) + new Vector2(390F, 180F);

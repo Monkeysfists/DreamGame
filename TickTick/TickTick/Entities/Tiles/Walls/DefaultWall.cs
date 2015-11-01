@@ -1,4 +1,5 @@
 ﻿using GameLibrary;
+using Microsoft.Xna.Framework;
 
 namespace TickTick.Entities.Tiles.Walls {
 	/// <summary>
