@@ -48,12 +48,12 @@ namespace TickTick.Entities.Tiles.Creatures {
 					TurnAround();
 				}
 			} else {
-				float checkX = CollisionBox.Left - 1F;
+				float checkX = GlobalCollisionBox.Left - 1F;
 				if (Velocity.X > 0) {
-					checkX = CollisionBox.Right + 1F;
+					checkX = GlobalCollisionBox.Right + 1F;
 				}
 
-				List<Entity> check = GetEntitiesAtPosition(new List<Entity>(Parent.Children), new Vector2(checkX, CollisionBox.Bottom + 1F));
+				List<Entity> check = GetEntitiesAtPosition(new List<Entity>(Parent.Children), new Vector2(checkX, GlobalCollisionBox.Bottom + 1F));
 				bool ground = false;
 				foreach (Entity entity in check) {
 					if (entity is PlatformTile || entity is WallTile) {
