@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickTick", "TickTick\TickTick\TickTick.csproj", "{9100C313-289A-4D78-A551-3A513ACE4098}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamGame", "TickTick\TickTick\DreamGame.csproj", "{9100C313-289A-4D78-A551-3A513ACE4098}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickTickContent", "TickTick\TickTickContent\TickTickContent.contentproj", "{4FF2E614-8FF9-46CD-839E-6EBB2271161B}"
 EndProject
