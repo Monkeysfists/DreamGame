@@ -67,6 +67,7 @@
     <Compile Include="Entities\Buttons\PlayButton.cs" />
     <Compile Include="Entities\Buttons\QuitButton.cs" />
     <Compile Include="Entities\LevelEntity.cs" />
+    <Compile Include="Entities\States\FadeState.cs" />
     <Compile Include="Entities\Tiles\Creatures\CreatureTileEntity.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\Train.cs" />
