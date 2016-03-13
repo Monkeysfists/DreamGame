@@ -98,7 +98,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         private float SlowTimer;
         private float ShieldTimer;
         private int TemporaryHealth;
-        private float BombTimer;
+        private float AttackTimer;
 
 		/// <summary>
 		/// Creates a new PlayerCreature.
@@ -115,9 +115,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 			LeftAnimation.FlipHorizontally = true;
 			RightAnimation = new PlayerMoveAnimation();
 			JumpAnimation = new PlayerJumpAnimation();
-			CelebrateAnimation = new PlayerCelebrateAnimation();
 			DieAnimation = new PlayerDieAnimation();
-			ExplodeAnimation = new PlayerExplodeAnimation();
 			Animation = IdleAnimation;
 
 			// Size
@@ -163,8 +161,8 @@ namespace TickTick.Entities.Tiles.Creatures {
                     ShieldTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
                     Health = TemporaryHealth;
                 }
-                if(BombTimer > 0)
-                    BombTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+                if(AttackTimer > 0)
+                    AttackTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
 
                 if (Animation != CelebrateAnimation) {
@@ -256,19 +254,10 @@ namespace TickTick.Entities.Tiles.Creatures {
                     speedMultiplier = 0.5F;
 
 				// Handle input
-				if (GameHandler.InputHandler.OnKeyDown(Keys.Enter) && BombTimer <= 0) {
-					BombEntity bomb = new BombEntity();
-                    BombTimer = 2;
-					bomb.Position = Position;
-					bomb.Velocity = Velocity;
-					bomb.Velocity.Y -= 500F;
-					if(IdleAnimation.FlipHorizontally) {
-						bomb.Velocity.X = Velocity.X - 1000F;
-					} else {
-						bomb.Velocity.X = Velocity.X + 1000F;
-					}
-					bomb.Layer = 10;
-					Parent.AddChild(bomb);
+
+                //Attack move
+				if (GameHandler.InputHandler.OnKeyDown(Keys.Enter) && AttackTimer <= 0) { 
+                    //TODO add attack
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey)) {
 					Velocity.X = LeftSpeed * speedMultiplier;
@@ -295,41 +284,34 @@ namespace TickTick.Entities.Tiles.Creatures {
 				foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero)) {
 					// Win
 					if (entity is GoalTile) {
-						_Won = true;
-						foreach (Entity checkEntity in Parent.Children) {
-							if (checkEntity is WaterTile) {
-								_Won = false;
-							}
-						}
+                        _Won = true;
 						if (_Won) {
 							((PlayingState)Parent.Parent).Won = true;
 							Animation = CelebrateAnimation;
 							break;
 						}
 					} else {
-                        // Woops you just slipped on a banana
-                        if(entity is BananaTile)
+                        // Get launched?
+                        if(entity is TrampolineBedTile)
                         {
-                            Parent.RemoveChild(entity);
-                            _Banana = true;
-                            SlowTimer = 3;
+                            if(Velocity.Y < 0)
+                            {
+                                Velocity.Y = Math.Abs(Velocity.Y * 1.25F);
+                            }
                         }
-                        //WOOOHOOOO INVICIBLE
-                        if(entity is ShieldTile)
+                        
+                        if(entity is TrainTracks)
                         {
-                            Parent.RemoveChild(entity);
-                            ShieldTimer = 7;
-                            TemporaryHealth = Health;
+                            //TODO: add soundeffect
+                            Health = 0;
                         }
-						// Collect water
-						if (entity is WaterTile) {
-							Parent.RemoveChild(entity);
-							GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_watercollected"));
-
-							if (Health <= 99) {
-								Health += 1;
-							}
-						} else if(!(entity is BombEntity)&& !(entity is CreatureTileEntity)){
+                        /*
+                        if(entity is Train)
+                        {
+                            Add train velocity = player velocity
+                        }
+                        */
+                        if(!(entity is CreatureTileEntity)){
 							RectangleF playerBounds = GlobalCollisionBox;
 							RectangleF tileBounds = entity.GlobalCollisionBox;
 							playerBounds.Height++;
@@ -346,9 +328,6 @@ namespace TickTick.Entities.Tiles.Creatures {
 										Health -= (int)((Velocity.Y - 1500) / 10);
 									}
 									Velocity.Y = 0F;
-
-									_OnIce = entity is IcePlatform || entity is IceWall;
-									_OnHot = entity is HotPlatform || entity is HotWall;
 								}
 								if (!(entity is PlatformTile) || (entity is PlatformTile && _OnGround)) {
 									Position.Y += depth.Y + 1;

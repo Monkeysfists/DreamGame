@@ -117,24 +117,6 @@ namespace TickTick.Entities
 
             ResizeToContents();
             Size.X += 500;
-
-            // Add random mountains
-            for (int i = 0; i < 7; i++)
-            {
-                MountainEntity mountain = new MountainEntity();
-                mountain.Layer = i + 1;
-                AddChild(mountain);
-                mountain.Initialize();
-            }
-
-            // Add random clouds
-            for (int i = 0; i < 7; i++)
-            {
-                CloudEntity cloud = new CloudEntity();
-                cloud.Layer = i + 1;
-                AddChild(cloud);
-                cloud.Initialize();
-            }
         }
 
         /// <summary>
@@ -162,34 +144,14 @@ namespace TickTick.Entities
                 case '+':
                 case '&':
                 case '(':
-                    HotPlatform hotPlatform = new HotPlatform();
-                    if (character == '&')
-                    {
-                        hotPlatform.Velocity.X = 100F;
-                    }
-                    else if (character == '(')
-                    {
-                        hotPlatform.Velocity.X = -100F;
-                    }
-                    return hotPlatform;
                 case '@':
                 case '!':
                 case '~':
-                    IcePlatform icePlatform = new IcePlatform();
-                    if (character == '!')
-                    {
-                        icePlatform.Velocity.X = 100F;
-                    }
-                    else if (character == '~')
-                    {
-                        icePlatform.Velocity.X = -100F;
-                    }
-                    return icePlatform;
+
                 case 'X':
                     return new GoalTile();
                 case 'W':
-                    return new WaterTile();
-                case '1':
+                case 'P':
                     return new PlayerCreature();
                 case '#':
                 case '/':
@@ -207,51 +169,26 @@ namespace TickTick.Entities
                 case '^':
                 case '<':
                 case '\\':
-                    HotWall hotWall = new HotWall();
-                    if (character == '<')
-                    {
-                        hotWall.Velocity.X = 100F;
-                    }
-                    else if (character == '\\')
-                    {
-                        hotWall.Velocity.X = -100F;
-                    }
-                    return hotWall;
                 case '*':
                 case '[':
                 case ']':
-                    IceWall iceWall = new IceWall();
-                    if (character == '[')
-                    {
-                        iceWall.Velocity.X = 100F;
-                    }
-                    else if (character == ']')
-                    {
-                        iceWall.Velocity.X = -100F;
-                    }
-                    return iceWall;
                 case 'T':
-                    return new TurtleCreature();
+                    return new TrampolineBedTile();
                 case 'R':
-                    RocketCreature rocketLeft = new RocketCreature();
-                    rocketLeft.MoveSpeed = new Vector2(-600F, 0F);
-                    return rocketLeft;
                 case 'r':
-                    RocketCreature rocketRight = new RocketCreature();
-                    rocketRight.MoveSpeed = new Vector2(600F, 0F);
-                    return rocketRight;
                 case 'S':
-                    return new SparkyCreature();
                 case 'A':
-                    return new WildFlame();
                 case 'B':
-                    return new StalkerFlame();
+                    return new PlayingBlocks();
                 case 'C':
-                    return new FlameCreature();
+                case 't':
+                    return new TrainTracks();
                 case 'k':
-                    return new ShieldTile();
+                    return new TrainStopBlock();
                 case 'z':
-                    return new BananaTile();
+                    return new Train();
+                case '1':
+                    return new Chapter11startTile();
                 default:
                     TileEntity tile = new TileEntity();
                     tile.CanCollide = false;

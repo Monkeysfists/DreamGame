@@ -69,7 +69,14 @@
     <Compile Include="Entities\LevelEntity.cs" />
     <Compile Include="Entities\Tiles\Creatures\CreatureTileEntity.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
+    <Compile Include="Entities\Tiles\Creatures\Train.cs" />
     <Compile Include="Entities\Tiles\Platforms\DefaultPlatform.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Fantasy\PlayingBlocks.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Fantasy\TrainStopBlock.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Fantasy\TrainTracks.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Fantasy\TrampolineBedTile.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Reality\Chapter11startTile.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Reality\GoalTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\PlatformTile.cs" />
     <Compile Include="Entities\States\PlayingState.cs" />
     <Compile Include="Entities\Tiles\TileEntity.cs" />
