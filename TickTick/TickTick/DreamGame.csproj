@@ -61,6 +61,8 @@
     <Compile Include="Animations\PlayerIdleAnimation.cs" />
     <Compile Include="Animations\PlayerJumpAnimation.cs" />
     <Compile Include="Animations\PlayerMoveAnimation.cs" />
+    <Compile Include="Animations\TrainIdleAnimation.cs" />
+    <Compile Include="Animations\TrainMoveAnimation.cs" />
     <Compile Include="Entities\Buttons\BackButton.cs" />
     <Compile Include="Entities\Buttons\HelpButton.cs" />
     <Compile Include="Entities\Buttons\LevelButton.cs" />

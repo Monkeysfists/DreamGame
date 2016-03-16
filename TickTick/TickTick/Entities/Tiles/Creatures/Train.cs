@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using GameLibrary;
 using TickTick.Entities.Tiles.Platforms;
+using TickTick.Animations;
 using GameLibrary.Types;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
@@ -27,6 +29,14 @@ namespace TickTick.Entities.Tiles.Creatures
         /// Check if soundeffect has played already
         /// </summary>
         private bool Soundeffectbool;
+        /// <summary>
+        /// Moving animation of the train
+        /// </summary>
+        public Animation Rightanimation;
+        /// <summary>
+        /// The idle train texture
+        /// </summary>
+        public Animation TrainTexture;
 
         private float _PreviousY;
 
@@ -43,6 +53,11 @@ namespace TickTick.Entities.Tiles.Creatures
             //Movement
             RightSpeed = 400F;
             Velocity.Y = 0;
+
+            //Animation
+            Rightanimation = new TrainMoveAnimation();
+            TrainTexture = new TrainIdleAnimation();
+            Animation = TrainTexture;
         }
 
         public override void Update()
@@ -53,12 +68,17 @@ namespace TickTick.Entities.Tiles.Creatures
                 if (_OnRails)
                     Position += Velocity;
             }
-            if(Velocity.X == 400)
+            if (Velocity.X == 400)
+            {
                 if (!Soundeffectbool)
                 {
                     //TODO add soundeffect
                     Soundeffectbool = true;
                 }
+                if (Animation != Rightanimation)
+                    Animation = Rightanimation;
+            }
+
         }
 
         public override void Draw()
