@@ -103,31 +103,7 @@ namespace TickTick.Entities.Tiles.Creatures
             }
         }
 
-        public Vector2 CalculateIntersectionDepth(Rectangle rectangle1, Rectangle rectangle2)
-        {
-            Vector2 center1 = new Vector2(rectangle1.Center.X, rectangle1.Center.Y);
-            Vector2 center2 = new Vector2(rectangle2.Center.X, rectangle2.Center.Y);
-            Vector2 minDistance = new Vector2(rectangle1.Width + rectangle2.Width, rectangle1.Height + rectangle2.Height) / 2;
-            Vector2 distance = center1 - center2;
-            Vector2 depth = Vector2.Zero;
-            if (distance.X > 0)
-            {
-                depth.X = minDistance.X - distance.X;
-            }
-            else
-            {
-                depth.X = -minDistance.X - distance.X;
-            }
-            if (distance.Y > 0)
-            {
-                depth.Y = minDistance.Y - distance.Y;
-            }
-            else
-            {
-                depth.Y = -minDistance.Y - distance.Y;
-            }
-            return depth;
-        }
+      
 
         public void kill()
         {

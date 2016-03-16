@@ -57,12 +57,16 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animations\PlayerDieAnimation.cs" />
-    <Compile Include="Animations\PlayerIdleAnimation.cs" />
-    <Compile Include="Animations\PlayerJumpAnimation.cs" />
-    <Compile Include="Animations\PlayerMoveAnimation.cs" />
-    <Compile Include="Animations\TrainIdleAnimation.cs" />
-    <Compile Include="Animations\TrainMoveAnimation.cs" />
+    <Compile Include="Animations\PlayerAnimation\PlayerCrouchAnimation.cs" />
+    <Compile Include="Animations\PlayerAnimation\PlayerDieAnimation.cs" />
+    <Compile Include="Animations\PlayerAnimation\PlayerIdleAnimation.cs" />
+    <Compile Include="Animations\PlayerAnimation\PlayerJumpAnimation.cs" />
+    <Compile Include="Animations\PlayerAnimation\PlayerMoveAnimation.cs" />
+    <Compile Include="Animations\TeddyAnimation\TeddyAttackAnimation.cs" />
+    <Compile Include="Animations\TeddyAnimation\TeddyIdleAnimation.cs" />
+    <Compile Include="Animations\TeddyAnimation\TeddyRunAnimation.cs" />
+    <Compile Include="Animations\TrainAnimation\TrainIdleAnimation.cs" />
+    <Compile Include="Animations\TrainAnimation\TrainMoveAnimation.cs" />
     <Compile Include="Entities\Buttons\BackButton.cs" />
     <Compile Include="Entities\Buttons\HelpButton.cs" />
     <Compile Include="Entities\Buttons\LevelButton.cs" />
@@ -72,6 +76,7 @@
     <Compile Include="Entities\States\FadeState.cs" />
     <Compile Include="Entities\Tiles\Creatures\CreatureTileEntity.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
+    <Compile Include="Entities\Tiles\Creatures\TeddyBear.cs" />
     <Compile Include="Entities\Tiles\Creatures\Train.cs" />
     <Compile Include="Entities\Tiles\Platforms\DefaultPlatform.cs" />
     <Compile Include="Entities\Tiles\Platforms\Fantasy\PlayingBlocks.cs" />

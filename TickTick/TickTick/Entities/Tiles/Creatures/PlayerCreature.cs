@@ -87,24 +87,24 @@ namespace TickTick.Entities.Tiles.Creatures {
 		/// The animation to play when exploding.
 		/// </summary>
 		public Animation ExplodeAnimation;
+        /// <summary>
+        /// Invincible timer control bool
+        /// </summary>
+        private bool Invin;
 
 		private int _Health;
 		private bool _OnGround;
-		private bool _OnIce;
-		private bool _OnHot;
 		private float _PreviousY;
 		private bool _Won;
-        private bool _Banana;
-        private float SlowTimer;
-        private float ShieldTimer;
         private int TemporaryHealth;
         private float AttackTimer;
+        private float InvinceTimer;
 
 		/// <summary>
 		/// Creates a new PlayerCreature.
 		/// </summary>
 		public PlayerCreature() {
-			Health = 100;
+			Health = 6;
 			_PreviousY = GlobalCollisionBox.Bottom;
 			Name = "player";
 			_Won = false;
@@ -129,7 +129,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 			JumpSpeed = -1100F;
 
             //Timer
-            SlowTimer = 0;
+            InvinceTimer = 0;
 
 			// Input
 			LeftKey = new List<Keys>();
@@ -149,19 +149,10 @@ namespace TickTick.Entities.Tiles.Creatures {
 				HandleInput();
 
                 //Update timer if needed
-                if(SlowTimer > 0)
+                if(InvinceTimer > 0)
                 {
-                    SlowTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
-                }else if(SlowTimer <= 0)
-                {
-                    _Banana = false;
-                }
-                if (ShieldTimer > 0)
-                {
-                    ShieldTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
-                    Health = TemporaryHealth;
-                }
-                if(AttackTimer > 0)
+                    InvinceTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+                }else if(AttackTimer > 0)
                     AttackTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
 
@@ -194,13 +185,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 				}
 
 				PlayingState state = ((PlayingState)Parent.Parent);
-				if(_OnHot) {
-					state.Timer.Multiplier = 2;
-				} else if(_OnIce) {
-					state.Timer.Multiplier = 0.5;
-				} else {
 					state.Timer.Multiplier = 1;
-				}
 
 				// Kill if offscreen
 				if (Position.Y > Parent.Size.Y) {
@@ -227,15 +212,6 @@ namespace TickTick.Entities.Tiles.Creatures {
 		}
 
 		public override void Draw() {
-			// Draw health
-			if (Health < 100 && Health > 0) {
-				float green = (float)Health / 100 * Size.X;
-				float red = Size.X - green;
-
-				GameHandler.GraphicsHandler.DrawRectangle(new Vector2(GlobalPosition.X - Origin.X - GlobalDrawOrigin.X + green, GlobalPosition.Y - Origin.Y - GlobalDrawOrigin.Y - 20F), new Vector2(red, 10F), Color.Red);
-				GameHandler.GraphicsHandler.DrawRectangle(new Vector2(GlobalPosition.X - Origin.X - GlobalDrawOrigin.X, GlobalPosition.Y - Origin.Y - GlobalDrawOrigin.Y - 20F), new Vector2(green, 10F), Color.Green);
-			}
-
 			base.Draw();
 		}
 
@@ -245,13 +221,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 			} else {
 				float speedMultiplier = 1F;
 
-				// Ice multiplier
-				if (_OnIce) {
-					speedMultiplier = 1.5F;
-				}
-
-                if (_Banana)
-                    speedMultiplier = 0.5F;
+				// Movements speed buffs/debuffs
 
 				// Handle input
 
@@ -263,7 +233,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 					Velocity.X = LeftSpeed * speedMultiplier;
 				} else if (GameHandler.InputHandler.AnyKeyDown(RightKey)) {
 					Velocity.X = RightSpeed * speedMultiplier;
-				} else if (!_OnIce && _OnGround) {
+				} else if (_OnGround) {
 					Velocity.X = 0F;
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && _OnGround) {
@@ -275,8 +245,6 @@ namespace TickTick.Entities.Tiles.Creatures {
 		public void HandleCollision() {
 			if (!_Won) {
 				_OnGround = false;
-				_OnIce = false;
-				_OnHot = false;
 
 				Position = new Vector2((float)Math.Floor(Position.X), (float)Math.Floor(Position.Y));
 
@@ -304,13 +272,18 @@ namespace TickTick.Entities.Tiles.Creatures {
                         {
                             //TODO: add soundeffect
                             Health = 0;
+                        }else if(entity is TeddyBear)
+                        {
+                            TeddyBear teddyBear = (TeddyBear)FindChildrenByName("TeddyBear", true)[0];
+                            if (teddyBear.CanAttack)
+                                Health -= 2;
                         }
-                        /*
+                        
                         if(entity is Train)
                         {
-                            Add train velocity = player velocity
+                            Velocity = Velocity + new Vector2(400, 400);
                         }
-                        */
+                        
                         if(!(entity is CreatureTileEntity)){
 							RectangleF playerBounds = GlobalCollisionBox;
 							RectangleF tileBounds = entity.GlobalCollisionBox;
