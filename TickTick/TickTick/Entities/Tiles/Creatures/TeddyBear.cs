@@ -126,7 +126,7 @@ namespace TickTick.Entities.Tiles.Creatures
 
         public void Attack()
         {
-            if()
+            //if()
         }
 
     }

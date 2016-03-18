@@ -185,7 +185,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 				}
 
 				PlayingState state = ((PlayingState)Parent.Parent);
-					state.Timer.Multiplier = 1;
+					//state.Timer.Multiplier = 1;
 
 				// Kill if offscreen
 				if (Position.Y > Parent.Size.Y) {

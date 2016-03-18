@@ -110,8 +110,8 @@ namespace TickTick.Entities
             }
 
             PlayingState state = (PlayingState)Parent;
-            state.Timer.TimeLeft = TimeSpan.FromSeconds(double.Parse(splitLevel[splitLevel.Length - 2]));
-            state.Hint.Text = splitLevel[splitLevel.Length - 1];
+           // state.Timer.TimeLeft = TimeSpan.FromSeconds(double.Parse(splitLevel[splitLevel.Length - 2]));
+            //state.Hint.Text = splitLevel[splitLevel.Length - 1];
 
             state.GameOver = false;
 
@@ -128,7 +128,9 @@ namespace TickTick.Entities
         {
             switch (character)
             {
+                //Tree in size matching with level
                 case '-':
+                    return new TreeTile(LevelNumber);
                 case '$':
                 case '%':
                     DefaultPlatform defaultPlatform = new DefaultPlatform();
@@ -166,21 +168,39 @@ namespace TickTick.Entities
                         defaultWall.Velocity.X = -100F;
                     }
                     return defaultWall;
+
+                    //Below here are all the buildingblocks
                 case '^':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.wood);
                 case '<':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.brick);
                 case '\\':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.black);
                 case '*':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.ground);
                 case '[':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.street);
                 case ']':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.etc);
+
+
                 case 'T':
                     return new TrampolineBedTile();
+
+                    //Below here is chapter 3.1
                 case 'R':
+                    return new BedTile();
                 case 'r':
+                    return new PlantPot();
                 case 'S':
+                    return new PCDesk();
                 case 'A':
+                    return new GuitarShotgun();
                 case 'B':
                     return new PlayingBlocks();
                 case 'C':
+
+                    //Below here is Train from chapter1.1
                 case 't':
                     return new TrainTracks();
                 case 'k':
@@ -189,6 +209,8 @@ namespace TickTick.Entities
                     return new Train();
                 case '1':
                     return new Chapter11startTile();
+
+                    //Default
                 default:
                     TileEntity tile = new TileEntity();
                     tile.CanCollide = false;

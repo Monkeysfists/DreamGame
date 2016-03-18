@@ -67,11 +67,11 @@ namespace TickTick.Entities.States {
 		/// <summary>
 		/// The hint.
 		/// </summary>
-		public HintEntity Hint;
+		//public HintEntity Hint;
 		/// <summary>
 		/// The timer.
 		/// </summary>
-		public TimerEntity Timer;
+		//public TimerEntity Timer;
 		/// <summary>
 		/// Whether it is game over.
 		/// </summary>
@@ -82,7 +82,7 @@ namespace TickTick.Entities.States {
 			set {
 				_GameOver = value;
 				_Overlay.Visible = GameOver;
-				Timer.Active = !(GameOver || Won);
+				//Timer.Active = !(GameOver || Won);
 				if (GameOver) {
 					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("Overlays/spr_gameover");
 					_Overlay.ResizeToTexture();
@@ -100,7 +100,7 @@ namespace TickTick.Entities.States {
 			set {
 				_Won = value;
 				_Overlay.Visible = Won;
-				Timer.Active = !(GameOver || Won);
+				//Timer.Active = !(GameOver || Won);
 				if (Won) {
 					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("Overlays/spr_welldone");
 					_Overlay.ResizeToTexture();
@@ -115,34 +115,38 @@ namespace TickTick.Entities.States {
 		private LevelEntity _CurrentLevel;
 		private TextureEntity _Overlay;
 
-		/// <summary>
-		/// Creates a new PlayingState.
-		/// </summary>
-		public PlayingState() : base("playing") {
-			TextureEntity background = new TextureEntity();
-			background.Texture = GameHandler.AssetHandler.GetTexture("Backgrounds/spr_sky");
-			AddChild(background);
-			Size = new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y);
-			background.Size = Size;
+        /// <summary>
+        /// Creates a new PlayingState.
+        /// </summary>
+        public PlayingState() : base("playing")
+        {
+            TextureEntity background = new TextureEntity();
+            background.Texture = GameHandler.AssetHandler.GetTexture("Backgrounds/spr_sky");
+            AddChild(background);
+            Size = new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y);
+            background.Size = Size;
 
-			// Load levels
-			for (int i = 1; i <= GameHandler.AssetHandler.CountFiles("Levels") - 1; i++) {
-				LevelEntity level = new LevelEntity(i);
-				level.Active = false;
-				level.Visible = false;
-				AddChild(level);
-			}
+            // Load levels
+            for (int i = 1; i <= GameHandler.AssetHandler.CountFiles("Levels") - 1; i++)
+            {
+                LevelEntity level = new LevelEntity(i);
+                level.Active = false;
+                level.Visible = false;
+                AddChild(level);
+            }
 
-			// Add quit button
-			QuitButton quitButton = new QuitButton();
-			quitButton.Position = new Vector2(Size.X - quitButton.Size.X - 10, 10);
-			AddChild(quitButton);
+            // Add quit button
+            QuitButton quitButton = new QuitButton();
+            quitButton.Position = new Vector2(Size.X - quitButton.Size.X - 10, 10);
+            AddChild(quitButton);
 
-			// Game over
-			_Overlay = new TextureEntity();
-			_Overlay.Visible = false;
-			AddChild(_Overlay);
+            // Game over
+            _Overlay = new TextureEntity();
+            _Overlay.Visible = false;
+            AddChild(_Overlay);
+        }
 
+            /*
 			// Show timer
 			Timer = new TimerEntity();
 			Timer.Position = new Vector2(25, 30);
@@ -152,7 +156,8 @@ namespace TickTick.Entities.States {
 			Hint = new HintEntity();
 			Hint.Position = new Vector2((Size.X - Hint.Size.X) / 2, 10);
 			AddChild(Hint);
-		}
+
+		}*/
 
 		public void GoToNextLevel() {
 			if (NextLevel == null) {

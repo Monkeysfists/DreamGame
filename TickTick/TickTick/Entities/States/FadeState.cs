@@ -15,7 +15,7 @@ namespace TickTick.Entities.States
             Size = new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y);
             _Black.Size = Size;
         }
-
+        /*
         public override void Update(GameTime gameTime)
         {
             base.Update();
@@ -29,6 +29,7 @@ namespace TickTick.Entities.States
             }
 
         }
+        */
 
         public override void Draw()
         {
