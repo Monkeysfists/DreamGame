@@ -266,22 +266,28 @@ namespace TickTick.Entities.Tiles.Creatures {
                             {
                                 Velocity.Y = Math.Abs(Velocity.Y * 1.25F);
                             }
+                            break;
                         }
                         
                         if(entity is TrainTracks)
                         {
                             //TODO: add soundeffect
-                            Health = 0;
+                            Health -= 2;
+                            break;
                         }else if(entity is TeddyBear)
                         {
-                            TeddyBear teddyBear = (TeddyBear)FindChildrenByName("TeddyBear", true)[0];
+                            TeddyBear teddyBear = (TeddyBear)entity; ;
                             if (teddyBear.CanAttack && teddyBear.GetHealth >= 0)
                                 Health -= 2;
+                            if (teddyBear.GetHealth <= 0)
+                                RemoveChild(entity);
+                            break;
                         }
                         
                         if(entity is Train)
                         {
                             Velocity = Velocity + new Vector2(400, 400);
+                            break;
                         }
                         
                         if(!(entity is CreatureTileEntity)){
