@@ -118,6 +118,10 @@ namespace TickTick.Entities.Tiles.Creatures
             get { return canAttack; }
         }
 
+        public float GetHealth
+        {
+            get { return Health; }
+        }
         private void GetPlayer()
         {
             EntityList = FindChildrenByName("player", true);

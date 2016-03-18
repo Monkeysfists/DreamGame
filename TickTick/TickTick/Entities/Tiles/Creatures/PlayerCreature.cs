@@ -275,7 +275,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                         }else if(entity is TeddyBear)
                         {
                             TeddyBear teddyBear = (TeddyBear)FindChildrenByName("TeddyBear", true)[0];
-                            if (teddyBear.CanAttack)
+                            if (teddyBear.CanAttack && teddyBear.GetHealth >= 0)
                                 Health -= 2;
                         }
                         
