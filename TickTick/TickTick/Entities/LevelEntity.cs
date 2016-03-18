@@ -196,11 +196,12 @@ namespace TickTick.Entities
                     return new PCDesk();
                 case 'A':
                     return new GuitarShotgun();
-                case 'B':
-                    return new PlayingBlocks();
+
                 case 'C':
 
                     //Below here is Train from chapter1.1
+                case 'B':
+                    return new PlayingBlocks();
                 case 't':
                     return new TrainTracks();
                 case 'k':
