@@ -61,7 +61,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="trein.png">
+    <Compile Include="chapter1\trein.png">
       <Name>trein</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -75,27 +75,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ch1_tree.png">
+    <Compile Include="chapter1\ch1_tree.png">
       <Name>ch1_tree</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ch2_tree.png">
+    <Compile Include="chapter2\ch2_tree.png">
       <Name>ch2_tree</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ch3_tree_sword.png">
+    <Compile Include="chapter3\ch3_tree_sword.png">
       <Name>ch3_tree_sword</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ch3_tree_swordless.png">
+    <Compile Include="chapter3\ch3_tree_swordless.png">
       <Name>ch3_tree_swordless</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ch4_tree.png">
+    <Compile Include="chapter4\ch4_tree.png">
       <Name>ch4_tree</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -109,42 +109,202 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ch1_joch.png">
+    <Compile Include="chapter1\ch1_joch.png">
       <Name>ch1_joch</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ch2_joch.png">
+    <Compile Include="chapter2\ch2_joch.png">
       <Name>ch2_joch</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ch3_joch.png">
+    <Compile Include="chapter3\ch3_joch.png">
       <Name>ch3_joch</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ch3_joch_shotgun.png">
+    <Compile Include="chapter3\ch3_joch_shotgun.png">
       <Name>ch3_joch_shotgun</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ch4_joch.png">
+    <Compile Include="chapter4\ch4_joch.png">
       <Name>ch4_joch</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="door_open.png">
+    <Compile Include="chapter4\door_open.png">
       <Name>door_open</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="door_closed.png">
+    <Compile Include="chapter4\door_closed.png">
       <Name>door_closed</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter1\nachtkasje.png">
+      <Name>nachtkasje</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter1\water.png">
+      <Name>water</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="grond.png">
+      <Name>grond</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="stoep.png">
+      <Name>stoep</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter1\blokken\blok1.png">
+      <Name>blok1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok2.png">
+      <Name>blok2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok3.png">
+      <Name>blok3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok4.png">
+      <Name>blok4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok5.png">
+      <Name>blok5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok6.png">
+      <Name>blok6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok7.png">
+      <Name>blok7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok8.png">
+      <Name>blok8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok9.png">
+      <Name>blok9</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok10.png">
+      <Name>blok10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok11.png">
+      <Name>blok11</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok12.png">
+      <Name>blok12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok13.png">
+      <Name>blok13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok14.png">
+      <Name>blok14</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok15.png">
+      <Name>blok15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok16.png">
+      <Name>blok16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok17.png">
+      <Name>blok17</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok18.png">
+      <Name>blok18</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok19.png">
+      <Name>blok19</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok20.png">
+      <Name>blok20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok21.png">
+      <Name>blok21</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok22.png">
+      <Name>blok22</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok23.png">
+      <Name>blok23</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok24.png">
+      <Name>blok24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok25.png">
+      <Name>blok25</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\blokken\blok26.png">
+      <Name>blok26</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
