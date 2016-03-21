@@ -6,8 +6,8 @@ namespace TickTick.Entities.Tiles.Platforms
     {
         public PlayingBlocks()
         {
-            //TODO
-            Texture = GameHandler.AssetHandler.GetTexture("");
+            //Returns a random block sprite
+            Texture = GameHandler.AssetHandler.GetTexture("chapter1//blokken//blok" + GameHandler.Random.Next(27));
         }
     }
 }

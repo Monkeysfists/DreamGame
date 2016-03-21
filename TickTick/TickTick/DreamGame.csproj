@@ -88,7 +88,7 @@
     <Compile Include="Entities\Tiles\Walls\TreeTile.cs" />
     <Compile Include="Entities\Tiles\Walls\GuitarShotgun\GuitarShotgun.cs" />
     <Compile Include="Entities\Tiles\Platforms\Fantasy\Chapter31\PCDesk.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Fantasy\Chapter31\PlanPot.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Fantasy\Chapter31\PlantPot.cs" />
     <Compile Include="Entities\Tiles\Platforms\Reality\BuildingBlockWall.cs" />
     <Compile Include="Entities\Tiles\Platforms\Reality\Chapter11\Chapter11startTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\Reality\GoalTile.cs" />

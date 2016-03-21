@@ -7,7 +7,7 @@ namespace TickTick.Entities.Tiles.Platforms
         public TrainTracks()
         {
             //TODO
-            Texture = GameHandler.AssetHandler.GetTexture("");
+            Texture = GameHandler.AssetHandler.GetTexture("emptyheart");
         }
     }
 }

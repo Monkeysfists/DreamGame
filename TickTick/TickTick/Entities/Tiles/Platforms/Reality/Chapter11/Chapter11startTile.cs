@@ -7,7 +7,7 @@ namespace TickTick.Entities.Tiles.Platforms
         public Chapter11startTile()
         {
             //TODO
-            Texture = GameHandler.AssetHandler.GetTexture("");
+            Texture = GameHandler.AssetHandler.GetTexture("stoep");
         }
     }
 }

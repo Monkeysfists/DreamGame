@@ -150,7 +150,7 @@ namespace TickTick.Entities
                 case '!':
                 case '~':
 
-                case 'X':
+                case 'E':
                     return new GoalTile();
                 case 'W':
                 case 'P':
@@ -172,7 +172,7 @@ namespace TickTick.Entities
                     //Below here are all the buildingblocks
                 case '^':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.wood);
-                case '<':
+                case 'X':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.brick);
                 case '\\':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.black);
@@ -203,7 +203,8 @@ namespace TickTick.Entities
                 case 'B':
                     return new PlayingBlocks();
                 case 't':
-                    return new TrainTracks();
+                    //return new TrainTracks();
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.ground);
                 case 'k':
                     return new TrainStopBlock();
                 case 'z':

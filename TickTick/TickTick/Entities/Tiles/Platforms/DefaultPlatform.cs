@@ -9,7 +9,7 @@ namespace TickTick.Entities.Tiles.Platforms {
 		/// Creates a new DefaultPlatform.
 		/// </summary>
 		public DefaultPlatform() {
-			Texture = GameHandler.AssetHandler.GetTexture("Tiles/spr_platform");
+			Texture = GameHandler.AssetHandler.GetTexture("stoep");
 		}
 	}
 }

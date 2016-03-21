@@ -7,7 +7,7 @@ namespace TickTick.Entities.Tiles.Platforms
         public TrainStopBlock()
         {
             //TODO
-            Texture = GameHandler.AssetHandler.GetTexture("");
+            Texture = GameHandler.AssetHandler.GetTexture("chapter1//treinstop");
         }
     }
 }
