@@ -10,17 +10,17 @@ namespace TickTick.Entities.Tiles.Platforms
             //TODO add textures
             switch (buildingblocks){
                 case BuildingBlocks.wood:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("stoep");
                     break;
                 case BuildingBlocks.brick:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("stoep");
                     break;
                 case BuildingBlocks.black:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("black");
                     break;
                 case BuildingBlocks.etc:
                 default:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("black");
                     break;
             }
         }
