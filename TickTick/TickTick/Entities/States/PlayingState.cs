@@ -84,7 +84,7 @@ namespace TickTick.Entities.States {
 				_Overlay.Visible = GameOver;
 				//Timer.Active = !(GameOver || Won);
 				if (GameOver) {
-					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("Overlays/spr_gameover");
+					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("black");
 					_Overlay.ResizeToTexture();
 					_Overlay.Position = (Size - _Overlay.Size) / 2;
 				}
@@ -102,10 +102,10 @@ namespace TickTick.Entities.States {
 				_Overlay.Visible = Won;
 				//Timer.Active = !(GameOver || Won);
 				if (Won) {
-					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("Overlays/spr_welldone");
+					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("black");
 					_Overlay.ResizeToTexture();
 					_Overlay.Position = (Size - _Overlay.Size) / 2;
-					GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_won"));
+					GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("black"));
 				}
 			}
 		}
@@ -121,7 +121,7 @@ namespace TickTick.Entities.States {
         public PlayingState() : base("playing")
         {
             TextureEntity background = new TextureEntity();
-            background.Texture = GameHandler.AssetHandler.GetTexture("Backgrounds/spr_sky");
+            background.Texture = GameHandler.AssetHandler.GetTexture("chapter1//background");
             AddChild(background);
             Size = new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y);
             background.Size = Size;

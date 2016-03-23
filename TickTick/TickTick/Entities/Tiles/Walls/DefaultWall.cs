@@ -10,7 +10,7 @@ namespace TickTick.Entities.Tiles.Walls {
 		/// Creates a new DefaultWall.
 		/// </summary>
 		public DefaultWall() {
-			Texture = GameHandler.AssetHandler.GetTexture("Tiles/spr_wall");
+			Texture = GameHandler.AssetHandler.GetTexture("stoep");
 		}
 	}
 }

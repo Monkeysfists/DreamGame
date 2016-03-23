@@ -7,7 +7,7 @@ namespace TickTick.Entities.Tiles.Platforms
         public TrampolineBedTile()
         {
             //TODO
-            Texture = GameHandler.AssetHandler.GetTexture("");
+            Texture = GameHandler.AssetHandler.GetTexture("chapter1//bed");
         }
     }
 }
