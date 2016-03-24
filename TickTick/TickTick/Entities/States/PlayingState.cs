@@ -121,7 +121,7 @@ namespace TickTick.Entities.States {
         public PlayingState() : base("playing")
         {
             TextureEntity background = new TextureEntity();
-            background.Texture = GameHandler.AssetHandler.GetTexture("chapter1//background");
+            background.Texture = GameHandler.AssetHandler.GetTexture("chapter1/achtergrond1");
             AddChild(background);
             Size = new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y);
             background.Size = Size;

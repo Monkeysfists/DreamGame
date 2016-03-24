@@ -10,7 +10,7 @@ namespace TickTick.Animations {
 		/// Creates a new PlayerJumpAnimation.
 		/// </summary>
 		public PlayerJumpAnimation() {
-			SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("Sprites/Player/spr_jump@14");
+			SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_joch_springen");
             FrameTime = TimeSpan.FromMilliseconds(50);
 		}
 	}

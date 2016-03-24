@@ -10,8 +10,8 @@ namespace TickTick.Animations {
 		/// Creates a new PlayerMoveAnimation.
 		/// </summary>
 		public PlayerMoveAnimation() {
-			SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("Sprites/Player/spr_run@13");
-			FrameTime = TimeSpan.FromMilliseconds(50);
+			SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_joch_lopen@4");
+			FrameTime = TimeSpan.FromMilliseconds(100);
 		}
 	}
 }

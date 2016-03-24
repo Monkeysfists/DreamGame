@@ -10,7 +10,7 @@ namespace TickTick.Animations {
 		/// Creates a new PlayerDieAnimation.
 		/// </summary>
 		public PlayerDieAnimation() {
-			SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("Sprites/Player/spr_die@5");
+			SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_joch_bukken");
 			FrameTime = TimeSpan.FromMilliseconds(50);
 		}
 	}

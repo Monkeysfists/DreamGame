@@ -33,7 +33,7 @@ namespace TickTick.Entities.Buttons {
 			_LevelText = new TextEntity(GameHandler.AssetHandler.GetSpriteFont("Fonts/Hud"));
 			AddChild(_LevelText);
 
-			ClickedSoundEffect = GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_won");
+			//ClickedSoundEffect = GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_won");
 
 			Level = level;
 		}

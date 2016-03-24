@@ -21,9 +21,9 @@ namespace TickTick.Entities.Tiles.Creatures {
 			set {
 				if (value < Health) {
 					if (Position.Y > Parent.Size.Y) {
-						GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_fall"));
+						//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_fall"));
 					} else {
-						GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_die"));
+						//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_die"));
 					}
 				}
 
@@ -51,6 +51,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 		/// The keys to jump.
 		/// </summary>
 		public List<Keys> JumpKey;
+        public List<Keys> CrouchKey;
 		/// <summary>
 		/// The left movement speed.
 		/// </summary>
@@ -87,6 +88,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 		/// The animation to play when exploding.
 		/// </summary>
 		public Animation ExplodeAnimation;
+
+        public Animation CrouchAnimation;
         /// <summary>
         /// Invincible timer control bool
         /// </summary>
@@ -108,6 +111,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 			_PreviousY = GlobalCollisionBox.Bottom;
 			Name = "player";
 			_Won = false;
+            CanCollide = true;
 
 			// Animations
 			IdleAnimation = new PlayerIdleAnimation();
@@ -116,6 +120,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 			RightAnimation = new PlayerMoveAnimation();
 			JumpAnimation = new PlayerJumpAnimation();
 			DieAnimation = new PlayerDieAnimation();
+            CrouchAnimation = new PlayerCrouchAnimation();
 			Animation = IdleAnimation;
 
 			// Size
@@ -135,6 +140,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 			LeftKey = new List<Keys>();
 			RightKey = new List<Keys>();
 			JumpKey = new List<Keys>();
+            CrouchKey = new List<Keys>();
 			LeftKey.Add(Keys.A);
 			LeftKey.Add(Keys.Left);
 			RightKey.Add(Keys.D);
@@ -142,6 +148,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 			JumpKey.Add(Keys.W);
 			JumpKey.Add(Keys.Up);
 			JumpKey.Add(Keys.Space);
+            CrouchKey.Add(Keys.S);
+            CrouchKey.Add(Keys.Down);
 		}
 
 		public override void Update() {
@@ -161,9 +169,11 @@ namespace TickTick.Entities.Tiles.Creatures {
 					if (Velocity.X > 0) {
 						IdleAnimation.FlipHorizontally = false;
 						JumpAnimation.FlipHorizontally = false;
+                        CrouchAnimation.FlipHorizontally = false;
 					} else if (Velocity.X < 0) {
 						IdleAnimation.FlipHorizontally = true;
 						JumpAnimation.FlipHorizontally = true;
+                        CrouchAnimation.FlipHorizontally = true;
 					}
 
 					// Set the correct animation
@@ -191,8 +201,13 @@ namespace TickTick.Entities.Tiles.Creatures {
 				if (Position.Y > Parent.Size.Y) {
 					Health = 0;
 				}
+                Size = new Vector2(100, 150);
 			}
 
+            //Velocity.Y = 0F;
+
+            if (GameHandler.InputHandler.AnyKeyDown(CrouchKey))
+                Animation = CrouchAnimation;
 			base.Update();
 
 			// Handle physics
@@ -229,14 +244,14 @@ namespace TickTick.Entities.Tiles.Creatures {
 				if (GameHandler.InputHandler.OnKeyDown(Keys.Enter) && AttackTimer <= 0) { 
                     //TODO add attack
 				}
-				if (GameHandler.InputHandler.AnyKeyDown(LeftKey)) {
+				if (GameHandler.InputHandler.AnyKeyDown(LeftKey) && Animation != CrouchAnimation) {
 					Velocity.X = LeftSpeed * speedMultiplier;
-				} else if (GameHandler.InputHandler.AnyKeyDown(RightKey)) {
+				} else if (GameHandler.InputHandler.AnyKeyDown(RightKey) && Animation != CrouchAnimation) {
 					Velocity.X = RightSpeed * speedMultiplier;
 				} else if (_OnGround) {
 					Velocity.X = 0F;
 				}
-				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && _OnGround) {
+				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && _OnGround && Animation != CrouchAnimation) {
 					Jump(JumpSpeed);
 				}
 			}
@@ -342,7 +357,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 
 		public void Jump(float speed) {
 			Velocity.Y = speed;
-			GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
+			//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
 		}
 
 		public void Explode() {

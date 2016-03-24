@@ -13,7 +13,7 @@ namespace TickTick.Entities.Buttons {
 			HoverTexture = GameHandler.AssetHandler.GetTexture("Sprites/spr_button_back_hover");
 			ClickTexture = GameHandler.AssetHandler.GetTexture("Sprites/spr_button_back_click");
 			Texture = DefaultTexture;
-			ClickedSoundEffect = GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_watercollected");
+			//ClickedSoundEffect = GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_watercollected");
 
 			ResizeToTexture();
 		}

@@ -10,7 +10,7 @@ namespace TickTick.Animations {
 		/// Creates a new PlayerIdleAnimation.
 		/// </summary>
 		public PlayerIdleAnimation() {
-			SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("Sprites/Player/spr_idle");
+			SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_joch@1");
 		}
 	}
 }

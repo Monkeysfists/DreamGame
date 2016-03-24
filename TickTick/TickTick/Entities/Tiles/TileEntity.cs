@@ -10,7 +10,7 @@ namespace TickTick.Entities.Tiles {
 		/// Creates a new TileEntity.
 		/// </summary>
 		public TileEntity() {
-			Size = new Vector2(72, 55);
+			Size = new Vector2(1000, 500);
 			CanCollide = true;
         }
 	}
