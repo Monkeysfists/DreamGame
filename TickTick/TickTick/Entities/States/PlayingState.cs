@@ -67,7 +67,7 @@ namespace TickTick.Entities.States {
 		/// <summary>
 		/// The hint.
 		/// </summary>
-		//public HintEntity Hint;
+		public HintEntity Hint;
 		/// <summary>
 		/// The timer.
 		/// </summary>
@@ -125,7 +125,6 @@ namespace TickTick.Entities.States {
             AddChild(background);
             Size = new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y);
             background.Size = Size;
-            GameHandler.GraphicsHandler.Scale = new Vector2(20, 20);
 
             // Load levels
             for (int i = 1; i <= GameHandler.AssetHandler.CountFiles("Levels") - 1; i++)
@@ -145,20 +144,21 @@ namespace TickTick.Entities.States {
             _Overlay = new TextureEntity();
             _Overlay.Visible = false;
             AddChild(_Overlay);
-        }
+        
 
             /*
 			// Show timer
 			Timer = new TimerEntity();
 			Timer.Position = new Vector2(25, 30);
 			AddChild(Timer);
-
+            */
 			// Show hint
+
 			Hint = new HintEntity();
 			Hint.Position = new Vector2((Size.X - Hint.Size.X) / 2, 10);
 			AddChild(Hint);
 
-		}*/
+		}
 
 		public void GoToNextLevel() {
 			if (NextLevel == null) {

@@ -201,6 +201,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 				if (Position.Y > Parent.Size.Y) {
 					Health = 0;
 				}
+
+
 			}
 
             //Velocity.Y = 0F;
@@ -356,8 +358,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 
 		public void Jump(float speed) {
 			Velocity.Y = speed * 0.5F;
-			//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
-		}
+            //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
+        }
 
 		public void Explode() {
 			if(Health > 0) {

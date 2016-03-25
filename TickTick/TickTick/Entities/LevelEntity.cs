@@ -15,6 +15,16 @@ namespace TickTick.Entities
     public class LevelEntity : Entity
     {
         /// <summary>
+        /// Player changes handled here
+        /// </summary>
+        public PlayerCreature player;
+
+        /// <summary>
+        /// Teddy handled here
+        /// </summary>
+        public TeddyBear teddy;
+
+        /// <summary>
         /// Whether the level is still locked.
         /// </summary>
         public bool Locked
@@ -62,6 +72,9 @@ namespace TickTick.Entities
             String[] levelStatus = levelStatuses[LevelNumber - 1].Split(',');
             _Locked = bool.Parse(levelStatus[0]);
             _Solved = bool.Parse(levelStatus[1]);
+
+            player = new PlayerCreature();
+            teddy = new TeddyBear();
         }
 
         public override void Update()
@@ -83,6 +96,18 @@ namespace TickTick.Entities
                     state.GoToNextLevel();
                 }
             }
+
+            if (MathHelper.Distance(teddy.Position.X, player.Position.X) > 20)
+            {
+                state.Hint.Text = "LOl";
+
+                state.GameOver = false;
+
+                ResizeToContents();
+                Size.X += 500;
+            }
+                
+            
 
             base.Update();
         }
@@ -109,9 +134,10 @@ namespace TickTick.Entities
                 entity.Layer = 10;
             }
 
+
             PlayingState state = (PlayingState)Parent;
            // state.Timer.TimeLeft = TimeSpan.FromSeconds(double.Parse(splitLevel[splitLevel.Length - 2]));
-            //state.Hint.Text = splitLevel[splitLevel.Length - 1];
+            state.Hint.Text = splitLevel[splitLevel.Length - 1];
 
             state.GameOver = false;
 
@@ -154,8 +180,9 @@ namespace TickTick.Entities
                     return new GoalTile();
                 case 'W':
                 case 'P':
-                    return new PlayerCreature();
+                    return player;
                 case '#':
+                    return teddy;
                 case '/':
                 case '>':
                     DefaultWall defaultWall = new DefaultWall();

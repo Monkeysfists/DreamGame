@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
-    class TeddyBear : CreatureTileEntity
+    public class TeddyBear : CreatureTileEntity
     {
         private Animation TeddyIdleAnimation;
         private Animation TeddyRunAnimation;
@@ -38,7 +38,7 @@ namespace TickTick.Entities.Tiles.Creatures
 
 
             // Size
-            Size = Animation.SpriteSheet.CellSize;
+            //Size = Animation.SpriteSheet.CellSize;
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
 
@@ -50,7 +50,7 @@ namespace TickTick.Entities.Tiles.Creatures
             IntervalTimer = 1F;
 
             //Animations
-            TeddyAttackAnimation = new TeddyIdleAnimation();
+            TeddyIdleAnimation = new TeddyIdleAnimation();
             TeddyRunAnimation = new TeddyRunAnimation();
             TeddyAttackAnimation = new TeddyAttackAnimation();
             Animation = TeddyIdleAnimation;
@@ -81,7 +81,7 @@ namespace TickTick.Entities.Tiles.Creatures
             }
 
             HandleCollision();
-
+            /*
             if (player.Position.X > Position.X)
                 mirrored = true;
             if (IntervalTimer == 0 && Visible)
@@ -99,7 +99,7 @@ namespace TickTick.Entities.Tiles.Creatures
 
             if (IntervalTimer > 2)
                 IntervalTimer = 0;
-
+                */
             base.Update();
         }
 
@@ -125,7 +125,8 @@ namespace TickTick.Entities.Tiles.Creatures
         private void GetPlayer()
         {
             EntityList = FindChildrenByName("player", true);
-            player = (PlayerCreature)EntityList[0];
+            if(EntityList.Count > 0)
+                player = (PlayerCreature)EntityList[0];
         }
 
         public void Attack()

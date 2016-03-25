@@ -15,6 +15,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 		/// </summary>
 		public CreatureTileEntity() {
 			CanCollide = true;
+            ResizeToTexture();
 		}
 	}
 }

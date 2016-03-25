@@ -8,7 +8,7 @@ namespace TickTick.Entities.States {
 		/// Creates a new TitleMenuState.
 		/// </summary>
 		public TitleMenuState() : base("titleMenu") {
-            GameHandler.GraphicsHandler.Scale = new Vector2(1, 1);
+
 
             // Add the background
             TextureEntity background = new TextureEntity();
