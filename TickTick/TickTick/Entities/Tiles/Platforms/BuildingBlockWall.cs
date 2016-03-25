@@ -18,6 +18,9 @@ namespace TickTick.Entities.Tiles.Platforms
                 case BuildingBlocks.black:
                     Texture = GameHandler.AssetHandler.GetTexture("chapter1/bed");
                     break;
+                case BuildingBlocks.street:
+                    Texture = GameHandler.AssetHandler.GetTexture("stoep");
+                    break;
                 case BuildingBlocks.etc:
                 default:
                     Texture = GameHandler.AssetHandler.GetTexture("chapter1/bed");

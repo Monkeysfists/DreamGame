@@ -8,8 +8,10 @@ namespace TickTick.Entities.States {
 		/// Creates a new LevelMenuState.
 		/// </summary>
 		public LevelMenuState() : base("levelMenu") {
-			// Add the background
-			TextureEntity background = new TextureEntity();
+            GameHandler.GraphicsHandler.Scale = new Vector2(1, 1);
+
+            // Add the background
+            TextureEntity background = new TextureEntity();
 			background.Texture = GameHandler.AssetHandler.GetTexture("Backgrounds/spr_levelselect");
 			background.ResizeToTexture();
 			AddChild(background);

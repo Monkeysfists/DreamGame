@@ -125,6 +125,7 @@ namespace TickTick.Entities.States {
             AddChild(background);
             Size = new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y);
             background.Size = Size;
+            GameHandler.GraphicsHandler.Scale = new Vector2(20, 20);
 
             // Load levels
             for (int i = 1; i <= GameHandler.AssetHandler.CountFiles("Levels") - 1; i++)

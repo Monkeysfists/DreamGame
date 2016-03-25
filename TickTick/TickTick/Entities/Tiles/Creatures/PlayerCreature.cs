@@ -129,7 +129,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 			Origin.Y = (Size.Y - 55) / 2;
 
 			// Speed
-			LeftSpeed = -400F;
+			LeftSpeed = -200F;
 			RightSpeed = 400F;
 			JumpSpeed = -1100F;
 
@@ -201,7 +201,6 @@ namespace TickTick.Entities.Tiles.Creatures {
 				if (Position.Y > Parent.Size.Y) {
 					Health = 0;
 				}
-                Size = new Vector2(100, 150);
 			}
 
             //Velocity.Y = 0F;
@@ -318,9 +317,9 @@ namespace TickTick.Entities.Tiles.Creatures {
 							} else {
 								if (_PreviousY - 1 <= tileBounds.Top && Velocity.Y >= 0) {
 									_OnGround = true;
-									if(Velocity.Y > 1500) {
-										Health -= (int)((Velocity.Y - 1500) / 10);
-									}
+									//if(Velocity.Y > 1500) {
+										//Health -= (int)((Velocity.Y - 1500) / 50);
+									//}
 									Velocity.Y = 0F;
 								}
 								if (!(entity is PlatformTile) || (entity is PlatformTile && _OnGround)) {
@@ -356,7 +355,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 		}
 
 		public void Jump(float speed) {
-			Velocity.Y = speed;
+			Velocity.Y = speed * 0.5F;
 			//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
 		}
 

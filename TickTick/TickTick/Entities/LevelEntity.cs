@@ -101,7 +101,7 @@ namespace TickTick.Entities
             // Load tiles
             String level = GameHandler.AssetHandler.ReadFile("Levels/" + LevelNumber + ".txt");
             String[] splitLevel = level.Split('\n');
-            LoadGridEntities(level, ConvertTiles, new Vector2(500, 500), new Point(72, 55), new Point(-1, splitLevel.Length - 2));
+            LoadGridEntities(level, ConvertTiles, new Vector2(500, 500), new Point(20, 20), new Point(-1, splitLevel.Length - 2));
 
             // Layer entities
             foreach (Entity entity in Children)
