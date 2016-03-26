@@ -78,6 +78,7 @@ namespace TickTick.Entities
             player = new PlayerCreature(level);
             teddy = new TeddyBear(level);
             tree = new TreeTile(level);
+
         }
 
         public override void Update()
@@ -137,6 +138,10 @@ namespace TickTick.Entities
             {
                 entity.Layer = 10;
             }
+
+            player = new PlayerCreature(LevelNumber);
+            teddy = new TeddyBear(LevelNumber);
+            tree = new TreeTile(LevelNumber);
 
 
             PlayingState state = (PlayingState)Parent;

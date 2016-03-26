@@ -21,7 +21,7 @@ namespace TickTick.Animations
                         FrameTime = TimeSpan.FromMilliseconds(100); break;
                     case "shotgun": SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_shotgun_schieten");
                         FrameTime = TimeSpan.FromMilliseconds(100); break;
-                    default: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_idle");
+                    default: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch");
                         FrameTime = TimeSpan.FromMilliseconds(100); break;
                 }
             }

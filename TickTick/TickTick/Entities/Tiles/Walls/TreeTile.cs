@@ -17,25 +17,25 @@ namespace TickTick.Entities.Tiles.Walls
             switch (TreeAge)
             {
                 case 11:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
                     break;
                 case 12:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
                     break;
                 case 21:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
                     break;
                 case 22:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
                     break;
                 case 31:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
                     break;
                 case 32:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
                     break;
                 case 41:
-                    Texture = GameHandler.AssetHandler.GetTexture("");
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
                     break;
                 default:
                     Texture = null;
