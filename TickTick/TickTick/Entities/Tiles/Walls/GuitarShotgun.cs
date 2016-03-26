@@ -8,9 +8,11 @@ namespace TickTick.Entities.Tiles.Walls
         public GuitarShotgun()
         {
             //TODO
+            
             Texture = GameHandler.AssetHandler.GetTexture("");
             Velocity = Vector2.Zero;
             //Add collision playerCreature
+
         }
     }
 }

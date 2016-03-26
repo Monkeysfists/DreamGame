@@ -57,6 +57,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\PlayerAnimation\PlayerAttackAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerCrouchAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerDieAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerIdleAnimation.cs" />
@@ -87,7 +88,7 @@
     <Compile Include="Entities\Tiles\Platforms\Chapter11\TrampolineBedTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter31\BedTile.cs" />
     <Compile Include="Entities\Tiles\Walls\TreeTile.cs" />
-    <Compile Include="Entities\Tiles\Walls\GuitarShotgun\GuitarShotgun.cs" />
+    <Compile Include="Entities\Tiles\Walls\GuitarShotgun.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter31\PCDesk.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter31\PlantPot.cs" />
     <Compile Include="Entities\Tiles\Platforms\BuildingBlockWall.cs" />

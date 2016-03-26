@@ -24,6 +24,8 @@ namespace TickTick.Entities
         /// </summary>
         public TeddyBear teddy;
 
+        public TreeTile tree;
+
         /// <summary>
         /// Whether the level is still locked.
         /// </summary>
@@ -73,8 +75,9 @@ namespace TickTick.Entities
             _Locked = bool.Parse(levelStatus[0]);
             _Solved = bool.Parse(levelStatus[1]);
 
-            player = new PlayerCreature();
-            teddy = new TeddyBear();
+            player = new PlayerCreature(level);
+            teddy = new TeddyBear(level);
+            tree = new TreeTile(level);
         }
 
         public override void Update()
@@ -99,16 +102,17 @@ namespace TickTick.Entities
 
             if (MathHelper.Distance(teddy.Position.X, player.Position.X) > 20)
             {
-                state.Hint.Text = "LOl";
+                state.Hint.Text = "robbert is gaaf";
 
                 state.GameOver = false;
 
                 ResizeToContents();
                 Size.X += 500;
             }
-                
-            
 
+            if (player.item == "sword")
+                tree.Texture = GameHandler.AssetHandler.GetTexture("chapter3/ch3_tree_swordless");
+                
             base.Update();
         }
 
@@ -156,7 +160,7 @@ namespace TickTick.Entities
             {
                 //Tree in size matching with level
                 case '-':
-                    return new TreeTile(LevelNumber);
+                    return tree;
                 case '$':
                 case '%':
                     DefaultPlatform defaultPlatform = new DefaultPlatform();

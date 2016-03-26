@@ -20,6 +20,7 @@ namespace TickTick.Entities.Buttons {
 				_LevelText.Text = (_Level.LevelNumber).ToString();
 				_LevelText.Position = new Vector2(Size.X - _LevelText.Size.X - 10, 5);
 			}
+
 		}
 
 		private LevelEntity _Level;
@@ -36,6 +37,7 @@ namespace TickTick.Entities.Buttons {
 			//ClickedSoundEffect = GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_won");
 
 			Level = level;
+
 		}
 
 		public override void Update() {

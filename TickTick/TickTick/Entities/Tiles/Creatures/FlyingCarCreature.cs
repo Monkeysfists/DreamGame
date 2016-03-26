@@ -84,8 +84,8 @@ namespace TickTick.Entities.Tiles.Creatures
             _Won = false;
 
             // Animations
-            IdleAnimation = new PlayerIdleAnimation();
-            RightAnimation = new PlayerMoveAnimation();
+            //IdleAnimation = new PlayerIdleAnimation();
+            //RightAnimation = new PlayerMoveAnimation();
             Animation = IdleAnimation;
 
             // Size

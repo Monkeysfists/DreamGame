@@ -9,9 +9,9 @@ namespace TickTick.Entities.Buttons {
 		/// Creates a new PlayButton.
 		/// </summary>
 		public PlayButton() {
-			DefaultTexture = GameHandler.AssetHandler.GetTexture("Sprites/spr_button_play");
-			HoverTexture = GameHandler.AssetHandler.GetTexture("Sprites/spr_button_play_hover");
-			ClickTexture = GameHandler.AssetHandler.GetTexture("Sprites/spr_button_play_click");
+			DefaultTexture = GameHandler.AssetHandler.GetTexture("Buttons/play1");
+			HoverTexture = GameHandler.AssetHandler.GetTexture("Buttons/play2");
+			ClickTexture = GameHandler.AssetHandler.GetTexture("Buttons/play1");
 			Texture = DefaultTexture;
 			//ClickedSoundEffect = GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_watercollected");
 

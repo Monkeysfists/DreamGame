@@ -4,16 +4,21 @@ using System;
 namespace TickTick.Animations
 {
     /// <summary>
-    /// A moving player.
+    /// A moving teddy.
     /// </summary>
     public class TeddyIdleAnimation : Animation
     {
         /// <summary>
-        /// Creates a new PlayerMoveAnimation.
+        /// Creates a new TeddyIdleAnimation.
         /// </summary>
-        public TeddyIdleAnimation()
+        public TeddyIdleAnimation(int chapter)
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_teddy_idle");
+            switch (chapter)
+            {
+                case 1: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_teddy_idle"); break;
+                case 3: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_teddy_idle"); break;
+                default: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter4/ch4_teddy"); break;
+            }
             //FrameTime = TimeSpan.FromMilliseconds(50);
         }
     }

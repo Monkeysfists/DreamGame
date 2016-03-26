@@ -4,17 +4,17 @@ using System;
 namespace TickTick.Animations
 {
     /// <summary>
-    /// A moving player.
+    /// A moving teddy.
     /// </summary>
     public class TeddyRunAnimation : Animation
     {
         /// <summary>
-        /// Creates a new PlayerMoveAnimation.
+        /// Creates a new TeddyRunAnimation.
         /// </summary>
         public TeddyRunAnimation()
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_teddy_idle");
-            //FrameTime = TimeSpan.FromMilliseconds(50);
+            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_teddy_walking");
+            FrameTime = TimeSpan.FromMilliseconds(100);
         }
     }
 }

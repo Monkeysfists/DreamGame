@@ -13,7 +13,7 @@ namespace TickTick.Animations
         /// </summary>
         public TrainIdleAnimation()
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("trein");
+            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/trein");
             //FrameTime = TimeSpan.FromMilliseconds(50);
         }
     }

@@ -31,7 +31,7 @@ namespace TickTick.Entities.Tiles.Creatures
         PlayerCreature player;
 
 
-        public TeddyBear()
+        public TeddyBear(int chapter)
         {
             Health = 100;
             Name = "TeddyBear";
@@ -50,7 +50,7 @@ namespace TickTick.Entities.Tiles.Creatures
             IntervalTimer = 1F;
 
             //Animations
-            TeddyIdleAnimation = new TeddyIdleAnimation();
+            TeddyIdleAnimation = new TeddyIdleAnimation(chapter);
             TeddyRunAnimation = new TeddyRunAnimation();
             TeddyAttackAnimation = new TeddyAttackAnimation();
             Animation = TeddyIdleAnimation;

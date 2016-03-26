@@ -9,9 +9,9 @@ namespace TickTick.Entities.Buttons {
 		/// Creates a new HelpButton.
 		/// </summary>
 		public QuitButton() {
-			DefaultTexture = GameHandler.AssetHandler.GetTexture("Sprites/spr_button_quit");
-			HoverTexture = GameHandler.AssetHandler.GetTexture("Sprites/spr_button_quit_hover");
-			ClickTexture = GameHandler.AssetHandler.GetTexture("Sprites/spr_button_quit_click");
+			DefaultTexture = GameHandler.AssetHandler.GetTexture("Buttons/quit1");
+            HoverTexture = GameHandler.AssetHandler.GetTexture("Buttons/quit2");
+            ClickTexture = GameHandler.AssetHandler.GetTexture("Buttons/quit1");
 			Texture = DefaultTexture;
 			//ClickedSoundEffect = GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_watercollected");
 

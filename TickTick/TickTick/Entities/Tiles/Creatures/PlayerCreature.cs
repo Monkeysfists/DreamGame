@@ -52,6 +52,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 		/// </summary>
 		public List<Keys> JumpKey;
         public List<Keys> CrouchKey;
+        public List<Keys> AttackKey;
 		/// <summary>
 		/// The left movement speed.
 		/// </summary>
@@ -90,6 +91,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 		public Animation ExplodeAnimation;
 
         public Animation CrouchAnimation;
+
+        public Animation AttackAnimation;
         /// <summary>
         /// Invincible timer control bool
         /// </summary>
@@ -102,25 +105,29 @@ namespace TickTick.Entities.Tiles.Creatures {
         private int TemporaryHealth;
         private float AttackTimer;
         private float InvinceTimer;
+        public string item;
+        private int chapter;
 
 		/// <summary>
 		/// Creates a new PlayerCreature.
 		/// </summary>
-		public PlayerCreature() {
+		public PlayerCreature(int chapter) {
 			Health = 6;
 			_PreviousY = GlobalCollisionBox.Bottom;
 			Name = "player";
 			_Won = false;
             CanCollide = true;
+            this.chapter = chapter;
 
 			// Animations
-			IdleAnimation = new PlayerIdleAnimation();
-			LeftAnimation = new PlayerMoveAnimation();
+			IdleAnimation = new PlayerIdleAnimation(chapter, item);
+			LeftAnimation = new PlayerMoveAnimation(chapter, item);
 			LeftAnimation.FlipHorizontally = true;
-			RightAnimation = new PlayerMoveAnimation();
-			JumpAnimation = new PlayerJumpAnimation();
-			DieAnimation = new PlayerDieAnimation();
-            CrouchAnimation = new PlayerCrouchAnimation();
+			RightAnimation = new PlayerMoveAnimation(chapter, item);
+			JumpAnimation = new PlayerJumpAnimation(chapter, item);
+			DieAnimation = new PlayerDieAnimation(chapter);
+            CrouchAnimation = new PlayerCrouchAnimation(chapter);
+            AttackAnimation = new PlayerAttackAnimation(chapter, item);
 			Animation = IdleAnimation;
 
 			// Size
@@ -141,6 +148,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 			RightKey = new List<Keys>();
 			JumpKey = new List<Keys>();
             CrouchKey = new List<Keys>();
+            AttackKey = new List<Keys>();
 			LeftKey.Add(Keys.A);
 			LeftKey.Add(Keys.Left);
 			RightKey.Add(Keys.D);
@@ -150,6 +158,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 			JumpKey.Add(Keys.Space);
             CrouchKey.Add(Keys.S);
             CrouchKey.Add(Keys.Down);
+            AttackKey.Add(Keys.P);
 		}
 
 		public override void Update() {
@@ -242,8 +251,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 				// Handle input
 
                 //Attack move
-				if (GameHandler.InputHandler.OnKeyDown(Keys.Enter) && AttackTimer <= 0) { 
-                    //TODO add attack
+				if (GameHandler.InputHandler.AnyKeyDown(AttackKey) && AttackTimer <= 0) { 
+                    //TODO attack
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey) && Animation != CrouchAnimation) {
 					Velocity.X = LeftSpeed * speedMultiplier;
@@ -255,6 +264,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && _OnGround && Animation != CrouchAnimation) {
 					Jump(JumpSpeed);
 				}
+
 			}
 		}
 
@@ -292,12 +302,18 @@ namespace TickTick.Entities.Tiles.Creatures {
                             break;
                         }else if(entity is TeddyBear)
                         {
-                            TeddyBear teddyBear = (TeddyBear)entity; ;
+                            TeddyBear teddyBear = (TeddyBear)entity;
                             if (teddyBear.CanAttack && teddyBear.GetHealth >= 0)
                                 Health -= 2;
                             if (teddyBear.GetHealth <= 0)
                                 RemoveChild(entity);
                             break;
+                        }else if (entity is GuitarShotgun){
+                            item = "shotgun";
+                            //TODO: sprite van guitarshotgun wordt "Emptystand"
+                        }else if (entity is TreeTile && chapter == 3){
+                            item = "sword";
+                            //TODO: sprite vd boom veradert naar normale boom
                         }
                         
                         if(entity is Train)

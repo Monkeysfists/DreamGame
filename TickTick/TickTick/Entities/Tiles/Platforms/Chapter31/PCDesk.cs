@@ -22,7 +22,7 @@ namespace TickTick.Entities.Tiles.Platforms
         public PCDesk()
         {
             //TODO
-            Texture = GameHandler.AssetHandler.GetTexture("chapter3//computer");
+            Texture = GameHandler.AssetHandler.GetTexture("chapter3/computer");
             UpdateTimer = 0;
         }
 
