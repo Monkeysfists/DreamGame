@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
-    class Train : CreatureTileEntity
+    public class Train : CreatureTileEntity
     {
         /// <summary>
         /// The right movement speed.
@@ -39,34 +39,62 @@ namespace TickTick.Entities.Tiles.Creatures
         public Animation TrainTexture;
 
         private float _PreviousY;
+        public bool FULLSTOP;
+        public float trainTimer;
+        public TextEntity timerText;
 
         /// <summary>
         /// CHOO CHOO MOTHERUCKER
         /// </summary>
         public Train()
         {
-            // Size
-            Size = Animation.SpriteSheet.CellSize;
-            Origin.X = (Size.X - 72) / 2;
-            Origin.Y = (Size.Y - 55) / 2;
+            timerText = new TextEntity(GameHandler.AssetHandler.GetSpriteFont("Fonts/Hud"));
+            timerText.Layer = 0;
+            timerText.Color = Color.White;
+            AddChild(timerText);
 
             //Movement
             RightSpeed = 400F;
             Velocity.Y = 0;
+            trainTimer = 3;
+
+            CanCollide = true;
+            //StartBool = true;
 
             //Animation
             Rightanimation = new TrainMoveAnimation();
             TrainTexture = new TrainIdleAnimation();
             Animation = TrainTexture;
+            timerText.Text = ((int)trainTimer).ToString();
+
+            // Size
+            Size = Animation.SpriteSheet.CellSize;
+            Origin.X = (Size.X - 72) / 2;
+            Origin.Y = (Size.Y - 55) / 2;
+
         }
 
         public override void Update()
         {
+            timerText.Position = new Vector2(Parent.Position.X - Position.X + GameHandler.GraphicsHandler.ScreenSize.X / 2.2F, Parent.Position.Y - Position.Y + 25);
+
+            if (trainTimer > 0)
+            {
+                trainTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+                timerText.Text = ((int)trainTimer).ToString();
+            }
+
+
+            if (trainTimer <= 0)
+            {
+                StartBool = true;
+                RemoveChild(timerText);
+            }
+
             if (StartBool)
             {
                 //TODO: add soundeffect
-                if (_OnRails)
-                    Position += Velocity;
+                Velocity.X = RightSpeed / 65;
             }
             if (Velocity.X == 400)
             {
@@ -77,6 +105,13 @@ namespace TickTick.Entities.Tiles.Creatures
                 }
                 if (Animation != Rightanimation)
                     Animation = Rightanimation;
+            }
+
+            if (!(FULLSTOP))
+            {
+                Position += Velocity;
+                Position.Y += 1;
+                HandleCollision();
             }
 
         }
@@ -100,14 +135,74 @@ namespace TickTick.Entities.Tiles.Creatures
                 {
                     kill();
                 }
+
+                if (StartBool = false && entity is PlayerCreature)
+                    StartBool = true;
+
+                if (!(entity is CreatureTileEntity))
+                {
+                    RectangleF playerBounds = GlobalCollisionBox;
+                    RectangleF tileBounds = entity.GlobalCollisionBox;
+                    playerBounds.Height++;
+                    Vector2 depth = CalculateIntersectionDepth(playerBounds, tileBounds);
+
+                    if (Math.Abs(depth.X) < Math.Abs(depth.Y))
+                    {
+                        if (!(entity is TrainTracks))
+                        {
+                            Position.X += depth.X;
+                        }
+                    }
+                    else
+                    {
+                        if (_PreviousY - 1 <= tileBounds.Top && Velocity.Y >= 0)
+                        {
+                            _OnRails = true;
+                            Velocity.Y = 0F;
+                        }
+                        if (!(entity is TrainTracks) || (entity is TrainTracks && _OnRails))
+                        {
+                            Position.Y += depth.Y + 1;
+                            Velocity.Y = 0F;
+                        }
+                    }
+                }
             }
         }
 
-      
+        public Vector2 CalculateIntersectionDepth(Rectangle rectangle1, Rectangle rectangle2)
+        {
+            Vector2 center1 = new Vector2(rectangle1.Center.X, rectangle1.Center.Y);
+            Vector2 center2 = new Vector2(rectangle2.Center.X, rectangle2.Center.Y);
+            Vector2 minDistance = new Vector2(rectangle1.Width + rectangle2.Width, rectangle1.Height + rectangle2.Height) / 2;
+            Vector2 distance = center1 - center2;
+            Vector2 depth = Vector2.Zero;
+            if (distance.X > 0)
+            {
+                depth.X = minDistance.X - distance.X;
+            }
+            else
+            {
+                depth.X = -minDistance.X - distance.X;
+            }
+            if (distance.Y > 0)
+            {
+                depth.Y = minDistance.Y - distance.Y;
+            }
+            else
+            {
+                depth.Y = -minDistance.Y - distance.Y;
+            }
+            return depth;
+        }
+
+
 
         public void kill()
         {
-            Velocity = new Vector2(0, 0);
+            StartBool = false;
+            Velocity = Vector2.Zero;
+            FULLSTOP = true;
             //TODO: add soundeffect
         }
     }

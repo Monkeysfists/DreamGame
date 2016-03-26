@@ -105,7 +105,7 @@ namespace TickTick.Entities.States {
 					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("black");
 					_Overlay.ResizeToTexture();
 					_Overlay.Position = (Size - _Overlay.Size) / 2;
-					GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("black"));
+					//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("black"));
 				}
 			}
 		}

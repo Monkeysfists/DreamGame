@@ -22,7 +22,7 @@ namespace TickTick.Entities.Tiles.Platforms
                     Texture = GameHandler.AssetHandler.GetTexture("stoep");
                     break;
                 case BuildingBlocks.buildingblock:
-                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/blokken/blok" + GameHandler.Random.Next(27));
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/blokken/blok" + GameHandler.Random.Next(1,27));
                     break;
                 case BuildingBlocks.etc:
                 default:

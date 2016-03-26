@@ -8,6 +8,7 @@ namespace TickTick.Entities.Tiles.Platforms
         {
             //TODO
             Texture = GameHandler.AssetHandler.GetTexture("chapter1//treinstop");
+            CanCollide = true;
         }
     }
 }

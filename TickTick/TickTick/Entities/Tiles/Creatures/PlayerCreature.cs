@@ -97,6 +97,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         /// Invincible timer control bool
         /// </summary>
         private bool Invin;
+        private bool _OnRails;
 
 		private int _Health;
 		private bool _OnGround;
@@ -107,6 +108,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         private float InvinceTimer;
         public string item;
         private int chapter;
+        public float trainTimer;
 
 		/// <summary>
 		/// Creates a new PlayerCreature.
@@ -142,6 +144,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 
             //Timer
             InvinceTimer = 0;
+            trainTimer = 3;
 
 			// Input
 			LeftKey = new List<Keys>();
@@ -162,15 +165,24 @@ namespace TickTick.Entities.Tiles.Creatures {
 		}
 
 		public override void Update() {
-			if (Health > 0) {
-				HandleInput();
+            if (Health > 0)
+            {
+                HandleCollision();
+            }
+
+            if (Health > 0) {
+                if (_OnRails) ;
+                    //Velocity.X = RightSpeed;
+                HandleInput();
 
                 //Update timer if needed
-                if(InvinceTimer > 0)
+                if (InvinceTimer > 0)
                 {
                     InvinceTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
-                }else if(AttackTimer > 0)
+                } else if (AttackTimer > 0) {
                     AttackTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+                } else if (trainTimer > 0)
+                    trainTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
 
                 if (Animation != CelebrateAnimation) {
@@ -201,6 +213,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 					} else if (Velocity.Y != 0) {
 						Animation = JumpAnimation;
 					}
+                    if (Velocity.X == 0 && Animation != CrouchAnimation)
+                        Animation = IdleAnimation;
 				}
 
 				PlayingState state = ((PlayingState)Parent.Parent);
@@ -225,16 +239,15 @@ namespace TickTick.Entities.Tiles.Creatures {
 				Velocity.Y += 55F; // Fall speed
 			}
 
-			if (Health > 0) {
-				HandleCollision();
-			}
+
 
 			if (Health > 0) {
 				Vector2 bound = (new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y) - Size) / 2;
                 Vector2 origin = Position - bound;
 				Parent.DrawOrigin = new Vector2((int)origin.X, (int)origin.Y);
 			}
-		}
+
+        }
 
 		public override void Draw() {
 			base.Draw();
@@ -256,9 +269,11 @@ namespace TickTick.Entities.Tiles.Creatures {
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey) && Animation != CrouchAnimation) {
 					Velocity.X = LeftSpeed * speedMultiplier;
-				} else if (GameHandler.InputHandler.AnyKeyDown(RightKey) && Animation != CrouchAnimation) {
+				} else if ((GameHandler.InputHandler.AnyKeyDown(RightKey) || ((_OnRails ) && trainTimer <= 0)) && Animation != CrouchAnimation) {
 					Velocity.X = RightSpeed * speedMultiplier;
-				} else if (_OnGround) {
+                    if (_OnRails && GameHandler.InputHandler.AnyKeyDown(RightKey))
+                        Velocity.X = RightSpeed * speedMultiplier * 2;
+                } else if (_OnGround) {
 					Velocity.X = 0F;
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && _OnGround && Animation != CrouchAnimation) {
@@ -315,14 +330,9 @@ namespace TickTick.Entities.Tiles.Creatures {
                             item = "sword";
                             //TODO: sprite vd boom veradert naar normale boom
                         }
+                       
                         
-                        if(entity is Train)
-                        {
-                            Velocity = Velocity + new Vector2(400, 400);
-                            break;
-                        }
-                        
-                        if(!(entity is CreatureTileEntity)){
+                        if(!(entity is CreatureTileEntity) || (entity is Train)){
 							RectangleF playerBounds = GlobalCollisionBox;
 							RectangleF tileBounds = entity.GlobalCollisionBox;
 							playerBounds.Height++;
@@ -346,11 +356,26 @@ namespace TickTick.Entities.Tiles.Creatures {
 								}
 							}
 						}
-					}
+                        if (entity is Train)
+                        {
+                            _OnRails = true;
+                            Velocity.Y = 0F;
+                            if (Velocity.X == 0 && Animation != CrouchAnimation)
+                            {
+                                Animation = IdleAnimation;
+
+                            }
+                        }
+                        else if (!(entity is Train))
+                            _OnRails = false;
+                        else if (entity.Velocity.X < 100)
+                            _OnRails = false;
+                    }
 				}
 
 				_PreviousY = GlobalCollisionBox.Bottom;
 			}
+
 		}
 
 		public Vector2 CalculateIntersectionDepth(Rectangle rectangle1, Rectangle rectangle2) {
@@ -373,7 +398,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 		}
 
 		public void Jump(float speed) {
-			Velocity.Y = speed * 0.5F;
+			Velocity.Y = speed * 0.7F;
             //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
         }
 

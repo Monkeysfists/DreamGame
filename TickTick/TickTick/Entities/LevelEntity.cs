@@ -26,6 +26,8 @@ namespace TickTick.Entities
 
         public TreeTile tree;
 
+        public Train train;
+
         /// <summary>
         /// Whether the level is still locked.
         /// </summary>
@@ -78,6 +80,7 @@ namespace TickTick.Entities
             player = new PlayerCreature(level);
             teddy = new TeddyBear(level);
             tree = new TreeTile(level);
+            train = new Train();
 
         }
 
@@ -113,8 +116,11 @@ namespace TickTick.Entities
 
             if (player.item == "sword")
                 tree.Texture = GameHandler.AssetHandler.GetTexture("chapter3/ch3_tree_swordless");
-                
-            base.Update();
+
+            if (MathHelper.Distance(player.Position.Y, train.Position.Y) < 300)
+                train.StartBool = true;
+
+                base.Update();
         }
 
         /// <summary>
@@ -142,6 +148,7 @@ namespace TickTick.Entities
             player = new PlayerCreature(LevelNumber);
             teddy = new TeddyBear(LevelNumber);
             tree = new TreeTile(LevelNumber);
+            train = new Train();
 
 
             PlayingState state = (PlayingState)Parent;

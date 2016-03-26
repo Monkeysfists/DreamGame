@@ -19,12 +19,12 @@ namespace TickTick.Entities.States {
 
 			// Add a play button
 			PlayButton playButton = new PlayButton();
-			playButton.Position = new Vector2((Size.X - playButton.Size.X) / 2, 540);
+			playButton.Position = new Vector2((Size.X - playButton.Size.X) / 2, 460);
 			AddChild(playButton);
 
 			// Add a help button
 			HelpButton helpButton = new HelpButton();
-			helpButton.Position = new Vector2((Size.X - helpButton.Size.X) / 2, 600);
+			helpButton.Position = new Vector2((Size.X - helpButton.Size.X) / 2, 570);
 			AddChild(helpButton);
 		}
 	}
