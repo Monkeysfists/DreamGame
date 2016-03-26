@@ -37,7 +37,7 @@ namespace TickTick.Entities.Tiles.Platforms
 
             if(player != null)
                 if(MathHelper.Distance(PlayerPosition.X, Position.X) < 20)
-                    //Start sucking
+                    //play computer transfer animation
             base.Update();
         }
 

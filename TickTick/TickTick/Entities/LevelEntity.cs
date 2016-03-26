@@ -163,92 +163,90 @@ namespace TickTick.Entities
         {
             switch (character)
             {
-                //Tree in size matching with level
+                //Building blocks
+                case 'W':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.wood);
+                case 'B':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.buildingblock);
+                case '*':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.black);
+                case 'G':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.ground);
+                case 'S':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.street);
                 case '-':
+                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.etc);
+
+                //Objects used in multiple chapters
+                case 'T':
                     return tree;
+                case 'P':
+                    return player;
+                case 'E':
+                    return teddy;
+                case 'q':
+                    return new GuitarShotgun(LevelNumber);
+                case 'b': switch (LevelNumber)
+                    {
+                        case 1: return new TrampolineBedTile();
+                        default: return new BedTile(LevelNumber);
+                    }
+                case 'D':
+                    return new PCDesk();
+                case 'H':
+                    return new HighSchool(LevelNumber);
+
+
+                case '#':
+                    return new GoalTile();
+                case '@':
+                //return new StartingTile();
+
+                //Chapter 1   
+                case 'n': //Nightstand
+                    return new CollisionObject("chapter1/nightstand");
+                case 'r':
+                    return new TrainTracks();
+                case 'k':
+                    return new TrainStopBlock();
+                case 't':
+                    return new Train();
+                case 'd': //Uithangborden
+                    return new CollisionObject("chapter1/uithangborden/bord" + GameHandler.Random.Next(4));
+                    //return new NoCollisionObject("chapter1/uithangborden/bordpaal1");
+                    //return new NoCollisionObject("chapter1/uithangborden/bordpaal2");
+                case 'F': //Flower
+                    return new NoCollisionObject("chapter1/flower");
+                case 'M':
+                    return new Mother();
+                    //return new Umbrella();
+                case 'w':
+                    return new WaterTile();
+
+                //Chapter 3
+
+                //Chapter 4
+                case 'c': //Closet
+                    return new NoCollisionObject("chapter4/closet");
+
                 case '$':
                 case '%':
                     DefaultPlatform defaultPlatform = new DefaultPlatform();
                     if (character == '$')
-                    {
                         defaultPlatform.Velocity.X = 100F;
-                    }
                     else if (character == '%')
-                    {
                         defaultPlatform.Velocity.X = -100F;
-                    }
                     return defaultPlatform;
-                case '+':
-                case '&':
-                case '(':
-                case '@':
-                case '!':
-                case '~':
 
-                case 'E':
-                    return new GoalTile();
-                case 'W':
-                case 'P':
-                    return player;
-                case '#':
-                    return teddy;
                 case '/':
                 case '>':
                     DefaultWall defaultWall = new DefaultWall();
                     if (character == '/')
-                    {
                         defaultWall.Velocity.X = 100F;
-                    }
                     else if (character == '>')
-                    {
                         defaultWall.Velocity.X = -100F;
-                    }
                     return defaultWall;
 
-                    //Below here are all the buildingblocks
-                case '^':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.wood);
-                case 'X':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.brick);
-                case '\\':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.black);
-                case '*':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.ground);
-                case '[':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.street);
-                case ']':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.etc);
-
-
-                case 'T':
-                    return new TrampolineBedTile();
-
-                    //Below here is chapter 3.1
-                case 'R':
-                    return new BedTile();
-                case 'r':
-                    return new PlantPot();
-                case 'S':
-                    return new PCDesk();
-                case 'A':
-                    return new GuitarShotgun();
-
-                case 'C':
-
-                    //Below here is Train from chapter1.1
-                case 'B':
-                    return new PlayingBlocks();
-                case 't':
-                    //return new TrainTracks();
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.ground);
-                case 'k':
-                    return new TrainStopBlock();
-                case 'z':
-                    return new Train();
-                case '1':
-                    return new Chapter11startTile();
-
-                    //Default
                 default:
                     TileEntity tile = new TileEntity();
                     tile.CanCollide = false;

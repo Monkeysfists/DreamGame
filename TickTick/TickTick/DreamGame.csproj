@@ -57,6 +57,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\MotherWalkingAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerAttackAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerCrouchAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerDieAnimation.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Animations\TeddyAnimation\TeddyRunAnimation.cs" />
     <Compile Include="Animations\TrainAnimation\TrainIdleAnimation.cs" />
     <Compile Include="Animations\TrainAnimation\TrainMoveAnimation.cs" />
+    <Compile Include="Animations\WaterAnimation.cs" />
     <Compile Include="Entities\Buttons\BackButton.cs" />
     <Compile Include="Entities\Buttons\HelpButton.cs" />
     <Compile Include="Entities\Buttons\LevelButton.cs" />
@@ -78,21 +80,26 @@
     <Compile Include="Entities\States\FadeState.cs" />
     <Compile Include="Entities\Tiles\Creatures\CreatureTileEntity.cs" />
     <Compile Include="Entities\Tiles\Creatures\FlyingCarCreature.cs" />
+    <Compile Include="Entities\Tiles\Creatures\Mother.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\TeddyBear.cs" />
     <Compile Include="Entities\Tiles\Creatures\Train.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\Umbrella.cs" />
+    <Compile Include="Entities\Tiles\Platforms\CollisionObject.cs" />
+    <Compile Include="Entities\Tiles\Platforms\WaterTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\DefaultPlatform.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Chapter11\PlayingBlocks.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Chapter11\TrainStopBlock.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Chapter11\TrainTracks.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Chapter11\TrampolineBedTile.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Chapter31\BedTile.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\PlayingBlocks.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\TrainStopBlock.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\TrainTracks.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\TrampolineBedTile.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter3\BedTile.cs" />
+    <Compile Include="Entities\Tiles\Platforms\HighSchool.cs" />
+    <Compile Include="Entities\Tiles\Platforms\NoCollisionObject.cs" />
     <Compile Include="Entities\Tiles\Walls\TreeTile.cs" />
     <Compile Include="Entities\Tiles\Walls\GuitarShotgun.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Chapter31\PCDesk.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Chapter31\PlantPot.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter3\PCDesk.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter3\PlantPot.cs" />
     <Compile Include="Entities\Tiles\Platforms\BuildingBlockWall.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Chapter11\Chapter11startTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\GoalTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\PlatformTile.cs" />
     <Compile Include="Entities\States\PlayingState.cs" />
@@ -120,6 +127,9 @@
       <Name>TickTickContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Tiles\Platforms\Chapter4\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

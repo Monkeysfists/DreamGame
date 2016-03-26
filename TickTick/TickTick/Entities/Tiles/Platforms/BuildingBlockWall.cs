@@ -4,7 +4,7 @@ namespace TickTick.Entities.Tiles.Platforms
 {
     public class BuildingBlockWall : PlatformTile
     {
-        public enum BuildingBlocks { wood, brick, black, ground, street, etc};
+        public enum BuildingBlocks { wood, brick, black, ground, street, buildingblock, etc};
         public BuildingBlockWall(BuildingBlocks buildingblocks)
         {
             //TODO add textures
@@ -20,6 +20,9 @@ namespace TickTick.Entities.Tiles.Platforms
                     break;
                 case BuildingBlocks.street:
                     Texture = GameHandler.AssetHandler.GetTexture("stoep");
+                    break;
+                case BuildingBlocks.buildingblock:
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/blokken/blok" + GameHandler.Random.Next(27));
                     break;
                 case BuildingBlocks.etc:
                 default:

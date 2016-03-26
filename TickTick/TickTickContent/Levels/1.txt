@@ -2,13 +2,13 @@
 .
 .
 ...........
-T....T.....T.....******
+W....W.....W.....BBBBBBB
 .
 .
 .
 .
 .
 .
-T
-TTTTTTTTTTTTTTTTTTTT
+W...t
+WWWWWWWWWWWWWWWWWWWWWWWWW
 Oscar is een noob :)

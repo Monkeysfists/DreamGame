@@ -150,8 +150,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\nachtkasje.png">
-      <Name>nachtkasje</Name>
+    <Compile Include="chapter1\nightstand.png">
+      <Name>nightstand</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -770,8 +770,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\paraplu.png">
-      <Name>paraplu</Name>
+    <Compile Include="chapter1\umbrella.png">
+      <Name>umbrella</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -791,8 +791,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter4\kast.png">
-      <Name>kast</Name>
+    <Compile Include="chapter4\closet.png">
+      <Name>closet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -924,8 +924,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\achtergrond_vrolijk_bloem.png">
-      <Name>achtergrond_vrolijk_bloem</Name>
+    <Compile Include="chapter1\flower.png">
+      <Name>flower</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -933,6 +933,13 @@
   <ItemGroup>
     <Compile Include="achtergrond huis.png">
       <Name>achtergrond huis</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter3\ch3bed.png">
+      <Name>ch3bed</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
