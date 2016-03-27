@@ -365,11 +365,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="chapter3\auto.png">
-      <Name>auto</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="chapter1\bed.png">
       <Name>bed</Name>
       <Importer>TextureImporter</Importer>
@@ -791,13 +786,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter4\closet.png">
-      <Name>closet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="chapter3\Gunstand.png">
       <Name>Gunstand</Name>
       <Importer>TextureImporter</Importer>
@@ -940,6 +928,106 @@
   <ItemGroup>
     <Compile Include="chapter3\ch3bed.png">
       <Name>ch3bed</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter4\closet.png">
+      <Name>closet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter4\autoleeg.png">
+      <Name>autoleeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter3\autorocket.png">
+      <Name>autorocket</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter1\tunnel_achter.png">
+      <Name>tunnel_achter</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\tunnel_boven.png">
+      <Name>tunnel_boven</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter1\tunnel_voor.png">
+      <Name>tunnel_voor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter2\castle_wall.png">
+      <Name>castle_wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\castle_wall_background.png">
+      <Name>castle_wall_background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\castle_wall_top.png">
+      <Name>castle_wall_top</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\ch2_bed.png">
+      <Name>ch2_bed</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\ch2_joch_die.png">
+      <Name>ch2_joch_die</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\ch2_joch_lopen.png">
+      <Name>ch2_joch_lopen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\ch2_joch_springen.png">
+      <Name>ch2_joch_springen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\ch2_teddy_shaking.png">
+      <Name>ch2_teddy_shaking</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\dinosaur.png">
+      <Name>dinosaur</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\ghost.png">
+      <Name>ghost</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\legoblock_blank.png">
+      <Name>legoblock_blank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter2\wooden_platform.png">
+      <Name>wooden_platform</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
