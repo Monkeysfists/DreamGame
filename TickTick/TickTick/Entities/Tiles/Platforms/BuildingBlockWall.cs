@@ -29,6 +29,8 @@ namespace TickTick.Entities.Tiles.Platforms
                     Texture = GameHandler.AssetHandler.GetTexture("chapter1/bed");
                     break;
             }
+
+            Size = Size * 2;
         }
     }
 }

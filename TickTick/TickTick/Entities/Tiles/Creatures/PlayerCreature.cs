@@ -109,6 +109,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         public string item;
         private int chapter;
         public float trainTimer;
+        public bool Trampo;
 
 		/// <summary>
 		/// Creates a new PlayerCreature.
@@ -286,6 +287,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 		public void HandleCollision() {
 			if (!_Won) {
 				_OnGround = false;
+                Trampo = false;
+
 
 				Position = new Vector2((float)Math.Floor(Position.X), (float)Math.Floor(Position.Y));
 
@@ -303,17 +306,15 @@ namespace TickTick.Entities.Tiles.Creatures {
                         // Get launched?
                         if(entity is TrampolineBedTile)
                         {
-                            if(Velocity.Y < 0)
-                            {
-                                Velocity.Y = Math.Abs(Velocity.Y * 1.25F);
-                            }
-                            break;
+                            _OnGround = true;
                         }
                         
                         if(entity is TrainTracks)
                         {
                             //TODO: add soundeffect
                             Health -= 2;
+                            Velocity.X *= -1F;
+                            Jump(JumpSpeed);
                             break;
                         }else if(entity is TeddyBear)
                         {
@@ -345,20 +346,30 @@ namespace TickTick.Entities.Tiles.Creatures {
 							} else {
 								if (_PreviousY - 1 <= tileBounds.Top && Velocity.Y >= 0) {
 									_OnGround = true;
+                                    if (entity is TrampolineBedTile)
+                                    {
+                                        Trampo = true;
+                                        Jump(JumpSpeed * 10F);
+                                    }
+
 									//if(Velocity.Y > 1500) {
 										//Health -= (int)((Velocity.Y - 1500) / 50);
 									//}
 									Velocity.Y = 0F;
 								}
-								if (!(entity is PlatformTile) || (entity is PlatformTile && _OnGround)) {
+								if (!(entity is PlatformTile) || (entity is PlatformTile && _OnGround) || entity is TrampolineBedTile) {
 									Position.Y += depth.Y + 1;
 									Velocity.Y = 0F;
-								}
+                                }else if(entity is PlatformTile && !_OnGround && Velocity.Y > 0F)
+                                {
+                                    //Position.Y -= depth.Y - 1;
+                                }
 							}
 						}
                         if (entity is Train)
                         {
                             _OnRails = true;
+                            _OnGround = true;
                             Velocity.Y = 0F;
                             if (Velocity.X == 0 && Animation != CrouchAnimation)
                             {
@@ -399,6 +410,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 
 		public void Jump(float speed) {
 			Velocity.Y = speed * 0.7F;
+            if (Trampo)
+                Velocity.Y = speed;
             //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
         }
 
