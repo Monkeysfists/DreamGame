@@ -57,6 +57,9 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\BullyAnimation\BullyAttackAnimation.cs" />
+    <Compile Include="Animations\BullyAnimation\BullyIdleAnimation.cs" />
+    <Compile Include="Animations\BullyAnimation\BullyRunAnimation.cs" />
     <Compile Include="Animations\MotherWalkingAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerAttackAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerCrouchAnimation.cs" />
@@ -78,21 +81,28 @@
     <Compile Include="Entities\HintEntity.cs" />
     <Compile Include="Entities\LevelEntity.cs" />
     <Compile Include="Entities\States\FadeState.cs" />
+    <Compile Include="Entities\Tiles\Creatures\Bully.cs" />
     <Compile Include="Entities\Tiles\Creatures\CreatureTileEntity.cs" />
     <Compile Include="Entities\Tiles\Creatures\FlyingCarCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\Mother.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\TeddyBear.cs" />
     <Compile Include="Entities\Tiles\Creatures\Train.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\Board.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\Raindrop.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\Tunnel.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Umbrella.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter2\LavaTile.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter2\LegoBlock.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter2\UnderLavaTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\CollisionObject.cs" />
-    <Compile Include="Entities\Tiles\Platforms\WaterTile.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\WaterTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\DefaultPlatform.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\PlayingBlocks.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\TrainStopBlock.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\TrainTracks.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\TrampolineBedTile.cs" />
-    <Compile Include="Entities\Tiles\Platforms\Chapter3\BedTile.cs" />
+    <Compile Include="Entities\Tiles\Platforms\BedTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\HighSchool.cs" />
     <Compile Include="Entities\Tiles\Platforms\NoCollisionObject.cs" />
     <Compile Include="Entities\Tiles\Walls\TreeTile.cs" />

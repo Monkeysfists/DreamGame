@@ -183,6 +183,8 @@ namespace TickTick.Entities
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.street);
                 case '-':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.etc);
+                case '+':
+                    return new CollisionObject("WoodenFloorTile");
 
                 //Objects used in multiple chapters
                 case 'T':
@@ -193,12 +195,13 @@ namespace TickTick.Entities
                     return teddy;
                 case 'q':
                     return new GuitarShotgun(LevelNumber);
-                case 'b': switch (LevelNumber)
+                case 'b': 
+                    switch (LevelNumber)
                     {
                         case 1: return new TrampolineBedTile();
                         default: return new BedTile(LevelNumber);
                     }
-                case 'D':
+                case 'p':
                     return new PCDesk();
                 case 'H':
                     return new HighSchool(LevelNumber);
@@ -210,7 +213,7 @@ namespace TickTick.Entities
                 //return new StartingTile();
 
                 //Chapter 1   
-                case 'n': //Nightstand
+                case 'n':
                     return new CollisionObject("chapter1/nightstand");
                 case 'r':
                     return new TrainTracks();
@@ -218,19 +221,46 @@ namespace TickTick.Entities
                     return new TrainStopBlock();
                 case 't':
                     return new Train();
-                case 'd': //Uithangborden
-                    return new CollisionObject("chapter1/uithangborden/bord" + GameHandler.Random.Next(4));
-                    //return new NoCollisionObject("chapter1/uithangborden/bordpaal1");
-                    //return new NoCollisionObject("chapter1/uithangborden/bordpaal2");
-                case 'F': //Flower
+                case 'D': 
+                    return new Tunnel();
+                case 'd':
+                    return new Board();
+                case 'F': 
                     return new NoCollisionObject("chapter1/flower");
                 case 'M':
                     return new Mother();
-                    //return new Umbrella();
                 case 'w':
                     return new WaterTile();
 
+                //Chapter 2
+                //case '2':
+                    //return new Dinosaur();
+                //case '3':
+                    //return new Ghost();
+                case 'I':
+                    return new CollisionObject("chapter2/castle_wall");
+                case 'J': 
+                    return new CollisionObject("chapter2/castle_wall_top");
+                case 'j': 
+                    return new CollisionObject("chapter2/wooden_platform");
+                case 'i':
+                    return new NoCollisionObject("chapter2/castle_wall_background");
+                case 'K':
+                    return new LegoBlock();
+                //case '(':
+                    //return new LightSwitch();
+                case 'L':
+                    return new LavaTile();
+                case 'l':
+                    return new UnderLavaTile();
+                case 'Z':
+                    return new CollisionObject("chapter2/zebrawit");
+                case 'z':
+                    return new CollisionObject("chapter2/zebrazwart");
+
                 //Chapter 3
+                case '0':
+                    return new Bully();
 
                 //Chapter 4
                 case 'c': //Closet
