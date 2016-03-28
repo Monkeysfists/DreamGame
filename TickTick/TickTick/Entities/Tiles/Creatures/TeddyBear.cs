@@ -8,6 +8,7 @@ using TickTick.Entities.Tiles.Platforms;
 using TickTick.Animations;
 using GameLibrary.Types;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
@@ -36,6 +37,9 @@ namespace TickTick.Entities.Tiles.Creatures
 
         public int Chapter;
 
+        public HintEntity TalkBox;
+        public int TalkStage;
+
 
         public TeddyBear(int chapter)
         {
@@ -45,6 +49,11 @@ namespace TickTick.Entities.Tiles.Creatures
             _PreviousY = GlobalCollisionBox.Bottom;
             Visible = true;
             this.Chapter = chapter;
+            TalkBox = new HintEntity();
+            TalkBox.Visible = false;
+            TalkStage = 0;
+            TalkBox.Text = "Pre stage (Press P)";
+            AddChild(TalkBox);
 
 
             // Speed
@@ -117,12 +126,38 @@ namespace TickTick.Entities.Tiles.Creatures
                 Velocity.Y += 55F; // Fall speed
             }
 
+            TalkBox.Position = Parent.Position - new Vector2(100F,100F);
+            TalkBox.SetTextPosition = Parent.Position - new Vector2(90F, 90F);
+            HandleInput();
             base.Update();
         }
 
         public override void Draw()
         {
             base.Draw();
+        }
+
+        public void HandleInput()
+        {
+            if (GameHandler.InputHandler.OnKeyDown(Keys.P) && TalkBox.Visible)
+            {
+                switch (TalkStage)
+                {
+                    case 1:
+                        TalkBox.Text = "1 (Press P)";
+                        TalkStage++;
+                        break;
+                    case 2:
+                        TalkBox.Text = "2 (Press P)";
+                        TalkStage++;
+                        break;
+                    case 3:
+                        TalkBox.Text = "3 (Press P)";
+                        TalkStage++;
+                        break;
+                    
+                }
+            }
         }
 
         public void HandleCollision()
@@ -138,8 +173,12 @@ namespace TickTick.Entities.Tiles.Creatures
                 {
                 if (entity is PlayerCreature)
                 {
-                    if(Chapter == 1)
+                    if (Chapter == 1)
+                    {
                         Animation = TeddyTalkAnimation;
+                        TalkBox.Visible = true;
+                        TalkBox.Text = "blablablabla (Press P)";
+                    }
                     if (Chapter == 3)
                         Animation = TeddyAttackAnimation;
                 }

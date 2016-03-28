@@ -182,7 +182,8 @@ namespace TickTick.Entities.Tiles.Creatures {
                 //Update timer if needed
                 if (InvinceTimer > 0F)
                 {
-                    InvinceTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds * 2;
+                    InvinceTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+                    Velocity = Vector2.Zero;
                 } else if (AttackTimer > 0) {
                     AttackTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
                 } else if (trainTimer > 0)
@@ -317,6 +318,8 @@ namespace TickTick.Entities.Tiles.Creatures {
                             if(chapter != 1)
                                 Damage();
                             InvinceTimer = 1F;
+                            if (chapter == 1)
+                                InvinceTimer = 10F;
                             KnockBack();
                         }
                         
@@ -326,14 +329,6 @@ namespace TickTick.Entities.Tiles.Creatures {
                             Damage();
                             Velocity.X *= -1F;
                             Jump(JumpSpeed);
-                            break;
-                        }else if(entity is TeddyBear)
-                        {
-                            TeddyBear teddyBear = (TeddyBear)entity;
-                            if (teddyBear.CanAttack && teddyBear.GetHealth >= 0)
-                                Damage();
-                            if (teddyBear.GetHealth <= 0)
-                                RemoveChild(entity);
                             break;
                         }else if (entity is GuitarShotgun){
                             item = "shotgun";
@@ -443,7 +438,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         public void KnockBack()
         {
             Velocity.Y = JumpSpeed * 0.5F;
-            Velocity.X = -200;
+            Velocity.X = -100;
             Animation = IdleAnimation;
             
         }
