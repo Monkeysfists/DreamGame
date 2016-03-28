@@ -6,14 +6,14 @@ namespace TickTick.Animations
     /// <summary>
     /// A moving teddy.
     /// </summary>
-    public class TeddyAttackAnimation : Animation
+    public class TeddyTalkingAnimation : Animation
     {
         /// <summary>
         /// Creates a new TeddyAttackAnimation.
         /// </summary>
-        public TeddyAttackAnimation()
+        public TeddyTalkingAnimation()
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_teddy_aanval@2");
+            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_teddy_talking@2");
             FrameTime = TimeSpan.FromMilliseconds(100);
         }
     }

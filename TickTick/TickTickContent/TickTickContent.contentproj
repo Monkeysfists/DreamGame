@@ -386,8 +386,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\ch1_teddy_talking.png">
-      <Name>ch1_teddy_talking</Name>
+    <Compile Include="chapter1\ch1_teddy_talking%402.png">
+      <Name>ch1_teddy_talking%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -456,8 +456,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_teddy_aanval.png">
-      <Name>ch3_teddy_aanval</Name>
+    <Compile Include="chapter3\ch3_teddy_aanval%402.png">
+      <Name>ch3_teddy_aanval%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

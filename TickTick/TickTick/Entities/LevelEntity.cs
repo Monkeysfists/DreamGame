@@ -9,6 +9,7 @@ using TickTick.Entities.Tiles;
 using TickTick.Entities.Tiles.Creatures;
 using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
+using TickTick.Entities.Tiles.Platforms.Chapter1;
 
 namespace TickTick.Entities
 {
