@@ -380,10 +380,6 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
-    <None Include="Levels\1.txt">
-      <Name>1</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="chapter1\ch1_teddy_talking%402.png">
@@ -1113,10 +1109,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Levels\2.txt">
+    <Compile Include="Levels\1.txt">
+      <Name>1</Name>
+    </Compile>
+    <Compile Include="Levels\2.txt">
       <Name>2</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Compile>
+    <Compile Include="Levels\3.txt">
+      <Name>3</Name>
+    </Compile>
+    <Compile Include="Levels\4.txt">
+      <Name>4</Name>
+    </Compile>
+    <Compile Include="Levels\5.txt">
+      <Name>5</Name>
+    </Compile>
+    <Compile Include="Levels\6.txt">
+      <Name>6</Name>
+    </Compile>
+    <Compile Include="Levels\7.txt">
+      <Name>7</Name>
+    </Compile>
+    <Compile Include="Levels\8.txt">
+      <Name>8</Name>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

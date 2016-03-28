@@ -167,6 +167,7 @@ namespace TickTick.Entities
         /// </summary>
         /// <param name="character">The character to convert.</param>
         /// <returns>The corresponding Entity.</returns>
+
         private Entity ConvertTiles(char character)
         {
             switch (character)
@@ -196,7 +197,7 @@ namespace TickTick.Entities
                     return teddy;
                 case 'q':
                     return new GuitarShotgun(LevelNumber);
-                case 'b': 
+                case 'b':
                     switch (LevelNumber)
                     {
                         case 1: return new TrampolineBedTile();
@@ -206,6 +207,8 @@ namespace TickTick.Entities
                     return new PCDesk();
                 case 'H':
                     return new HighSchool(LevelNumber);
+                case 'h':
+                    return new NoCollisionObject("achtergrond huis");
 
 
                 case '#':
@@ -222,41 +225,43 @@ namespace TickTick.Entities
                     return new TrainStopBlock();
                 case 't':
                     return new Train();
-                case 'D': 
+                case 'D':
                     return new Tunnel();
                 case 'd':
                     return new Board();
-                case 'F': 
+                case 'F':
                     return new NoCollisionObject("chapter1/flower");
                 case 'M':
                     return new Mother();
                 case 'w':
                     return new WaterTile();
+                case '^':
+                    return new Paperboat();
 
                 //Chapter 2
-                //case '2':
-                    //return new Dinosaur();
+                case '2':
+                    return new Dinosaur();
                 //case '3':
-                    //return new Ghost();
+                //return new Ghost();
                 case 'I':
                     return new CollisionObject("chapter2/castle_wall");
-                case 'J': 
+                case 'J':
                     return new CollisionObject("chapter2/castle_wall_top");
-                case 'j': 
+                case 'j':
                     return new CollisionObject("chapter2/wooden_platform");
                 case 'i':
                     return new NoCollisionObject("chapter2/castle_wall_background");
                 case 'K':
                     return new LegoBlock();
                 //case '(':
-                    //return new LightSwitch();
+                //return new LightSwitch();
                 case 'L':
                     return new LavaTile();
                 case 'l':
                     return new UnderLavaTile();
-                case 'Z':
-                    return new CollisionObject("chapter2/zebrawit");
                 case 'z':
+                    return new CollisionObject("chapter2/zebrawit");
+                case 'Z':
                     return new CollisionObject("chapter2/zebrazwart");
 
                 //Chapter 3
@@ -266,6 +271,10 @@ namespace TickTick.Entities
                 //Chapter 4
                 case 'c': //Closet
                     return new NoCollisionObject("chapter4/closet");
+                case 'a':
+                    return new NoCollisionObject("chapter4/autoleeg");
+                case '!':
+                    return new CollisionObject("chapter4/door_closed");
 
                 case '$':
                 case '%':
