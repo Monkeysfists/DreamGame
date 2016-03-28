@@ -14,7 +14,7 @@ namespace TickTick {
 
 			// Set up environment
 			IsMouseVisible = true;
-			GraphicsHandler.Resolution = new Point(1080, 720);
+			GraphicsHandler.Resolution = new Point(1440, 825);
 			//GraphicsHandler.FullScreen = true;
 			// TODO: Add fullscreen
 
