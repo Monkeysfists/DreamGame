@@ -41,6 +41,7 @@ namespace TickTick.Entities.Tiles.Creatures
         public int TalkStage;
 
 
+
         public TeddyBear(int chapter)
         {
             Health = 100;

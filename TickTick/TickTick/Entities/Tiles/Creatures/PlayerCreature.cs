@@ -194,7 +194,10 @@ namespace TickTick.Entities.Tiles.Creatures {
                 if (KnockbackTimer > 0)
                     KnockbackTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
-                if (KnockbackTimer > 0F && KnockbackTimer < 0.1F)
+                if (KnockbackTimer > 0.80F && KnockbackTimer < 0.9F)
+                    Jump(JumpSpeed * 0.3F);
+
+                if (KnockbackTimer > 0.4F && KnockbackTimer < 0.5F)
                     Velocity = Vector2.Zero;
 
                 if (Animation != CelebrateAnimation) {
