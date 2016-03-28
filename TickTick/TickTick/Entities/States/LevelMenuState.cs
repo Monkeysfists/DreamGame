@@ -21,8 +21,9 @@ namespace TickTick.Entities.States {
 			backButton.Position = new Vector2((GameHandler.GraphicsHandler.Resolution.X - backButton.Size.X) / 2, 750);
 			AddChild(backButton);
 
-			// Load buttons
-			int levels = ((PlayingState)GameHandler.StateHandler.States["playing"]).Levels.Count;
+            // Load buttons
+            int levels = ((PlayingState)GameHandler.StateHandler.States["playing"]).Levels.Count;
+            //int levels = 1;
             for (int i = 0; i < levels; i++) {
 				int row = i / 5;
 				int column = i % 5;

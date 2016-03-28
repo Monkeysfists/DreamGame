@@ -106,6 +106,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         private int TemporaryHealth;
         private float AttackTimer;
         private float InvinceTimer;
+        private float KnockbackTimer;
         public string item;
         private int chapter;
         public float trainTimer;
@@ -122,6 +123,7 @@ namespace TickTick.Entities.Tiles.Creatures {
             CanCollide = true;
             this.chapter = chapter;
             InvinceTimer = 0;
+            KnockbackTimer = 0;
 
 			// Animations
 			IdleAnimation = new PlayerIdleAnimation(chapter, item);
@@ -183,14 +185,19 @@ namespace TickTick.Entities.Tiles.Creatures {
                 if (InvinceTimer > 0F)
                 {
                     InvinceTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
-                    Velocity = Vector2.Zero;
-                } else if (AttackTimer > 0) {
+                }
+                if (AttackTimer > 0) {
                     AttackTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
-                } else if (trainTimer > 0)
+                }
+                if (trainTimer > 0)
                     trainTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+                if (KnockbackTimer > 0)
+                    KnockbackTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
+                if (KnockbackTimer > 0F && KnockbackTimer < 0.1F)
+                    Velocity = Vector2.Zero;
 
-                if (Animation != CelebrateAnimation && InvinceTimer <= 0) {
+                if (Animation != CelebrateAnimation) {
 					// Animation directions
 					if (Velocity.X > 0) {
 						IdleAnimation.FlipHorizontally = false;
@@ -321,6 +328,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                             if (chapter == 1)
                                 InvinceTimer = 10F;
                             KnockBack();
+                            Jump(JumpSpeed);
                         }
                         
                         if(entity is TrainTracks)
@@ -437,10 +445,10 @@ namespace TickTick.Entities.Tiles.Creatures {
 
         public void KnockBack()
         {
-            Velocity.Y = JumpSpeed * 0.5F;
             Velocity.X = -100;
+            Jump(JumpSpeed);
             Animation = IdleAnimation;
-            
+            KnockbackTimer = 1;
         }
 	}
 }
