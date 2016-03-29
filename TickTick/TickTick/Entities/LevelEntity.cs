@@ -118,8 +118,6 @@ namespace TickTick.Entities
             if (player.item == "sword")
                 tree.Texture = GameHandler.AssetHandler.GetTexture("chapter3/ch3_tree_swordless");
 
-            if (MathHelper.Distance(player.Position.Y, train.Position.Y) < 300)
-                train.StartBool = true;
 
                 base.Update();
         }
@@ -236,11 +234,11 @@ namespace TickTick.Entities
                 case 'w':
                     return new WaterTile();
                 case '^':
-                    return new Paperboat();
+                    //return new Paperboat();
 
                 //Chapter 2
                 case '2':
-                    return new Dinosaur();
+                    //return new Dinosaur();
                 //case '3':
                 //return new Ghost();
                 case 'I':

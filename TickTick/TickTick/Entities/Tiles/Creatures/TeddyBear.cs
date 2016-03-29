@@ -38,7 +38,7 @@ namespace TickTick.Entities.Tiles.Creatures
         public int Chapter;
 
         public HintEntity TalkBox;
-        public int TalkStage;
+        public float TalkStage;
 
 
 
@@ -53,8 +53,9 @@ namespace TickTick.Entities.Tiles.Creatures
             TalkBox = new HintEntity();
             TalkBox.Visible = false;
             TalkStage = 0;
-            TalkBox.Text = "Pre stage (Press P)";
+            TalkBox.Text = "Loop met WASD en spring met spatie";
             AddChild(TalkBox);
+            TalkBox.SetTextPosition = TalkBox.SetTextPosition + new Vector2(0,25);
 
 
             // Speed
@@ -69,7 +70,10 @@ namespace TickTick.Entities.Tiles.Creatures
             TeddyRunAnimation = new TeddyRunAnimation();
             TeddyAttackAnimation = new TeddyAttackAnimation();
             TeddyTalkAnimation = new TeddyTalkingAnimation();
-            Animation = TeddyIdleAnimation;
+            if(chapter == 1)
+                Animation = TeddyTalkAnimation;
+            if(Chapter != 1)
+                Animation = TeddyIdleAnimation;
 
             // Size
             Size = Animation.SpriteSheet.CellSize;
@@ -99,8 +103,17 @@ namespace TickTick.Entities.Tiles.Creatures
                 canAttack = true;
             }
 
-            if(Health > 0)
-                HandleCollision();
+            if(Chapter == 1)
+                TalkStage += (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+
+            if (TalkStage > 3 && TalkStage < 6)
+                TalkBox.Text = "Je kan hoger springen door op het bed een sprong te maken!";
+
+            if (TalkStage > 9)
+            {
+                RemoveChild(TalkBox);
+                Animation = TeddyIdleAnimation;
+            }
             /*
             if (player.Position.X > Position.X)
                 mirrored = true;
@@ -127,10 +140,16 @@ namespace TickTick.Entities.Tiles.Creatures
                 Velocity.Y += 55F; // Fall speed
             }
 
-            TalkBox.Position = Parent.Position - new Vector2(100F,100F);
-            TalkBox.SetTextPosition = Parent.Position - new Vector2(90F, 90F);
+            if (Health > 0)
+                HandleCollision();
+
+
             HandleInput();
             base.Update();
+
+            TalkBox.Position = Parent.Position - new Vector2(100F,100F);
+            //TalkBox.SetTextPosition = Par.Position - new Vector2(90F, 90F);
+            TalkBox.Visible = true;
         }
 
         public override void Draw()
@@ -140,25 +159,6 @@ namespace TickTick.Entities.Tiles.Creatures
 
         public void HandleInput()
         {
-            if (GameHandler.InputHandler.OnKeyDown(Keys.P) && TalkBox.Visible)
-            {
-                switch (TalkStage)
-                {
-                    case 1:
-                        TalkBox.Text = "1 (Press P)";
-                        TalkStage++;
-                        break;
-                    case 2:
-                        TalkBox.Text = "2 (Press P)";
-                        TalkStage++;
-                        break;
-                    case 3:
-                        TalkBox.Text = "3 (Press P)";
-                        TalkStage++;
-                        break;
-                    
-                }
-            }
         }
 
         public void HandleCollision()
@@ -174,12 +174,6 @@ namespace TickTick.Entities.Tiles.Creatures
                 {
                 if (entity is PlayerCreature)
                 {
-                    if (Chapter == 1)
-                    {
-                        Animation = TeddyTalkAnimation;
-                        TalkBox.Visible = true;
-                        TalkBox.Text = "blablablabla (Press P)";
-                    }
                     if (Chapter == 3)
                         Animation = TeddyAttackAnimation;
                 }

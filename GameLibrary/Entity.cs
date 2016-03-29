@@ -234,7 +234,7 @@ namespace GameLibrary {
 
 		public virtual void Update() {
 			// Move
-			Position += GlobalVelocity * (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds; // TODO: Arbitraty multiplication. ElapsedGameTime.TotalSeconds always amounts to 0.01667, because update is called 60 times per second by any means necessary. Remove in future versions.
+			Position += GlobalVelocity * 0.01667F;
 
 			// Update child entities
 			foreach (Entity entity in Children) {

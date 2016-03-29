@@ -127,7 +127,7 @@ namespace GameLibrary {
 		/// </summary>
 		public void Begin() {
 			// Clear screen
-			Clear(Color.Black);
+			Clear(Color.LightBlue);
 			_SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _Matrix);
 		}
 

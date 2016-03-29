@@ -111,6 +111,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         private int chapter;
         public float trainTimer;
         public bool Trampo;
+        public Vector2 TrainSpeed;
 
 		/// <summary>
 		/// Creates a new PlayerCreature.
@@ -148,7 +149,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 
             //Timer
             InvinceTimer = 0;
-            trainTimer = 3;
+            trainTimer = 8;
 
 			// Input
 			LeftKey = new List<Keys>();
@@ -169,17 +170,10 @@ namespace TickTick.Entities.Tiles.Creatures {
 		}
 
 		public override void Update() {
-            if (Health > 0)
-            {
-                HandleCollision();
-            }
 
             if (Health > 0 ) {
                 if (_OnRails) ;
                     //Velocity.X = RightSpeed;
-                
-                if(InvinceTimer <= 0)
-                    HandleInput();
 
                 //Update timer if needed
                 if (InvinceTimer > 0F)
@@ -262,6 +256,13 @@ namespace TickTick.Entities.Tiles.Creatures {
 				Parent.DrawOrigin = new Vector2((int)origin.X, (int)origin.Y);
 			}
 
+            if (InvinceTimer <= 0)
+                HandleInput();
+
+            if (Health > 0)
+            {
+                HandleCollision();
+            }
         }
 
 		public override void Draw() {
@@ -284,14 +285,12 @@ namespace TickTick.Entities.Tiles.Creatures {
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey) && Animation != CrouchAnimation) {
 					Velocity.X = LeftSpeed * speedMultiplier;
-				} else if ((GameHandler.InputHandler.AnyKeyDown(RightKey) || ((_OnRails ) && trainTimer <= 0)) && Animation != CrouchAnimation) {
+				} else if (GameHandler.InputHandler.AnyKeyDown(RightKey) && Animation != CrouchAnimation) {
 					Velocity.X = RightSpeed * speedMultiplier;
-                    if (_OnRails && GameHandler.InputHandler.AnyKeyDown(RightKey))
-                        Velocity.X = RightSpeed * speedMultiplier * 2;
                 } else if (_OnGround) {
 					Velocity.X = 0F;
 				}
-				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && _OnGround && Animation != CrouchAnimation) {
+				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) &&  _OnGround && Animation != CrouchAnimation) {
 					Jump(JumpSpeed);
 				}
 
@@ -325,13 +324,12 @@ namespace TickTick.Entities.Tiles.Creatures {
                         if(entity is TeddyBear)
                         {
                             _OnGround = true;
-                            if(chapter != 1)
+                            if (chapter != 1)
+                            {
                                 Damage();
-                            InvinceTimer = 1F;
-                            if (chapter == 1)
-                                InvinceTimer = 10F;
-                            KnockBack();
-                            Jump(JumpSpeed);
+                                KnockBack();
+                                Jump(JumpSpeed);
+                            }
                         }
                         
                         if(entity is TrainTracks)
@@ -347,10 +345,29 @@ namespace TickTick.Entities.Tiles.Creatures {
                         }else if (entity is TreeTile && chapter == 3){
                             item = "sword";
                             //TODO: sprite vd boom veradert naar normale boom
+                        }else
+                        if (entity is Train)
+                        {
+                            TrainSpeed = entity.Velocity;
+                            _OnGround = true;
+                            _OnRails = true;
+                            Velocity.Y = 0F;
+                            System.Diagnostics.Debug.Print(entity.Position.ToString());
+                            if (Velocity.X == 0 && Animation != CrouchAnimation)
+                            {
+                                Animation = IdleAnimation;
+
+                            }
+                            Velocity.X += TrainSpeed.X;
+                            System.Diagnostics.Debug.Print(entity.Velocity.ToString());
                         }
-                       
-                        
-                        if(!(entity is PlayerCreature) || (entity is Train) || (entity is TeddyBear)){
+                        else if (!(entity is Train))
+                            _OnRails = false;
+                        else if (entity.Velocity.X < 100)
+                            _OnRails = false;
+
+
+                        if (!(entity is PlayerCreature) || (entity is Train) || (entity is TeddyBear)){
 							RectangleF playerBounds = GlobalCollisionBox;
 							RectangleF tileBounds = entity.GlobalCollisionBox;
 							playerBounds.Height++;
@@ -383,21 +400,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                                 }
 							}
 						}
-                        if (entity is Train)
-                        {
-                            _OnRails = true;
-                            _OnGround = true;
-                            Velocity.Y = 0F;
-                            if (Velocity.X == 0 && Animation != CrouchAnimation)
-                            {
-                                Animation = IdleAnimation;
-
-                            }
-                        }
-                        else if (!(entity is Train))
-                            _OnRails = false;
-                        else if (entity.Velocity.X < 100)
-                            _OnRails = false;
+     
                     }
 				}
 
@@ -426,9 +429,9 @@ namespace TickTick.Entities.Tiles.Creatures {
 		}
 
 		public void Jump(float speed) {
-			Velocity.Y = speed * 0.7F;
+			Velocity.Y = speed * 0.5F;
             if (Trampo)
-                Velocity.Y = speed * 0.9F;
+                Velocity.Y = speed * 1.2F;
             //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
         }
 

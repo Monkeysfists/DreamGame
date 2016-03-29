@@ -33,7 +33,7 @@ namespace TickTick.Entities {
 
 			Visible = false;
 			_Text = new TextEntity(GameHandler.AssetHandler.GetSpriteFont("Fonts/HintFont"));
-			_Text.Position = new Vector2(120, 25);
+			_Text.Position = new Vector2(120, 0);
 			_Text.Color = Color.Black;
             Name = "HintText";
 			AddChild(_Text);
