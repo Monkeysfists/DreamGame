@@ -38,6 +38,7 @@ namespace TickTick.Entities.Tiles.Creatures
         /// </summary>
         public Animation TrainTexture;
 
+
         private float _PreviousY;
         public bool FULLSTOP;
         public float trainTimer;
@@ -54,9 +55,9 @@ namespace TickTick.Entities.Tiles.Creatures
             AddChild(timerText);
 
             //Movement
-            RightSpeed = 400F;
+            RightSpeed = 200F;
             Velocity.Y = 0;
-            trainTimer = 3;
+            trainTimer = 8;
 
             CanCollide = true;
             //StartBool = true;
@@ -94,7 +95,7 @@ namespace TickTick.Entities.Tiles.Creatures
             if (StartBool)
             {
                 //TODO: add soundeffect
-                Velocity.X = RightSpeed / 65;
+                Velocity.X = RightSpeed;
             }
             if (Velocity.X == 400)
             {
@@ -106,14 +107,16 @@ namespace TickTick.Entities.Tiles.Creatures
                 if (Animation != Rightanimation)
                     Animation = Rightanimation;
             }
-
+            //Velocity.X = 0F;
             if (!(FULLSTOP))
             {
-                Position += Velocity;
-                Position.Y += 1;
+                //Position.Y += 0.01F;
                 HandleCollision();
             }
+            if (FULLSTOP)
+                Velocity.X = 0F;
 
+            base.Update();
         }
 
         public override void Draw()

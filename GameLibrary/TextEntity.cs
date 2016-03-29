@@ -58,7 +58,7 @@ namespace GameLibrary {
 		}
 
 		public override void Draw() {
-			GameHandler.GraphicsHandler.DrawText(GlobalPosition - Origin, GlobalRotation, Size, Text, Font, Color);
+			GameHandler.GraphicsHandler.DrawText(GlobalPosition - GlobalOrigin - GlobalDrawOrigin, GlobalRotation, Size, Text, Font, Color);
 
 			base.Draw();
 		}
