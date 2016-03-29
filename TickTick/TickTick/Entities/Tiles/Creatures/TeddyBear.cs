@@ -47,7 +47,7 @@ namespace TickTick.Entities.Tiles.Creatures
             Health = 100;
             Name = "TeddyBear";
             if (chapter == 3)
-                CanCollide = true;
+            CanCollide = true;
             else { CanCollide = false; }
             _PreviousY = GlobalCollisionBox.Bottom;
             Visible = true;
@@ -57,8 +57,8 @@ namespace TickTick.Entities.Tiles.Creatures
             TalkStage = 0;
             TalkBox.Text = "Loop met WASD en spring met spatie";
             AddChild(TalkBox);
-            TalkBox.SetTextPosition = TalkBox.SetTextPosition + new Vector2(0,25);
-            Size = new Vector2(20,40);
+            //TalkBox.SetTextPosition = TalkBox.SetTextPosition + new Vector2(0,25);
+
 
             // Speed
             Speed = 200F;

@@ -14,7 +14,7 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter1
             CanCollide = true;
         }
 
-        public void Update()
+        public override void Update()
         {
             //if collision met object { play animatie}
             //if collision met player { player krijgt damage }

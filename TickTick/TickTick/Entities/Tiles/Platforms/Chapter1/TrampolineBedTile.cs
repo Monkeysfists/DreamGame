@@ -1,5 +1,6 @@
 ﻿using GameLibrary;
 using Microsoft.Xna.Framework;
+using TickTick.Entities.Tiles.Platforms.Chapter1;
 using GameLibrary.Types;
 
 namespace TickTick.Entities.Tiles.Platforms

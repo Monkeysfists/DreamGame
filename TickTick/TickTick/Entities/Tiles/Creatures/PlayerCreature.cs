@@ -8,6 +8,7 @@ using TickTick.Animations;
 using TickTick.Entities.States;
 using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
+using TickTick.Entities.Tiles.Platforms.Chapter1;
 
 namespace TickTick.Entities.Tiles.Creatures {
 	/// <summary>
@@ -202,46 +203,46 @@ namespace TickTick.Entities.Tiles.Creatures {
 
                 if (Animation != CelebrateAnimation)
                 {
-                    // Animation directions
+					// Animation directions
                     if (Velocity.X > 0)
                     {
-                        IdleAnimation.FlipHorizontally = false;
-                        JumpAnimation.FlipHorizontally = false;
+						IdleAnimation.FlipHorizontally = false;
+						JumpAnimation.FlipHorizontally = false;
                         CrouchAnimation.FlipHorizontally = false;
                     }
                     else if (Velocity.X < 0)
                     {
-                        IdleAnimation.FlipHorizontally = true;
-                        JumpAnimation.FlipHorizontally = true;
+						IdleAnimation.FlipHorizontally = true;
+						JumpAnimation.FlipHorizontally = true;
                         CrouchAnimation.FlipHorizontally = true;
-                    }
+					}
 
-                    // Set the correct animation
+					// Set the correct animation
                     if (chapter != 6 && chapter != 8)
                     {
                         if (_OnGround)
                         {
                             if (Velocity.X == 0)
-                                Animation = IdleAnimation;
+							Animation = IdleAnimation;
                             else
                             {
                                 if (Velocity.X > 0)
                                 {
-                                    Animation = RightAnimation;
+								Animation = RightAnimation;
                                 }
                                 else if (Velocity.X < 0)
                                 {
-                                    Animation = LeftAnimation;
-                                }
-                            }
+								Animation = LeftAnimation;
+							}
+						}
                         }
                         else if (Velocity.Y != 0)
                         {
-                            Animation = JumpAnimation;
-                        }
-                        if (Velocity.X == 0 && Animation != CrouchAnimation)
-                            Animation = IdleAnimation;
-                    }
+						Animation = JumpAnimation;
+					}
+                    if (Velocity.X == 0 && Animation != CrouchAnimation)
+                        Animation = IdleAnimation;
+				}
                     else if (chapter == 6)
                         Animation = CarAnimation;
                     else if (chapter == 8)
@@ -275,7 +276,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 				Parent.DrawOrigin = new Vector2((int)origin.X, (int)origin.Y);
 			}
 
-            if (InvinceTimer <= 0)
+            //if (InvinceTimer <= 0)
                 HandleInput();
 
             if (Health > 0)
@@ -353,6 +354,18 @@ namespace TickTick.Entities.Tiles.Creatures {
                                 KnockBack();
                                 Jump(JumpSpeed);
                             }
+                        }else 
+                        if(entity is Raindrop)
+                        {
+                            Damage();
+                            Jump(JumpSpeed * 0.1F);
+                            InvinceTimer = 0.1F;
+                            RemoveChild(entity);
+                        }else
+                        if(entity is Board)
+                        {
+                            Damage();
+                            InvinceTimer = 0.2F;
                         }
                         
                         if(entity is TrainTracks)

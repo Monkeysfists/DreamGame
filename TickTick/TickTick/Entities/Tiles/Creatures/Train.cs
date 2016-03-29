@@ -110,7 +110,7 @@ namespace TickTick.Entities.Tiles.Creatures
             //Velocity.X = 0F;
             if (!(FULLSTOP))
             {
-                //Position.Y += 0.01F;
+                Velocity.Y += 55;
                 HandleCollision();
             }
             if (FULLSTOP)

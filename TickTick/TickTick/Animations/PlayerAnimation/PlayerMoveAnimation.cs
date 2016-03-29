@@ -12,11 +12,16 @@ namespace TickTick.Animations {
 		public PlayerMoveAnimation(int chapter, string item) {
             switch (chapter)
             {
-                case 1: case 2: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_joch_lopen@4");
-                    FrameTime = TimeSpan.FromMilliseconds(200); break;
-                case 3: case 4: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter2/ch2_joch_lopen@4");
-                    FrameTime = TimeSpan.FromMilliseconds(200); break;
-                case 5: case 7: switch (item)
+                case 1:
+                case 2:
+                    SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_joch_lopen@4");
+                    FrameTime = TimeSpan.FromMilliseconds(100); break;
+                case 3:
+                case 4:
+                    SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter2/ch2_joch_lopen");
+                    FrameTime = TimeSpan.FromMilliseconds(100); break;
+                case 5: 
+                case 6:switch (item)
                     {
                         case "shotgun": SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_shotgun_lopen@4");
                             FrameTime = TimeSpan.FromMilliseconds(200); break;

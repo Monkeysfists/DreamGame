@@ -108,6 +108,7 @@ namespace TickTick.Entities
             if (MathHelper.Distance(teddy.Position.X, player.Position.X) > 20)
             {
                 state.Hint.Text = "robbert is gaaf";
+                
 
                 state.GameOver = false;
 

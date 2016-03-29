@@ -21,6 +21,7 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter1
             pole2.Position = this.Position;
             this.AddChild(pole1);
             this.AddChild(pole2);
+            Size *= 2;
             //TODO: collision met player
         }
     }
