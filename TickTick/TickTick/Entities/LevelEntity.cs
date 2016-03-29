@@ -205,6 +205,8 @@ namespace TickTick.Entities
                     return new PCDesk();
                 case 'H':
                     return new HighSchool(LevelNumber);
+                case 'h':
+                    return new NoCollisionObject("achtergrond huis");
 
 
                 case '#':
@@ -222,19 +224,21 @@ namespace TickTick.Entities
                 case 't':
                     return new Train();
                 case 'D': 
-                    return new Tunnel();
+                    //return new Tunnel();
                 case 'd':
-                    return new Board();
+                    //return new Board();
                 case 'F': 
                     return new NoCollisionObject("chapter1/flower");
                 case 'M':
                     return new Mother();
                 case 'w':
                     return new WaterTile();
+                case '^':
+                    //return new Paperboat();
 
                 //Chapter 2
-                //case '2':
-                    //return new Dinosaur();
+                case '2':
+                    return new Dinosaur();
                 //case '3':
                     //return new Ghost();
                 case 'I':
@@ -253,9 +257,9 @@ namespace TickTick.Entities
                     return new LavaTile();
                 case 'l':
                     return new UnderLavaTile();
-                case 'Z':
-                    return new CollisionObject("chapter2/zebrawit");
                 case 'z':
+                    return new CollisionObject("chapter2/zebrawit");
+                case 'Z':
                     return new CollisionObject("chapter2/zebrazwart");
 
                 //Chapter 3
@@ -265,6 +269,10 @@ namespace TickTick.Entities
                 //Chapter 4
                 case 'c': //Closet
                     return new NoCollisionObject("chapter4/closet");
+                case 'a':
+                    return new NoCollisionObject("chapter4/autoleeg");
+                case '!':
+                    return new CollisionObject("chapter4/door_closed");
 
                 case '$':
                 case '%':
