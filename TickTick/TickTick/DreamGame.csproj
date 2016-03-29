@@ -62,7 +62,9 @@
     <Compile Include="Animations\BullyAnimation\BullyRunAnimation.cs" />
     <Compile Include="Animations\MotherWalkingAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerAttackAnimation.cs" />
+    <Compile Include="Animations\PlayerAnimation\PlayerCarAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerCrouchAnimation.cs" />
+    <Compile Include="Animations\PlayerAnimation\PlayerCyclingAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerDieAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerIdleAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerJumpAnimation.cs" />

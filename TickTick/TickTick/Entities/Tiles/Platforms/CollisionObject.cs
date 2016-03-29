@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TickTick.Entities.Tiles.Platforms
 {
-    public class CollisionObject : PlatformTile
+    public class CollisionObject : TileEntity
     {
         public CollisionObject(string name, Vector2 size)
         {

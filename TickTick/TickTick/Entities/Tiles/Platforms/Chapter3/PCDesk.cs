@@ -18,12 +18,14 @@ namespace TickTick.Entities.Tiles.Platforms
         private PlayerCreature player;
         private Vector2 PlayerPosition;
         private float UpdateTimer;
+        private int level;
 
-        public PCDesk()
+        public PCDesk(int level)
         {
             //TODO
             Texture = GameHandler.AssetHandler.GetTexture("chapter3/computer");
             UpdateTimer = 0;
+            this.level = level;
         }
 
         public override void Update()
@@ -36,7 +38,7 @@ namespace TickTick.Entities.Tiles.Platforms
             }
 
             if(player != null)
-                if(MathHelper.Distance(PlayerPosition.X, Position.X) < 20)
+                if(MathHelper.Distance(PlayerPosition.X, Position.X) < 20 && level == 5)
                     //play computer transfer animation
             base.Update();
         }

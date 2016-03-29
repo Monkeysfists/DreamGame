@@ -13,7 +13,7 @@ namespace TickTick.Animations
         /// </summary>
         public TeddyRunAnimation()
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_teddy_walking");
+            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_teddy_walking@2");
             FrameTime = TimeSpan.FromMilliseconds(100);
         }
     }

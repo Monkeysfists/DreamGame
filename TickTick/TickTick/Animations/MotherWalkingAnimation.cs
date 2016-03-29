@@ -13,7 +13,7 @@ namespace TickTick.Animations
         /// </summary>
         public MotherWalkingAnimation()
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/mother_walking");
+            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/mother_walking@2");
             FrameTime = TimeSpan.FromMilliseconds(100);
         }
     }

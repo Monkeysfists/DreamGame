@@ -17,6 +17,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>CowboyHenkContent</RootNamespace>
@@ -157,8 +158,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\water.png">
-      <Name>water</Name>
+    <Compile Include="chapter1\water%404.png">
+      <Name>water%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -396,8 +397,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_teddy_walking.png">
-      <Name>ch3_teddy_walking</Name>
+    <Compile Include="chapter3\ch3_teddy_walking%402.png">
+      <Name>ch3_teddy_walking%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -445,8 +446,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\computer_transfer.png">
-      <Name>computer_transfer</Name>
+    <Compile Include="chapter3\computer_transfer%408%402.png">
+      <Name>computer_transfer%408%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -459,15 +460,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\pestkop_aanval.png">
-      <Name>pestkop_aanval</Name>
+    <Compile Include="chapter3\pestkop_aanval%404.png">
+      <Name>pestkop_aanval%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\pestkop_lopen.png">
-      <Name>pestkop_lopen</Name>
+    <Compile Include="chapter3\pestkop_lopen%404.png">
+      <Name>pestkop_lopen%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -748,8 +749,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\regendruppel_animatie.png">
-      <Name>regendruppel_animatie</Name>
+    <Compile Include="chapter1\regendruppel_animatie%406.png">
+      <Name>regendruppel_animatie%406</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -776,8 +777,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\mother_walking.png">
-      <Name>mother_walking</Name>
+    <Compile Include="chapter1\mother_walking%402.png">
+      <Name>mother_walking%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -804,8 +805,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter4\ch4_joch_lopen.png">
-      <Name>ch4_joch_lopen</Name>
+    <Compile Include="chapter4\ch4_joch_lopen%404.png">
+      <Name>ch4_joch_lopen%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -818,8 +819,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_joch_sword_lopen.png">
-      <Name>ch3_joch_sword_lopen</Name>
+    <Compile Include="chapter3\ch3_joch_sword_lopen%404.png">
+      <Name>ch3_joch_sword_lopen%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -832,8 +833,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_joch_sword_attack.png">
-      <Name>ch3_joch_sword_attack</Name>
+    <Compile Include="chapter3\ch3_joch_sword_attack%402.png">
+      <Name>ch3_joch_sword_attack%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -853,50 +854,50 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_joch_shotgun_schieten.png">
-      <Name>ch3_joch_shotgun_schieten</Name>
+    <Compile Include="chapter3\ch3_joch_shotgun_schieten%402.png">
+      <Name>ch3_joch_shotgun_schieten%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_joch_shotgun_lopen.png">
-      <Name>ch3_joch_shotgun_lopen</Name>
+    <Compile Include="chapter3\ch3_joch_shotgun_lopen%404.png">
+      <Name>ch3_joch_shotgun_lopen%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_joch_lopen.png">
-      <Name>ch3_joch_lopen</Name>
+    <Compile Include="chapter3\ch3_joch_lopen%404.png">
+      <Name>ch3_joch_lopen%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_joch_fiets.png">
-      <Name>ch3_joch_fiets</Name>
+    <Compile Include="chapter3\ch3_joch_fiets%404.png">
+      <Name>ch3_joch_fiets%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_joch_die.png">
-      <Name>ch3_joch_die</Name>
+    <Compile Include="chapter3\ch3_joch_die%403.png">
+      <Name>ch3_joch_die%403</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\ch1_joch_lopen2.png">
-      <Name>ch1_joch_lopen2</Name>
+    <Compile Include="chapter1\ch1_joch_lopen2%402.png">
+      <Name>ch1_joch_lopen2%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\ch1_joch_die.png">
-      <Name>ch1_joch_die</Name>
+    <Compile Include="chapter1\ch1_joch_die%402.png">
+      <Name>ch1_joch_die%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -944,8 +945,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\autorocket.png">
-      <Name>autorocket</Name>
+    <Compile Include="chapter3\autorocket%402.png">
+      <Name>autorocket%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -988,13 +989,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="chapter2\ch2_joch_die.png">
-      <Name>ch2_joch_die</Name>
+    <Compile Include="chapter2\ch2_joch_die%407.png">
+      <Name>ch2_joch_die%407</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="chapter2\ch2_joch_lopen.png">
-      <Name>ch2_joch_lopen</Name>
+    <Compile Include="chapter2\ch2_joch_lopen%404.png">
+      <Name>ch2_joch_lopen%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1003,18 +1004,18 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="chapter2\ch2_teddy_shaking.png">
-      <Name>ch2_teddy_shaking</Name>
+    <Compile Include="chapter2\ch2_teddy_shaking%402.png">
+      <Name>ch2_teddy_shaking%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="chapter2\dinosaur.png">
-      <Name>dinosaur</Name>
+    <Compile Include="chapter2\dinosaur%402.png">
+      <Name>dinosaur%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="chapter2\ghost.png">
-      <Name>ghost</Name>
+    <Compile Include="chapter2\ghost%404.png">
+      <Name>ghost%404</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1088,8 +1089,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\road_animation.png">
-      <Name>road_animation</Name>
+    <Compile Include="chapter3\road_animation%403%403.png">
+      <Name>road_animation%403%403</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1129,18 +1130,59 @@
       <Name>5</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Levels\6.txt">
-      <Name>6</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Levels\7.txt">
-      <Name>7</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Levels\8.txt">
       <Name>8</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Levels\9.txt">
+      <Name>9</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Levels\10.txt">
+      <Name>10</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="wood.png">
+      <Name>wood</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Levels\6.txt">
+      <Name>6</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Levels\7.txt">
+      <Name>7</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="background\achtergrond_donker.png">
+      <Name>achtergrond_donker</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="background\dark_sky.png">
+      <Name>dark_sky</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="background\rainy_sky.png">
+      <Name>rainy_sky</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="background\sky.png">
+      <Name>sky</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
