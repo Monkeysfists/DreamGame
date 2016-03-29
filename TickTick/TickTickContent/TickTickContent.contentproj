@@ -776,8 +776,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter1\mother_walking.png">
-      <Name>mother_walking</Name>
+    <Compile Include="chapter1\mother_walking%402.png">
+      <Name>mother_walking%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

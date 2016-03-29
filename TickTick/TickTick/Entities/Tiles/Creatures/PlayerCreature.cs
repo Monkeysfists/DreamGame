@@ -8,6 +8,7 @@ using TickTick.Animations;
 using TickTick.Entities.States;
 using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
+using TickTick.Entities.Tiles.Platforms.Chapter1;
 
 namespace TickTick.Entities.Tiles.Creatures {
 	/// <summary>
@@ -239,7 +240,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 
             //Velocity.Y = 0F;
 
-            if (GameHandler.InputHandler.AnyKeyDown(CrouchKey))
+            if (GameHandler.InputHandler.AnyKeyDown(CrouchKey) && chapter == 1)
                 Animation = CrouchAnimation;
 			base.Update();
 
@@ -256,7 +257,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 				Parent.DrawOrigin = new Vector2((int)origin.X, (int)origin.Y);
 			}
 
-            if (InvinceTimer <= 0)
+            //if (InvinceTimer <= 0)
                 HandleInput();
 
             if (Health > 0)
@@ -330,6 +331,18 @@ namespace TickTick.Entities.Tiles.Creatures {
                                 KnockBack();
                                 Jump(JumpSpeed);
                             }
+                        }else 
+                        if(entity is Raindrop)
+                        {
+                            Damage();
+                            Jump(JumpSpeed * 0.1F);
+                            InvinceTimer = 0.1F;
+                            RemoveChild(entity);
+                        }else
+                        if(entity is Board)
+                        {
+                            Damage();
+                            InvinceTimer = 0.2F;
                         }
                         
                         if(entity is TrainTracks)

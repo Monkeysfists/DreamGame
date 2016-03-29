@@ -108,6 +108,7 @@ namespace TickTick.Entities
             if (MathHelper.Distance(teddy.Position.X, player.Position.X) > 20)
             {
                 state.Hint.Text = "robbert is gaaf";
+                
 
                 state.GameOver = false;
 
@@ -226,7 +227,7 @@ namespace TickTick.Entities
                 case 'D': 
                     //return new Tunnel();
                 case 'd':
-                    //return new Board();
+                    return new Board();
                 case 'F': 
                     return new NoCollisionObject("chapter1/flower");
                 case 'M':

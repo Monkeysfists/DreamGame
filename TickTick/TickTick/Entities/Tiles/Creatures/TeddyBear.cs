@@ -55,7 +55,7 @@ namespace TickTick.Entities.Tiles.Creatures
             TalkStage = 0;
             TalkBox.Text = "Loop met WASD en spring met spatie";
             AddChild(TalkBox);
-            TalkBox.SetTextPosition = TalkBox.SetTextPosition + new Vector2(0,25);
+            //TalkBox.SetTextPosition = TalkBox.SetTextPosition + new Vector2(0,25);
 
 
             // Speed
