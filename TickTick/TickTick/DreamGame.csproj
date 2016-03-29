@@ -62,6 +62,7 @@
     <Compile Include="Animations\BullyAnimation\BullyRunAnimation.cs" />
     <Compile Include="Animations\DinosaurAnimation.cs" />
     <Compile Include="Animations\MotherWalkingAnimation.cs" />
+    <Compile Include="Animations\PaperBoatAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerAttackAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerCarAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerCrouchAnimation.cs" />
@@ -92,11 +93,14 @@
     <Compile Include="Entities\Tiles\Creatures\Dinosaur.cs" />
     <Compile Include="Entities\Tiles\Creatures\FlyingCarCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\Mother.cs" />
+    <Compile Include="Entities\Tiles\Creatures\Paperboat.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\TeddyBear.cs" />
     <Compile Include="Entities\Tiles\Creatures\Train.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\BlockBoat.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Board.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Cloud.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\paperboat.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Raindrop.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Tunnel.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Umbrella.cs" />

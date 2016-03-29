@@ -21,14 +21,14 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter1
 
         public override void Update()
         {
-
+            /*
             if (GameHandler.Random.Next(1, 50) < 5)
             {
                 rainDrop = new Raindrop();
                 rainDrop.Position = Parent.Position + new Vector2(GameHandler.Random.Next(1,Texture.Width/rainDrop.Texture.Width)*rainDrop.Texture.Width + 2, Texture.Height);
                 rainDrop.CanCollide = true;
                 AddChild(rainDrop);
-            }
+            }*/
             
             Handlecolission();
             base.Update();
