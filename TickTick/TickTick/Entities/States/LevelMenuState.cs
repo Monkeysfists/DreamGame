@@ -23,6 +23,7 @@ namespace TickTick.Entities.States {
 
             // Load buttons
             int levels = ((PlayingState)GameHandler.StateHandler.States["playing"]).Levels.Count;
+            //int levels = 10;
             //int levels = 1;
             for (int i = 0; i < levels; i++) {
 				int row = i / 5;

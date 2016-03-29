@@ -11,20 +11,27 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TickTick.Entities.Tiles.Platforms
 {
-    public class WaterTile : PlatformTile
+    public class WaterTile : AnimatedEntity
     {
         public Animation waterAnimation;
 
         public WaterTile()
         {
             waterAnimation = new WaterAnimation();
-            //SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/water");
-            GameHandler.AssetHandler.GetSpriteSheet("chapter1/water");
+            Animation = waterAnimation;
+            Visible = true;
+            //CanCollide = true;
+            Velocity = Vector2.Zero;
+            // Size
+            Size = Animation.SpriteSheet.CellSize * 2;
+            Origin.X = (Size.X - 72) / 2;
+            Origin.Y = (Size.Y - 55) / 2;
         }
 
-        public void Update()
+        public override void Update()
         {
             //this.Animation = waterAnimation;
+            base.Update();
         }
     }
 }

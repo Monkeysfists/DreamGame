@@ -16,6 +16,7 @@ namespace TickTick.Entities.Buttons {
 			//ClickedSoundEffect = GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_watercollected");
 
 			ResizeToTexture();
+            Size = Size / 2;
 		}
 
 		protected override void OnMouseButtonUp() {
