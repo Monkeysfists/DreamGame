@@ -9,6 +9,7 @@ using TickTick.Entities.States;
 using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
 using TickTick.Entities.Tiles.Platforms.Chapter1;
+using TickTick.Entities.Tiles.Platforms.Chapter3;
 
 namespace TickTick.Entities.Tiles.Creatures {
 	/// <summary>
@@ -98,6 +99,8 @@ namespace TickTick.Entities.Tiles.Creatures {
         public Animation CarAnimation;
 
         public Animation CyclingAnimation;
+
+
         /// <summary>
         /// Invincible timer control bool
         /// </summary>
@@ -117,6 +120,8 @@ namespace TickTick.Entities.Tiles.Creatures {
         public float trainTimer;
         public bool Trampo;
         public Vector2 TrainSpeed;
+        private float _Timer;
+        private int lane;
 
 		/// <summary>
 		/// Creates a new PlayerCreature.
@@ -217,36 +222,38 @@ namespace TickTick.Entities.Tiles.Creatures {
                         CrouchAnimation.FlipHorizontally = true;
 					}
 
+
+
 					// Set the correct animation
-                    if (chapter != 6 && chapter != 8)
+                    if (chapter != 6 && chapter != 7)
                     {
                         if (_OnGround)
                         {
                             if (Velocity.X == 0)
-							Animation = IdleAnimation;
+                                Animation = IdleAnimation;
                             else
                             {
                                 if (Velocity.X > 0)
                                 {
-								Animation = RightAnimation;
+                                    Animation = RightAnimation;
                                 }
                                 else if (Velocity.X < 0)
                                 {
-								Animation = LeftAnimation;
-							}
-						}
+                                    Animation = LeftAnimation;
+                                }
+                            }
                         }
                         else if (Velocity.Y != 0)
                         {
-						Animation = JumpAnimation;
-					}
-                    if (Velocity.X == 0 && Animation != CrouchAnimation)
-                        Animation = IdleAnimation;
-				}
+                            Animation = JumpAnimation;
+                        }
+                        if (Velocity.X == 0 && Animation != CrouchAnimation)
+                            Animation = IdleAnimation;
+                    }
                     else if (chapter == 6)
-                        Animation = CarAnimation;
-                    else if (chapter == 8)
-                        Animation = CyclingAnimation;
+                        CarLevel();
+                    else if (chapter == 7)
+                        BikeLevel();
                 }
 
 				PlayingState state = ((PlayingState)Parent.Parent);
@@ -376,7 +383,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                         }else if (entity is GuitarShotgun){
                             item = "shotgun";
                             //TODO: sprite van guitarshotgun wordt "Emptystand"
-                        }else if (entity is TreeTile && chapter == 3){
+                        }else if (entity is TreeTile && chapter == 8){
                             item = "sword";
                             //TODO: sprite vd boom veradert naar normale boom
                         }else
@@ -490,5 +497,61 @@ namespace TickTick.Entities.Tiles.Creatures {
             Animation = IdleAnimation;
             KnockbackTimer = 1;
         }
+        private void BikeLevel()
+        {
+            
+            _Timer += (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+
+            if (_Timer >= 60)
+            {
+                //next level
+            }
+
+            Animation = CyclingAnimation;
+
+            Road road = new Road();
+            AddChild(road);
+            road.Position = Vector2.Zero;
+            road.Size = new Vector2(GameHandler.GraphicsHandler.ScreenSize.X, GameHandler.GraphicsHandler.ScreenSize.Y);
+            lane = 3;
+
+            if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && lane != 1)
+            {
+                lane -= 1;
+            }
+            if (GameHandler.InputHandler.AnyKeyDown(CrouchKey) && lane != 3)
+            {
+                lane += 1;
+            }
+
+            Position = new Vector2(100, GameHandler.GraphicsHandler.ScreenSize.Y / 4 + lane * GameHandler.GraphicsHandler.ScreenSize.Y / 4);
+
+            if (GameHandler.Random.Next(50) == 0)
+            {
+                Obstacle obstacle = new Obstacle();
+                obstacle.Position.Y = GameHandler.GraphicsHandler.ScreenSize.Y / 4 + GameHandler.Random.Next(1, 4) * GameHandler.GraphicsHandler.ScreenSize.Y / 4;
+                obstacle.Position.X = GameHandler.GraphicsHandler.ScreenSize.X;
+            }
+        }
+
+        private void CarLevel()
+        {
+            Animation = CarAnimation;
+
+            if (GameHandler.InputHandler.AnyKeyDown(RightKey))
+            {
+                //this.Angle += 1;
+            }
+            else if (GameHandler.InputHandler.AnyKeyDown(LeftKey))
+            {
+                //this.Angle -= 1;
+            }
+
+            AsteroidSpawner spawner = new AsteroidSpawner();
+            spawner.Position.X = GameHandler.GraphicsHandler.ScreenSize.X;
+            spawner.Position.Y = 0;
+            spawner.Update();
+        }
+
 	}
 }

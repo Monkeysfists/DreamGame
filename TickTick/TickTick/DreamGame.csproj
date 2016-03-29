@@ -69,6 +69,7 @@
     <Compile Include="Animations\PlayerAnimation\PlayerIdleAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerJumpAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerMoveAnimation.cs" />
+    <Compile Include="Animations\RoadAnimation.cs" />
     <Compile Include="Animations\TeddyAnimation\TeddyAttackAnimation.cs" />
     <Compile Include="Animations\TeddyAnimation\TeddyIdleAnimation.cs" />
     <Compile Include="Animations\TeddyAnimation\TeddyRunAnimation.cs" />
@@ -100,6 +101,10 @@
     <Compile Include="Entities\Tiles\Platforms\Chapter2\LavaTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter2\LegoBlock.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter2\UnderLavaTile.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter3\Asteroid.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter3\AsteroidSpawner.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter3\Obstacle.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter3\Road.cs" />
     <Compile Include="Entities\Tiles\Platforms\CollisionObject.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\WaterTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\DefaultPlatform.cs" />
