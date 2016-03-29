@@ -714,8 +714,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\vuilnisbak.png">
-      <Name>vuilnisbak</Name>
+    <Compile Include="chapter3\obstacle2.png">
+      <Name>obstacle2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -728,8 +728,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\stopbord.png">
-      <Name>stopbord</Name>
+    <Compile Include="chapter3\obstacle3.png">
+      <Name>obstacle3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -756,8 +756,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\pliesie.png">
-      <Name>pliesie</Name>
+    <Compile Include="chapter3\obstacle1.png">
+      <Name>obstacle1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1089,13 +1089,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\road_animation%403%403.png">
-      <Name>road_animation%403%403</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="chapter2\zebrazwart.png">
       <Name>zebrazwart</Name>
       <Importer>TextureImporter</Importer>
@@ -1185,6 +1178,30 @@
       <Name>10</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter3\asteroide1.png">
+      <Name>asteroide1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter3\asteroide2.png">
+      <Name>asteroide2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter3\asteroide3.png">
+      <Name>asteroide3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter3\road_animation%403%402.png">
+      <Name>road_animation%403%402</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
