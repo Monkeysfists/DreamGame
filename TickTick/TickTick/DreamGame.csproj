@@ -84,6 +84,7 @@
     <Compile Include="Entities\States\FadeState.cs" />
     <Compile Include="Entities\Tiles\Creatures\Bully.cs" />
     <Compile Include="Entities\Tiles\Creatures\CreatureTileEntity.cs" />
+    <Compile Include="Entities\Tiles\Creatures\Dinosaur.cs" />
     <Compile Include="Entities\Tiles\Creatures\FlyingCarCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\Mother.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
