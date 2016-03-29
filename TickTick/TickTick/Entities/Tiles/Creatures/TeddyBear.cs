@@ -25,7 +25,7 @@ namespace TickTick.Entities.Tiles.Creatures
         private Vector2 PlayerPosition;
 
         private float IntervalTimer;
-        private bool canAttack;
+        public static bool canAttack;
 
         private bool mirrored;
 
@@ -44,10 +44,10 @@ namespace TickTick.Entities.Tiles.Creatures
 
         public TeddyBear(int chapter)
         {
-            Health = 100;
+            Health = 5;
             Name = "TeddyBear";
-            if (chapter == 3)
-            CanCollide = true;
+            if (chapter == 5)
+                CanCollide = true;
             else { CanCollide = false; }
             _PreviousY = GlobalCollisionBox.Bottom;
             Visible = true;
@@ -135,7 +135,7 @@ namespace TickTick.Entities.Tiles.Creatures
             if (IntervalTimer > 2)
                 IntervalTimer = 0;
                 */
-
+            
             // Handle physics
             if (Animation != TeddyAttackAnimation)
             {
@@ -165,7 +165,6 @@ namespace TickTick.Entities.Tiles.Creatures
 
         public void HandleCollision()
         {
-
                 _OnGround = false;
 
 
@@ -176,7 +175,7 @@ namespace TickTick.Entities.Tiles.Creatures
                 {
                 if (entity is PlayerCreature)
                 {
-                    if (Chapter == 3)
+                    if (Chapter == 5)
                         Animation = TeddyAttackAnimation;
                 }
                 if (!(entity is CreatureTileEntity) || (entity is Train))
@@ -212,6 +211,10 @@ namespace TickTick.Entities.Tiles.Creatures
                             else if (entity is PlatformTile && !_OnGround && Velocity.Y > 0F)
                             {
                                 Position.Y -= depth.Y - 1;
+                            }
+                            else if (entity is Bullet)
+                            {
+                                Health -= 1;
                             }
                         }
                     }

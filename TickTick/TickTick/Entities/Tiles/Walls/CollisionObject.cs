@@ -10,9 +10,9 @@ using GameLibrary.Types;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace TickTick.Entities.Tiles.Platforms
+namespace TickTick.Entities.Tiles.Walls
 {
-    public class CollisionObject : PlatformTile
+    public class CollisionObject : WallTile
     {
         public CollisionObject(string name, Vector2 size)
         {

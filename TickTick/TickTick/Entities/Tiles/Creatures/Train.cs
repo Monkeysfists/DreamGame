@@ -89,7 +89,7 @@ namespace TickTick.Entities.Tiles.Creatures
             if (PlayerCreature._OnRails)
             {
                 StartBool = true;
-                RemoveChild(timerText);
+                //RemoveChild(timerText);
             }
 
             if (StartBool)
@@ -110,7 +110,7 @@ namespace TickTick.Entities.Tiles.Creatures
             //Velocity.X = 0F;
             if (!(FULLSTOP))
             {
-                Velocity.Y += 55;
+                //Velocity.Y += 55;
                 HandleCollision();
             }
             if (FULLSTOP)

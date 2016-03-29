@@ -84,7 +84,7 @@ namespace TickTick.Entities.States {
 				_Overlay.Visible = GameOver;
 				//Timer.Active = !(GameOver || Won);
 				if (GameOver) {
-					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("black");
+					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("GameOver");
 					_Overlay.ResizeToTexture();
 					_Overlay.Position = (Size - _Overlay.Size) / 2;
 				}
@@ -114,13 +114,14 @@ namespace TickTick.Entities.States {
 		private bool _Won;
 		private LevelEntity _CurrentLevel;
 		private TextureEntity _Overlay;
+        public TextureEntity background;
 
         /// <summary>
         /// Creates a new PlayingState.
         /// </summary>
         public PlayingState() : base("playing")
         {
-            TextureEntity background = new TextureEntity();
+            background = new TextureEntity();
             background.Texture = GameHandler.AssetHandler.GetTexture("background/sky");
             AddChild(background);
             Size = new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y);

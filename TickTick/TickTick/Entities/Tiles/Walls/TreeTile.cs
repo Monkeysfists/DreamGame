@@ -7,45 +7,28 @@ namespace TickTick.Entities.Tiles.Walls
 {
     public class TreeTile : WallTile
     {
-        public int TreeAge;
-        public TreeTile(int TreeAge)
+
+        public TreeTile(int level)
         {
-            //TODO
-            this.TreeAge = TreeAge;
             Velocity = Vector2.Zero;
 
-            switch (TreeAge)
+            switch (level)
             {
-                case 11:
-                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
+                case 2:
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_tree");
                     break;
-                case 12:
-                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
+                case 4:
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter2/ch2_tree");
                     break;
-                case 21:
-                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
-                    break;
-                case 22:
-                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
-                    break;
-                case 31:
-                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
-                    break;
-                case 32:
-                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
-                    break;
-                case 41:
-                    Texture = GameHandler.AssetHandler.GetTexture("chapter1/ch1_teddy_idle");
+                case 8:
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter3/ch3_tree_sword");
                     break;
                 default:
-                    Texture = null;
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter4/ch4_tree");
                     break;
             }
 
-            if (TreeAge != 31)
-                CanCollide = true;
-
-          
+            CanCollide = true;
         }
 
         public override void Update()
@@ -53,15 +36,13 @@ namespace TickTick.Entities.Tiles.Walls
             foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
             {
                 if (entity is PlayerCreature)
-                    GetSword();
+                {
+                    CanCollide = false;
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter3/ch3_tree_swordless");
+                    PlayerCreature.item = "sword";
+                }
             }
             base.Update();
-        }
-
-        public void GetSword()
-        {
-            CanCollide = false;
-            Texture = GameHandler.AssetHandler.GetTexture("");
         }
     }
 }

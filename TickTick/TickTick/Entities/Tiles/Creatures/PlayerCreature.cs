@@ -21,22 +21,11 @@ namespace TickTick.Entities.Tiles.Creatures {
 				return _Health;
 			}
 			set {
-				if (value < Health) {
-					if (Position.Y > Parent.Size.Y) {
-						//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_fall"));
-					} else {
-						//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_die"));
-					}
-				}
-
-				_Health = value;
+                _Health = value;
 
 				if (Health <= 0) {
-					if (Position.Y <= Parent.Size.Y) {
-						Velocity.Y = -900;
-					}
-
 					Animation = DieAnimation;
+                    Velocity = Vector2.Zero;
 					((PlayingState)Parent.Parent).GameOver = true;
 				}
 			}
@@ -115,7 +104,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         private float AttackTimer;
         private float InvinceTimer;
         private float KnockbackTimer;
-        public string item;
+        public static string item;
         private int chapter;
         public float trainTimer;
         public bool Trampo;
@@ -135,6 +124,8 @@ namespace TickTick.Entities.Tiles.Creatures {
             this.chapter = chapter;
             InvinceTimer = 0;
             KnockbackTimer = 0;
+            NewAnimations = false;
+            item = "";
 
 			// Animations
 			IdleAnimation = new PlayerIdleAnimation(chapter, item);
@@ -179,13 +170,34 @@ namespace TickTick.Entities.Tiles.Creatures {
             CrouchKey.Add(Keys.S);
             CrouchKey.Add(Keys.Down);
             AttackKey.Add(Keys.P);
+            AttackKey.Add(Keys.F);
 		}
+
+        public void LoadAnimations()
+        {
+            IdleAnimation = new PlayerIdleAnimation(chapter, item);
+            LeftAnimation = new PlayerMoveAnimation(chapter, item);
+            LeftAnimation.FlipHorizontally = true;
+            RightAnimation = new PlayerMoveAnimation(chapter, item);
+            JumpAnimation = new PlayerJumpAnimation(chapter, item);
+            AttackAnimation = new PlayerAttackAnimation(chapter, item);
+            Animation = IdleAnimation;
+            Size = Animation.SpriteSheet.CellSize * 2;
+        }
+
+        bool NewAnimations;
 
 		public override void Update() {
 
             if (Health > 0 ) {
                 if (_OnRails) ;
                     //Velocity.X = RightSpeed;
+
+                if ((item == "shotgun" || item == "sword") && !NewAnimations && (chapter == 5 || chapter == 8))
+                {
+                    LoadAnimations();
+                    NewAnimations = true;
+                }
 
                 //Update timer if needed
                 if (InvinceTimer > 0F)
@@ -308,9 +320,18 @@ namespace TickTick.Entities.Tiles.Creatures {
 
                 //Attack move
 				if (GameHandler.InputHandler.AnyKeyDown(AttackKey) && AttackTimer <= 0) { 
-                    //TODO attack
+                    if (Velocity.X < 0)
+                    {
+                        Bullet bullet = new Bullet(false);
+                        AddChild(bullet);
+                    }
+                    else if (Velocity.X > 0)
+                    {
+                        Bullet bullet = new Bullet(true);
+                        AddChild(bullet);
+                    }
                     Animation = AttackAnimation;
-                   // Size = Animation.SpriteSheet.CellSize * 2;
+                    AttackTimer = 2;
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey) && Animation != CrouchAnimation) {
 					Velocity.X = LeftSpeed * speedMultiplier;
@@ -350,7 +371,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                         if(entity is TeddyBear)
                         {
                             _OnGround = true;
-                            if (chapter != 1 && chapter!=3)
+                            if (chapter != 1 && chapter!=3 && TeddyBear.canAttack)
                             {
                                 Damage();
                                 KnockBack();
@@ -382,7 +403,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                             break;
                         }else if (entity is GuitarShotgun){
                             item = "shotgun";
-                            //TODO: sprite van guitarshotgun wordt "Emptystand"
+                            
                         }else if (entity is TreeTile && chapter == 8){
                             item = "sword";
                             //TODO: sprite vd boom veradert naar normale boom
@@ -510,7 +531,7 @@ namespace TickTick.Entities.Tiles.Creatures {
             Animation = CyclingAnimation;
 
             Road road = new Road();
-            AddChild(road);
+            Parent.AddChild(road);
             road.Position = Vector2.Zero;
             road.Size = new Vector2(GameHandler.GraphicsHandler.ScreenSize.X, GameHandler.GraphicsHandler.ScreenSize.Y);
             lane = 3;
@@ -537,6 +558,8 @@ namespace TickTick.Entities.Tiles.Creatures {
         private void CarLevel()
         {
             Animation = CarAnimation;
+
+            
 
             if (GameHandler.InputHandler.AnyKeyDown(RightKey))
             {

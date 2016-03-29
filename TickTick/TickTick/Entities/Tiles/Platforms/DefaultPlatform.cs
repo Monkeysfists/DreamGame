@@ -1,4 +1,5 @@
 ﻿using GameLibrary;
+using Microsoft.Xna.Framework;
 
 namespace TickTick.Entities.Tiles.Platforms {
 	/// <summary>
@@ -8,9 +9,9 @@ namespace TickTick.Entities.Tiles.Platforms {
 		/// <summary>
 		/// Creates a new DefaultPlatform.
 		/// </summary>
-		public DefaultPlatform() {
-			Texture = GameHandler.AssetHandler.GetTexture("stoep");
-            Size = new Microsoft.Xna.Framework.Vector2(20,20);
+		public DefaultPlatform(Vector2 size) {
+			Texture = GameHandler.AssetHandler.GetTexture("chapter2/wooden_platform");
+            Size = size;
 		}
 	}
 }

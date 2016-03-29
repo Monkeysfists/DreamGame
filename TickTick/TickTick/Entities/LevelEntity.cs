@@ -116,8 +116,7 @@ namespace TickTick.Entities
                 Size.X += 500;
             }
 
-            if (player.item == "sword")
-                tree.Texture = GameHandler.AssetHandler.GetTexture("chapter3/ch3_tree_swordless");
+            //TODO: verander de achtergrond afhankelijk vh level
 
                 base.Update();
         }
@@ -185,6 +184,8 @@ namespace TickTick.Entities
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.etc);
                 case '+':
                     return new CollisionObject("WoodenFloorTile", new Vector2(100, 100));
+                case '=':
+                    return new CollisionObject("WoodenFloorTile", new Vector2(20, 20));
 
                 //Objects used in multiple chapters
                 case 'T':
@@ -246,7 +247,7 @@ namespace TickTick.Entities
                 case 'J':
                     return new CollisionObject("chapter2/castle_wall_top", new Vector2(20, 20));
                 case 'j':
-                    return new CollisionObject("chapter2/wooden_platform", new Vector2(20, 20));
+                    return new DefaultPlatform(new Vector2(20, 20));
                 case 'i':
                     return new NoCollisionObject("chapter2/castle_wall_background", new Vector2(20,20));
                 case 'K':
@@ -277,7 +278,7 @@ namespace TickTick.Entities
                 case '$':
                     return new Cloud();
                 case '%':
-                    DefaultPlatform defaultPlatform = new DefaultPlatform();
+                    DefaultPlatform defaultPlatform = new DefaultPlatform(new Vector2(20,20));
                     if (character == '$')
                         defaultPlatform.Velocity.X = 100F;
                     else if (character == '%')

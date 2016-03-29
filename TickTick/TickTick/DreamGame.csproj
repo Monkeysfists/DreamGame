@@ -60,6 +60,7 @@
     <Compile Include="Animations\BullyAnimation\BullyAttackAnimation.cs" />
     <Compile Include="Animations\BullyAnimation\BullyIdleAnimation.cs" />
     <Compile Include="Animations\BullyAnimation\BullyRunAnimation.cs" />
+    <Compile Include="Animations\DinosaurAnimation.cs" />
     <Compile Include="Animations\MotherWalkingAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerAttackAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerCarAnimation.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Entities\HintEntity.cs" />
     <Compile Include="Entities\LevelEntity.cs" />
     <Compile Include="Entities\States\FadeState.cs" />
+    <Compile Include="Entities\Tiles\Creatures\Bullet.cs" />
     <Compile Include="Entities\Tiles\Creatures\Bully.cs" />
     <Compile Include="Entities\Tiles\Creatures\CreatureTileEntity.cs" />
     <Compile Include="Entities\Tiles\Creatures\Dinosaur.cs" />
@@ -105,7 +107,7 @@
     <Compile Include="Entities\Tiles\Platforms\Chapter3\AsteroidSpawner.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Obstacle.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Road.cs" />
-    <Compile Include="Entities\Tiles\Platforms\CollisionObject.cs" />
+    <Compile Include="Entities\Tiles\Walls\CollisionObject.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\WaterTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\DefaultPlatform.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\PlayingBlocks.cs" />
@@ -119,7 +121,7 @@
     <Compile Include="Entities\Tiles\Walls\GuitarShotgun.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\PCDesk.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\PlantPot.cs" />
-    <Compile Include="Entities\Tiles\Platforms\BuildingBlockWall.cs" />
+    <Compile Include="Entities\Tiles\Walls\BuildingBlockWall.cs" />
     <Compile Include="Entities\Tiles\Platforms\GoalTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\PlatformTile.cs" />
     <Compile Include="Entities\States\PlayingState.cs" />

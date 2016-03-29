@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GameLibrary;
+using TickTick.Animations;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
-    class Dinosaur : CreatureTileEntity
+    public class Dinosaur : CreatureTileEntity
     {
-        SpriteSheet SpriteSheet;
+        Animation IdleAnimation;
 
         public Dinosaur()
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter2/dinosaur");
+            IdleAnimation = new DinosaurAnimation();
         }
 
-        public void Update()
+        public override void Update()
         {
-            if (GameHandler.Random.Next(100) == 0)
+            if (GameHandler.Random.Next(100) == 0 && IdleAnimation.FlipHorizontally)
             {
-                //mirror
+                IdleAnimation.FlipHorizontally = true;
+            }
+            else if (GameHandler.Random.Next(100) == 0 && !IdleAnimation.FlipHorizontally)
+            {
+                IdleAnimation.FlipHorizontally = false;
             }
         }
     }
