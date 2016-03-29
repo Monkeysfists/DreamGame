@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using TickTick.Entities.Tiles.Creatures;
 using TickTick.Entities.Tiles.Walls;
+using TickTick.Entities.Tiles.Platforms.Chapter1;
 
 namespace TickTick.Entities.Tiles.Platforms {
 	/// <summary>

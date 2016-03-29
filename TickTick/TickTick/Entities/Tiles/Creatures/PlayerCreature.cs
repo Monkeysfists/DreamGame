@@ -350,13 +350,19 @@ namespace TickTick.Entities.Tiles.Creatures {
                                 Jump(JumpSpeed);
                             }
                         }else 
-                        if(entity is Raindrop || entity is Cloud)
+                        
+                        if(entity is Raindrop)
                         {
-                            Damage();
-                            Jump(JumpSpeed * 0.1F);
-                            InvinceTimer = 0.1F;
-                            RemoveChild(entity);
+                            //Damage();
+                            //Jump(JumpSpeed * 0.1F);
+                            InvinceTimer = 0.3F;
                         }else
+
+                        if(entity is BlockBoat)
+                        {
+                            //entity.Velocity.X = 200F;
+                        }else
+                        
                         if(entity is Board)
                         {
                             Damage();
@@ -401,13 +407,13 @@ namespace TickTick.Entities.Tiles.Creatures {
                             _OnRails = false;
 
 
-                        if (!(entity is PlayerCreature) || (entity is Train) || (entity is TeddyBear)){
+                        if (!(entity is PlayerCreature) || (entity is Train) || (entity is TeddyBear) || !(entity is Raindrop)){
 							RectangleF playerBounds = GlobalCollisionBox;
 							RectangleF tileBounds = entity.GlobalCollisionBox;
 							playerBounds.Height++;
 							Vector2 depth = CalculateIntersectionDepth(playerBounds, tileBounds);
 
-							if (Math.Abs(depth.X) < Math.Abs(depth.Y)) {
+                            if (Math.Abs(depth.X) < Math.Abs(depth.Y)) {
 								if (!(entity is PlatformTile)) {
 									Position.X += depth.X;
 								}
@@ -426,13 +432,14 @@ namespace TickTick.Entities.Tiles.Creatures {
 									Velocity.Y = 0F;
 								}
 								if (!(entity is PlatformTile) || (entity is PlatformTile && _OnGround)) {
-									Position.Y += depth.Y + 1;
+									Position.Y += depth.Y + 1F;
 									Velocity.Y = 0F;
                                 }else if(entity is PlatformTile && !_OnGround && Velocity.Y > 0F)
                                 {
                                     //Position.Y -= depth.Y - 1;
                                 }
 							}
+
 						}
      
                     }

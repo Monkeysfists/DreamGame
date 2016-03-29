@@ -36,7 +36,7 @@ namespace TickTick.Entities.Tiles.Creatures
             umbrella = new Umbrella();
             umbrella.Position = umbrella.Position + new Vector2(5, -40);
             umbrella.Layer = 2;
-            this.AddChild(umbrella);
+            AddChild(umbrella);
             SpeedTimer = 0;
             Velocity = BeginSpeed;
 
@@ -62,7 +62,7 @@ namespace TickTick.Entities.Tiles.Creatures
 
         public void ChangeSpeed()
         {
-            Velocity = BeginSpeed * (1F + (float)(GameHandler.Random.Next(10, 50) / 100F));
+            Velocity = BeginSpeed * (1F + (float)(GameHandler.Random.Next(10, 80) / 100F));
             SpeedTimer = 0;
         }
 
@@ -75,10 +75,19 @@ namespace TickTick.Entities.Tiles.Creatures
 
                 // Handle collisions
                 foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
-                {
+            {
                     // Win
-                   
-                        if (!(entity is PlayerCreature))
+                if (entity is Raindrop)
+                {
+                    RemoveChild(entity);
+                }
+
+                if (entity is Paperboat || entity is BlockBoat)
+                {
+                    Active = false;
+                }
+
+                if (!(entity is PlayerCreature) || !(!(entity is Raindrop)))
                         {
                             RectangleF playerBounds = GlobalCollisionBox;
                             RectangleF tileBounds = entity.GlobalCollisionBox;
@@ -87,7 +96,7 @@ namespace TickTick.Entities.Tiles.Creatures
 
                             if (Math.Abs(depth.X) < Math.Abs(depth.Y))
                             {
-                                if (!(entity is PlatformTile))
+                                if (!(entity is PlatformTile) || !(entity is Raindrop))
                                 {
                                     Position.X += depth.X;
                                 }
@@ -98,9 +107,6 @@ namespace TickTick.Entities.Tiles.Creatures
                                 {
                                     _OnGround = true;
 
-                                    //if(Velocity.Y > 1500) {
-                                    //Health -= (int)((Velocity.Y - 1500) / 50);
-                                    //}
                                     Velocity.Y = 0F;
                                 }
                                 if (!(entity is PlatformTile) || (entity is PlatformTile && _OnGround))
@@ -111,10 +117,7 @@ namespace TickTick.Entities.Tiles.Creatures
                                 else if (entity is PlatformTile && !_OnGround && Velocity.Y > 0F)
                                 {
                                     //Position.Y -= depth.Y - 1;
-                                }else if(entity is Raindrop)
-                        {
-                            RemoveChild(entity);
-                        }
+                                }
                             }
                         }
 

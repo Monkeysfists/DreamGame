@@ -212,7 +212,7 @@ namespace TickTick.Entities
                 case '#':
                     return new GoalTile();
                 case '@':
-                //return new StartingTile();
+                   return new BlockBoat();
 
                 //Chapter 1   
                 case 'n':
@@ -275,7 +275,7 @@ namespace TickTick.Entities
                     return new CollisionObject("chapter4/door_closed", new Vector2(20, 100));
 
                 case '$':
-                    return new Cloud();
+                    return new Raindrop();
                 case '%':
                     DefaultPlatform defaultPlatform = new DefaultPlatform();
                     if (character == '$')

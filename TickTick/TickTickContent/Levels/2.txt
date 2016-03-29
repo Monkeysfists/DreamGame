@@ -1,6 +1,19 @@
 
+.
+.
+......$...$...$.....$......$...$.....$....................
+...............
+.
+.
+..$.....$...$........$........$.......$.....$....................
+...............
+.
+.
+.
 
-............$....................$
+..$...$......$.....$......$......$.....$....................
+...............
+.$...$.....$.....$......................$
 ..............................................$
 .$....................$
 .
@@ -13,10 +26,10 @@
 .
 .
 .
-PM
+M...........................................P
 .
 .
-...................................................................................................................................F......#.
+.......................................................@.............................................................................F......#.
 SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS.................................................................SSSSSSSSSSSSSSSSSGGGGGGGGG
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGzwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwzGGGGGGGGGGGGGGGGGGGGGGGGG
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzGGGGGGGGGGGGGGGGGGGGGGGGG
