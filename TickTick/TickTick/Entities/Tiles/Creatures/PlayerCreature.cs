@@ -303,7 +303,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 				if (GameHandler.InputHandler.AnyKeyDown(AttackKey) && AttackTimer <= 0) { 
                     //TODO attack
                     Animation = AttackAnimation;
-                    Size = Animation.SpriteSheet.CellSize * 2;
+                   // Size = Animation.SpriteSheet.CellSize * 2;
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey) && Animation != CrouchAnimation) {
 					Velocity.X = LeftSpeed * speedMultiplier;
@@ -312,10 +312,9 @@ namespace TickTick.Entities.Tiles.Creatures {
                 } else if (_OnGround) {
 					Velocity.X = 0F;
 				}
-				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) &&  _OnGround && Animation != CrouchAnimation) {
+				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && _OnGround && Animation != CrouchAnimation) {
 					Jump(JumpSpeed);
                     Animation = JumpAnimation;
-                    Size = Animation.SpriteSheet.CellSize * 2;
 				}
 
 			}
@@ -336,19 +335,15 @@ namespace TickTick.Entities.Tiles.Creatures {
                         _Won = true;
 						if (_Won) {
 							((PlayingState)Parent.Parent).Won = true;
-							Animation = CelebrateAnimation;
+							//Animation = CelebrateAnimation;
 							break;
 						}
 					} else {
                         // Get launched?
-                        if(entity is TrampolineBedTile)
-                        {
-                            _OnGround = true;
-                        }
                         if(entity is TeddyBear)
                         {
                             _OnGround = true;
-                            if (chapter != 1)
+                            if (chapter != 1 && chapter!=3)
                             {
                                 Damage();
                                 KnockBack();
@@ -367,7 +362,10 @@ namespace TickTick.Entities.Tiles.Creatures {
                             Damage();
                             InvinceTimer = 0.2F;
                         }
-                        
+                        if (entity is CollisionObject)
+                        {
+                            _OnGround = true;
+                        }
                         if(entity is TrainTracks)
                         {
                             //TODO: add soundeffect

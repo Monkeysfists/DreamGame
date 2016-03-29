@@ -19,7 +19,7 @@ namespace TickTick.Animations {
                 case 4:
                     SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter2/ch2_joch"); break;
                 case 5:
-                case 6: switch (item)
+                case 8: switch (item)
                     {
                         case "shotgun": SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_shotgun"); break;
                         case "sword": SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_sword_idle"); break;

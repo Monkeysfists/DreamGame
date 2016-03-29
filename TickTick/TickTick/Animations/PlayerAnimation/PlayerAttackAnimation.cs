@@ -13,7 +13,7 @@ namespace TickTick.Animations
         /// </summary>
         public PlayerAttackAnimation(int chapter, string item)
         {
-            if (chapter == 5 || chapter == 7)
+            if (chapter == 5 || chapter == 8)
             {
                 switch (item)
                 {

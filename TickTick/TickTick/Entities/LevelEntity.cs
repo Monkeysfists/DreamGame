@@ -119,11 +119,7 @@ namespace TickTick.Entities
             if (player.item == "sword")
                 tree.Texture = GameHandler.AssetHandler.GetTexture("chapter3/ch3_tree_swordless");
 
-
                 base.Update();
-
-
-
         }
 
         /// <summary>

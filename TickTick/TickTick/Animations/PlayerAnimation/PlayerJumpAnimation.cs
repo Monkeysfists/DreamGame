@@ -21,7 +21,7 @@ namespace TickTick.Animations {
                     SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter2/ch2_joch_springen");
                     FrameTime = TimeSpan.FromMilliseconds(50);break;
                 case 5:
-                case 6: switch (item)
+                case 8: switch (item)
                     {
                         case "shotgun": SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_shotgun_springen");
                             FrameTime = TimeSpan.FromMilliseconds(50);break;
