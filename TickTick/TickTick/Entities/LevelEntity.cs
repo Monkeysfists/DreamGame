@@ -186,7 +186,7 @@ namespace TickTick.Entities
                 case '-':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.etc);
                 case '+':
-                    return new CollisionObject("WoodenFloorTile");
+                    return new CollisionObject("WoodenFloorTile", new Vector2(10, 10));
 
                 //Objects used in multiple chapters
                 case 'T':
@@ -218,7 +218,7 @@ namespace TickTick.Entities
 
                 //Chapter 1   
                 case 'n':
-                    return new CollisionObject("chapter1/nightstand");
+                    return new CollisionObject("chapter1/nightstand", new Vector2(80, 60));
                 case 'r':
                     return new TrainTracks();
                 case 'k':
@@ -236,7 +236,7 @@ namespace TickTick.Entities
                 case 'w':
                     return new WaterTile();
                 case '^':
-                    return new Paperboat();
+                    //return new Paperboat();
 
                 //Chapter 2
                 case '2':
@@ -244,11 +244,11 @@ namespace TickTick.Entities
                 //case '3':
                     //return new Ghost();
                 case 'I':
-                    return new CollisionObject("chapter2/castle_wall");
-                case 'J': 
-                    return new CollisionObject("chapter2/castle_wall_top");
-                case 'j': 
-                    return new CollisionObject("chapter2/wooden_platform");
+                    return new CollisionObject("chapter2/castle_wall", new Vector2(10,10));
+                case 'J':
+                    return new CollisionObject("chapter2/castle_wall_top", new Vector2(10, 10));
+                case 'j':
+                    return new CollisionObject("chapter2/wooden_platform", new Vector2(10, 10));
                 case 'i':
                     return new NoCollisionObject("chapter2/castle_wall_background");
                 case 'K':
@@ -260,9 +260,9 @@ namespace TickTick.Entities
                 case 'l':
                     return new UnderLavaTile();
                 case 'z':
-                    return new CollisionObject("chapter2/zebrawit");
+                    return new CollisionObject("chapter2/zebrawit", new Vector2(10, 10));
                 case 'Z':
-                    return new CollisionObject("chapter2/zebrazwart");
+                    return new CollisionObject("chapter2/zebrazwart", new Vector2(10, 10));
 
                 //Chapter 3
                 case '0':
@@ -274,7 +274,7 @@ namespace TickTick.Entities
                 case 'a':
                     return new NoCollisionObject("chapter4/autoleeg");
                 case '!':
-                    return new CollisionObject("chapter4/door_closed");
+                    return new CollisionObject("chapter4/door_closed", new Vector2(20, 100));
 
                 case '$':
                 case '%':
