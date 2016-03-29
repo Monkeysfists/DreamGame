@@ -106,6 +106,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         private int TemporaryHealth;
         private float AttackTimer;
         private float InvinceTimer;
+        private float KnockbackTimer;
         public string item;
         private int chapter;
         public float trainTimer;
@@ -121,6 +122,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 			_Won = false;
             CanCollide = true;
             this.chapter = chapter;
+            InvinceTimer = 0;
+            KnockbackTimer = 0;
 
 			// Animations
 			IdleAnimation = new PlayerIdleAnimation(chapter, item);
@@ -140,7 +143,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 
 			// Speed
 			LeftSpeed = -200F;
-			RightSpeed = 400F;
+			RightSpeed = 200F;
 			JumpSpeed = -1100F;
 
             //Timer
@@ -171,20 +174,31 @@ namespace TickTick.Entities.Tiles.Creatures {
                 HandleCollision();
             }
 
-            if (Health > 0) {
+            if (Health > 0 ) {
                 if (_OnRails) ;
                     //Velocity.X = RightSpeed;
-                HandleInput();
+                
+                if(InvinceTimer <= 0)
+                    HandleInput();
 
                 //Update timer if needed
-                if (InvinceTimer > 0)
+                if (InvinceTimer > 0F)
                 {
                     InvinceTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
-                } else if (AttackTimer > 0) {
+                }
+                if (AttackTimer > 0) {
                     AttackTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
-                } else if (trainTimer > 0)
+                }
+                if (trainTimer > 0)
                     trainTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+                if (KnockbackTimer > 0)
+                    KnockbackTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
+                if (KnockbackTimer > 0.80F && KnockbackTimer < 0.9F)
+                    Jump(JumpSpeed * 0.3F);
+
+                if (KnockbackTimer > 0.4F && KnockbackTimer < 0.5F)
+                    Velocity = Vector2.Zero;
 
                 if (Animation != CelebrateAnimation) {
 					// Animation directions
@@ -308,21 +322,24 @@ namespace TickTick.Entities.Tiles.Creatures {
                         {
                             _OnGround = true;
                         }
+                        if(entity is TeddyBear)
+                        {
+                            _OnGround = true;
+                            if(chapter != 1)
+                                Damage();
+                            InvinceTimer = 1F;
+                            if (chapter == 1)
+                                InvinceTimer = 10F;
+                            KnockBack();
+                            Jump(JumpSpeed);
+                        }
                         
                         if(entity is TrainTracks)
                         {
                             //TODO: add soundeffect
-                            Health -= 2;
+                            Damage();
                             Velocity.X *= -1F;
                             Jump(JumpSpeed);
-                            break;
-                        }else if(entity is TeddyBear)
-                        {
-                            TeddyBear teddyBear = (TeddyBear)entity;
-                            if (teddyBear.CanAttack && teddyBear.GetHealth >= 0)
-                                Health -= 2;
-                            if (teddyBear.GetHealth <= 0)
-                                RemoveChild(entity);
                             break;
                         }else if (entity is GuitarShotgun){
                             item = "shotgun";
@@ -333,7 +350,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                         }
                        
                         
-                        if(!(entity is CreatureTileEntity) || (entity is Train)){
+                        if(!(entity is PlayerCreature) || (entity is Train) || (entity is TeddyBear)){
 							RectangleF playerBounds = GlobalCollisionBox;
 							RectangleF tileBounds = entity.GlobalCollisionBox;
 							playerBounds.Height++;
@@ -411,7 +428,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 		public void Jump(float speed) {
 			Velocity.Y = speed * 0.7F;
             if (Trampo)
-                Velocity.Y = speed;
+                Velocity.Y = speed * 0.9F;
             //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
         }
 
@@ -422,5 +439,19 @@ namespace TickTick.Entities.Tiles.Creatures {
 				Animation = ExplodeAnimation;
 			}
 		}
+
+        public void Damage()
+        {
+            if(InvinceTimer <= 0F)
+                Health -= 2;
+        }
+
+        public void KnockBack()
+        {
+            Velocity.X = -100;
+            Jump(JumpSpeed);
+            Animation = IdleAnimation;
+            KnockbackTimer = 1;
+        }
 	}
 }

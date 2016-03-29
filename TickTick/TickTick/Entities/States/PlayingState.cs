@@ -127,14 +127,14 @@ namespace TickTick.Entities.States {
             background.Size = Size;
 
             // Load levels
-            for (int i = 1; i <= GameHandler.AssetHandler.CountFiles("Levels") - 1; i++)
+            for (int i = 1; i <= GameHandler.AssetHandler.CountFiles("Levels") -1; i++)
             {
                 LevelEntity level = new LevelEntity(i);
                 level.Active = false;
                 level.Visible = false;
                 AddChild(level);
             }
-
+            //System.Diagnostics.Debug.Print(GameHandler.AssetHandler.CountFiles("Levels").ToString());
             // Add quit button
             QuitButton quitButton = new QuitButton();
             quitButton.Position = new Vector2(Size.X - quitButton.Size.X - 10, 10);

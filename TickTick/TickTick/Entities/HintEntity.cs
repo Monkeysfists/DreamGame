@@ -46,5 +46,11 @@ namespace TickTick.Entities {
 
 			base.Update();
 		}
+
+        public Vector2 SetTextPosition
+        {
+            get { return _Text.Position; }
+            set { _Text.Position = value; }
+        }
 	}
 }

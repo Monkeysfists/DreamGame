@@ -105,6 +105,7 @@ namespace GameLibrary {
 			StreamReader reader = new StreamReader(_ContentManager.RootDirectory + "/" + path);
 			string result = reader.ReadToEnd();
 			reader.Close();
+            System.Diagnostics.Debug.Print(_ContentManager.RootDirectory.ToString());
 
 			return result;
 		}

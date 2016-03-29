@@ -70,6 +70,7 @@
     <Compile Include="Animations\TeddyAnimation\TeddyAttackAnimation.cs" />
     <Compile Include="Animations\TeddyAnimation\TeddyIdleAnimation.cs" />
     <Compile Include="Animations\TeddyAnimation\TeddyRunAnimation.cs" />
+    <Compile Include="Animations\TeddyAnimation\TeddyTalkingAnimation.cs" />
     <Compile Include="Animations\TrainAnimation\TrainIdleAnimation.cs" />
     <Compile Include="Animations\TrainAnimation\TrainMoveAnimation.cs" />
     <Compile Include="Animations\WaterAnimation.cs" />

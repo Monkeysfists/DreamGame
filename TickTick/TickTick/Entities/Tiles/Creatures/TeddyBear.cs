@@ -8,6 +8,7 @@ using TickTick.Entities.Tiles.Platforms;
 using TickTick.Animations;
 using GameLibrary.Types;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
@@ -16,6 +17,7 @@ namespace TickTick.Entities.Tiles.Creatures
         private Animation TeddyIdleAnimation;
         private Animation TeddyRunAnimation;
         private Animation TeddyAttackAnimation;
+        private Animation TeddyTalkAnimation;
 
         private float Health;
         private float Speed;
@@ -30,17 +32,30 @@ namespace TickTick.Entities.Tiles.Creatures
         List<Entity> EntityList;
         PlayerCreature player;
 
+        private bool _OnGround;
+        private float _PreviousY;
+
+        public int Chapter;
+
+        public HintEntity TalkBox;
+        public int TalkStage;
+
+
 
         public TeddyBear(int chapter)
         {
             Health = 100;
             Name = "TeddyBear";
+            CanCollide = true;
+            _PreviousY = GlobalCollisionBox.Bottom;
+            Visible = true;
+            this.Chapter = chapter;
+            TalkBox = new HintEntity();
+            TalkBox.Visible = false;
+            TalkStage = 0;
+            TalkBox.Text = "Pre stage (Press P)";
+            AddChild(TalkBox);
 
-
-            // Size
-            //Size = Animation.SpriteSheet.CellSize;
-            Origin.X = (Size.X - 72) / 2;
-            Origin.Y = (Size.Y - 55) / 2;
 
             // Speed
             Speed = 200F;
@@ -53,9 +68,13 @@ namespace TickTick.Entities.Tiles.Creatures
             TeddyIdleAnimation = new TeddyIdleAnimation(chapter);
             TeddyRunAnimation = new TeddyRunAnimation();
             TeddyAttackAnimation = new TeddyAttackAnimation();
+            TeddyTalkAnimation = new TeddyTalkingAnimation();
             Animation = TeddyIdleAnimation;
 
-            GetPlayer();
+            // Size
+            Size = Animation.SpriteSheet.CellSize;
+            Origin.X = (Size.X - 72) / 2;
+            Origin.Y = (Size.Y - 55) / 2;
 
 
         }
@@ -80,7 +99,8 @@ namespace TickTick.Entities.Tiles.Creatures
                 canAttack = true;
             }
 
-            HandleCollision();
+            if(Health > 0)
+                HandleCollision();
             /*
             if (player.Position.X > Position.X)
                 mirrored = true;
@@ -100,6 +120,16 @@ namespace TickTick.Entities.Tiles.Creatures
             if (IntervalTimer > 2)
                 IntervalTimer = 0;
                 */
+
+            // Handle physics
+            if (Animation != TeddyAttackAnimation)
+            {
+                Velocity.Y += 55F; // Fall speed
+            }
+
+            TalkBox.Position = Parent.Position - new Vector2(100F,100F);
+            TalkBox.SetTextPosition = Parent.Position - new Vector2(90F, 90F);
+            HandleInput();
             base.Update();
         }
 
@@ -108,9 +138,119 @@ namespace TickTick.Entities.Tiles.Creatures
             base.Draw();
         }
 
+        public void HandleInput()
+        {
+            if (GameHandler.InputHandler.OnKeyDown(Keys.P) && TalkBox.Visible)
+            {
+                switch (TalkStage)
+                {
+                    case 1:
+                        TalkBox.Text = "1 (Press P)";
+                        TalkStage++;
+                        break;
+                    case 2:
+                        TalkBox.Text = "2 (Press P)";
+                        TalkStage++;
+                        break;
+                    case 3:
+                        TalkBox.Text = "3 (Press P)";
+                        TalkStage++;
+                        break;
+                    
+                }
+            }
+        }
+
         public void HandleCollision()
         {
 
+                _OnGround = false;
+
+
+                Position = new Vector2((float)Math.Floor(Position.X), (float)Math.Floor(Position.Y));
+
+                // Handle collisions
+                foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
+                {
+                if (entity is PlayerCreature)
+                {
+                    if (Chapter == 1)
+                    {
+                        Animation = TeddyTalkAnimation;
+                        TalkBox.Visible = true;
+                        TalkBox.Text = "blablablabla (Press P)";
+                    }
+                    if (Chapter == 3)
+                        Animation = TeddyAttackAnimation;
+                }
+                if (!(entity is CreatureTileEntity) || (entity is Train))
+                    {
+                        RectangleF playerBounds = GlobalCollisionBox;
+                        RectangleF tileBounds = entity.GlobalCollisionBox;
+                        playerBounds.Height++;
+                        Vector2 depth = CalculateIntersectionDepth(playerBounds, tileBounds);
+
+                        if (Math.Abs(depth.X) < Math.Abs(depth.Y))
+                        {
+                            if (!(entity is PlatformTile))
+                            {
+                                Position.X += depth.X;
+                            }
+                        }
+                        else
+                        {
+                            if (_PreviousY - 1 <= tileBounds.Top && Velocity.Y >= 0)
+                            {
+                                _OnGround = true;
+
+                                //if(Velocity.Y > 1500) {
+                                //Health -= (int)((Velocity.Y - 1500) / 50);
+                                //}
+                                Velocity.Y = 0F;
+                            }
+                            if (!(entity is PlatformTile) || (entity is PlatformTile && _OnGround) || entity is TrampolineBedTile)
+                            {
+                                Position.Y += depth.Y + 1;
+                                Velocity.Y = 0F;
+                            }
+                            else if (entity is PlatformTile && !_OnGround && Velocity.Y > 0F)
+                            {
+                                Position.Y -= depth.Y - 1;
+                            }
+                        }
+                    }
+                }
+
+                _PreviousY = GlobalCollisionBox.Bottom;
+            }
+
+        
+    
+
+        public Vector2 CalculateIntersectionDepth(Rectangle rectangle1, Rectangle rectangle2)
+        {
+            Vector2 center1 = new Vector2(rectangle1.Center.X, rectangle1.Center.Y);
+            Vector2 center2 = new Vector2(rectangle2.Center.X, rectangle2.Center.Y);
+            Vector2 minDistance = new Vector2(rectangle1.Width + rectangle2.Width, rectangle1.Height + rectangle2.Height) / 2;
+            Vector2 distance = center1 - center2;
+            Vector2 depth = Vector2.Zero;
+            if (distance.X > 0)
+            {
+                depth.X = minDistance.X - distance.X;
+            }
+            else
+            {
+                depth.X = -minDistance.X - distance.X;
+            }
+            if (distance.Y > 0)
+            {
+                depth.Y = minDistance.Y - distance.Y;
+            }
+            else
+            {
+                depth.Y = -minDistance.Y - distance.Y;
+            }
+            return depth;
         }
 
         public bool CanAttack
@@ -121,12 +261,6 @@ namespace TickTick.Entities.Tiles.Creatures
         public float GetHealth
         {
             get { return Health; }
-        }
-        private void GetPlayer()
-        {
-            EntityList = FindChildrenByName("player", true);
-            if(EntityList.Count > 0)
-                player = (PlayerCreature)EntityList[0];
         }
 
         public void Attack()

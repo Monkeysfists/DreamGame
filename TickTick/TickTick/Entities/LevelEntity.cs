@@ -9,6 +9,7 @@ using TickTick.Entities.Tiles;
 using TickTick.Entities.Tiles.Creatures;
 using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
+using TickTick.Entities.Tiles.Platforms.Chapter1;
 
 namespace TickTick.Entities
 {
@@ -166,6 +167,7 @@ namespace TickTick.Entities
         /// </summary>
         /// <param name="character">The character to convert.</param>
         /// <returns>The corresponding Entity.</returns>
+
         private Entity ConvertTiles(char character)
         {
             switch (character)
@@ -234,7 +236,7 @@ namespace TickTick.Entities
                 case 'w':
                     return new WaterTile();
                 case '^':
-                    //return new Paperboat();
+                    return new Paperboat();
 
                 //Chapter 2
                 case '2':
