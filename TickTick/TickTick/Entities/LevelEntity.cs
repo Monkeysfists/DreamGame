@@ -121,6 +121,9 @@ namespace TickTick.Entities
 
 
                 base.Update();
+
+
+
         }
 
         /// <summary>
@@ -173,7 +176,7 @@ namespace TickTick.Entities
             {
                 //Building blocks
                 case 'W':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.wood);
+                    return new CollisionObject("wood", new Vector2(20,100));
                 case 'B':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.buildingblock);
                 case '*':
@@ -185,7 +188,7 @@ namespace TickTick.Entities
                 case '-':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.etc);
                 case '+':
-                    return new CollisionObject("WoodenFloorTile", new Vector2(10, 10));
+                    return new CollisionObject("WoodenFloorTile", new Vector2(100, 100));
 
                 //Objects used in multiple chapters
                 case 'T':
@@ -203,11 +206,11 @@ namespace TickTick.Entities
                         default: return new BedTile(LevelNumber);
                     }
                 case 'p':
-                    return new PCDesk();
+                    return new PCDesk(LevelNumber);
                 case 'H':
                     return new HighSchool(LevelNumber);
                 case 'h':
-                    return new NoCollisionObject("achtergrond huis");
+                    return new NoCollisionObject("achtergrond huis", new Vector2(500,500));
 
 
                 case '#':
@@ -217,7 +220,7 @@ namespace TickTick.Entities
 
                 //Chapter 1   
                 case 'n':
-                    return new CollisionObject("chapter1/nightstand", new Vector2(80, 60));
+                    return new CollisionObject("chapter1/nightstand", new Vector2(120, 100));
                 case 'r':
                     return new TrainTracks();
                 case 'k':
@@ -225,11 +228,11 @@ namespace TickTick.Entities
                 case 't':
                     return new Train();
                 case 'D': 
-                    //return new Tunnel();
+                    return new Tunnel();
                 case 'd':
                     return new Board();
                 case 'F': 
-                    return new NoCollisionObject("chapter1/flower");
+                    return new NoCollisionObject("chapter1/flower", new Vector2(20,20));
                 case 'M':
                     return new Mother();
                 case 'w':
@@ -243,13 +246,13 @@ namespace TickTick.Entities
                 //case '3':
                     //return new Ghost();
                 case 'I':
-                    return new CollisionObject("chapter2/castle_wall", new Vector2(10,10));
+                    return new CollisionObject("chapter2/castle_wall", new Vector2(20,20));
                 case 'J':
-                    return new CollisionObject("chapter2/castle_wall_top", new Vector2(10, 10));
+                    return new CollisionObject("chapter2/castle_wall_top", new Vector2(20, 20));
                 case 'j':
-                    return new CollisionObject("chapter2/wooden_platform", new Vector2(10, 10));
+                    return new CollisionObject("chapter2/wooden_platform", new Vector2(20, 20));
                 case 'i':
-                    return new NoCollisionObject("chapter2/castle_wall_background");
+                    return new NoCollisionObject("chapter2/castle_wall_background", new Vector2(20,20));
                 case 'K':
                     return new LegoBlock();
                 //case '(':
@@ -259,19 +262,19 @@ namespace TickTick.Entities
                 case 'l':
                     return new UnderLavaTile();
                 case 'z':
-                    return new CollisionObject("chapter2/zebrawit", new Vector2(10, 10));
+                    return new CollisionObject("chapter2/zebrawit", new Vector2(20, 20));
                 case 'Z':
-                    return new CollisionObject("chapter2/zebrazwart", new Vector2(10, 10));
+                    return new CollisionObject("chapter2/zebrazwart", new Vector2(20, 20));
 
                 //Chapter 3
                 case '0':
                     return new Bully();
 
                 //Chapter 4
-                case 'c': //Closet
-                    return new NoCollisionObject("chapter4/closet");
+                case 'c':
+                    return new NoCollisionObject("chapter4/closet", new Vector2(40,80));
                 case 'a':
-                    return new NoCollisionObject("chapter4/autoleeg");
+                    return new NoCollisionObject("chapter4/autoleeg", new Vector2(80,60));
                 case '!':
                     return new CollisionObject("chapter4/door_closed", new Vector2(20, 100));
 

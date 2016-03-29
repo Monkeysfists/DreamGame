@@ -11,14 +11,10 @@ namespace TickTick.Animations
         /// <summary>
         /// Creates a new PlayerDieAnimation.
         /// </summary>
-        public PlayerCrouchAnimation(int chapter)
+        public PlayerCrouchAnimation()
         {
-            if (chapter == 1)
-            {
                 SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/ch1_joch_bukken");
-                FrameTime = TimeSpan.FromMilliseconds(50);
-            }
-            else { return; }
+               FrameTime = TimeSpan.FromMilliseconds(50);
         }
     }
 }

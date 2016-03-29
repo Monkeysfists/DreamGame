@@ -13,7 +13,7 @@ namespace TickTick.Animations
         /// </summary>
         public BullyRunAnimation()
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/pestkop_lopen");
+            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/pestkop_lopen@4");
             FrameTime = TimeSpan.FromMilliseconds(100);
         }
     }

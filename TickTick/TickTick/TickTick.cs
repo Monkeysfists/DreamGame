@@ -16,7 +16,7 @@ namespace TickTick {
 			IsMouseVisible = true;
 			GraphicsHandler.Resolution = new Point(1440, 825);
             if(GameHandler.GraphicsHandler.ScreenSize.X < 1440)
-                GraphicsHandler.FullScreen = true;
+                //GraphicsHandler.FullScreen = true;
 			// TODO: Add fullscreen
 
 			// Start game

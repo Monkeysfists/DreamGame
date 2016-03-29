@@ -23,15 +23,15 @@ namespace TickTick.Animations {
                 case 5: 
                 case 6:switch (item)
                     {
-                        case "shotgun": SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_shotgun_lopen");
-                            FrameTime = TimeSpan.FromMilliseconds(100); break;
-                        case "sword": SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_sword_lopen");
-                            FrameTime = TimeSpan.FromMilliseconds(100); break;
-                        default: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_lopen");
-                            FrameTime = TimeSpan.FromMilliseconds(100); break;
+                        case "shotgun": SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_shotgun_lopen@4");
+                            FrameTime = TimeSpan.FromMilliseconds(200); break;
+                        case "sword": SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_sword_lopen@4");
+                            FrameTime = TimeSpan.FromMilliseconds(200); break;
+                        default: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/ch3_joch_lopen@4");
+                            FrameTime = TimeSpan.FromMilliseconds(200); break;
                     } break;
-                default: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter4/ch4_joch_lopen");
-                    FrameTime = TimeSpan.FromMilliseconds(100); break;
+                default: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter4/ch4_joch_lopen@4");
+                    FrameTime = TimeSpan.FromMilliseconds(200); break;
             }
 		}
 	}

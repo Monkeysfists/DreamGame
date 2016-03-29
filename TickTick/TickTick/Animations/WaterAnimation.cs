@@ -13,7 +13,7 @@ namespace TickTick.Animations
         /// </summary>
         public WaterAnimation()
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/water");
+            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/water@4");
             FrameTime = TimeSpan.FromMilliseconds(50);
         }
     }

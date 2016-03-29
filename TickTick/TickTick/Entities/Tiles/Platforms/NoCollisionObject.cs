@@ -14,11 +14,11 @@ namespace TickTick.Entities.Tiles.Platforms
 {
     public class NoCollisionObject : PlatformTile
     {
-        public NoCollisionObject(string name)
+        public NoCollisionObject(string name, Vector2 size)
         {
             Texture = GameHandler.AssetHandler.GetTexture(name);
             CanCollide = false;
-            Size = new Vector2(Texture.Width, Texture.Height);
+            Size = size;
         }
     }
 }

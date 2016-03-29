@@ -121,7 +121,7 @@ namespace TickTick.Entities.States {
         public PlayingState() : base("playing")
         {
             TextureEntity background = new TextureEntity();
-            background.Texture = GameHandler.AssetHandler.GetTexture("chapter1/achtergrond1");
+            background.Texture = GameHandler.AssetHandler.GetTexture("background/sky");
             AddChild(background);
             Size = new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y);
             background.Size = Size;
@@ -157,7 +157,6 @@ namespace TickTick.Entities.States {
 			Hint = new HintEntity();
 			Hint.Position = new Vector2((Size.X - Hint.Size.X) / 2, 10);
 			AddChild(Hint);
-
 		}
 
 		public void GoToNextLevel() {

@@ -13,7 +13,7 @@ namespace TickTick.Animations
         /// </summary>
         public BullyAttackAnimation()
         {
-            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/pestkop_aanval");
+            SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter3/pestkop_aanval@4");
             FrameTime = TimeSpan.FromMilliseconds(100);
         }
     }

@@ -10,6 +10,7 @@ namespace TickTick.Entities.Tiles.Platforms {
 		/// </summary>
 		public DefaultPlatform() {
 			Texture = GameHandler.AssetHandler.GetTexture("stoep");
+            Size = new Microsoft.Xna.Framework.Vector2(20,20);
 		}
 	}
 }

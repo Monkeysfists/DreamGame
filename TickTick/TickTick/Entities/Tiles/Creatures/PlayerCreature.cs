@@ -94,11 +94,15 @@ namespace TickTick.Entities.Tiles.Creatures {
         public Animation CrouchAnimation;
 
         public Animation AttackAnimation;
+
+        public Animation CarAnimation;
+
+        public Animation CyclingAnimation;
         /// <summary>
         /// Invincible timer control bool
         /// </summary>
         private bool Invin;
-        private bool _OnRails;
+        public static bool _OnRails;
 
 		private int _Health;
 		private bool _OnGround;
@@ -134,12 +138,14 @@ namespace TickTick.Entities.Tiles.Creatures {
 			RightAnimation = new PlayerMoveAnimation(chapter, item);
 			JumpAnimation = new PlayerJumpAnimation(chapter, item);
 			DieAnimation = new PlayerDieAnimation(chapter);
-            CrouchAnimation = new PlayerCrouchAnimation(chapter);
+            CrouchAnimation = new PlayerCrouchAnimation();
             AttackAnimation = new PlayerAttackAnimation(chapter, item);
+            CyclingAnimation = new PlayerCyclingAnimation();
+            CarAnimation = new PlayerCarAnimation();
 			Animation = IdleAnimation;
 
 			// Size
-			Size = Animation.SpriteSheet.CellSize;
+			Size = Animation.SpriteSheet.CellSize * 2;
 			Origin.X = (Size.X - 72) / 2;
 			Origin.Y = (Size.Y - 55) / 2;
 
@@ -195,37 +201,53 @@ namespace TickTick.Entities.Tiles.Creatures {
                 if (KnockbackTimer > 0.4F && KnockbackTimer < 0.5F)
                     Velocity = Vector2.Zero;
 
-                if (Animation != CelebrateAnimation) {
+                if (Animation != CelebrateAnimation)
+                {
 					// Animation directions
-					if (Velocity.X > 0) {
+                    if (Velocity.X > 0)
+                    {
 						IdleAnimation.FlipHorizontally = false;
 						JumpAnimation.FlipHorizontally = false;
                         CrouchAnimation.FlipHorizontally = false;
-					} else if (Velocity.X < 0) {
+                    }
+                    else if (Velocity.X < 0)
+                    {
 						IdleAnimation.FlipHorizontally = true;
 						JumpAnimation.FlipHorizontally = true;
                         CrouchAnimation.FlipHorizontally = true;
 					}
 
 					// Set the correct animation
-					if (_OnGround) {
-						if (Velocity.X == 0) {
-							// On the ground and not moving
+                    if (chapter != 6 && chapter != 8)
+                    {
+                        if (_OnGround)
+                        {
+                            if (Velocity.X == 0)
 							Animation = IdleAnimation;
-						} else {
-							// On the ground, but moving
-							if (Velocity.X > 0) {
+                            else
+                            {
+                                if (Velocity.X > 0)
+                                {
 								Animation = RightAnimation;
-							} else if (Velocity.X < 0) {
+                                }
+                                else if (Velocity.X < 0)
+                                {
 								Animation = LeftAnimation;
 							}
 						}
-					} else if (Velocity.Y != 0) {
+                        }
+                        else if (Velocity.Y != 0)
+                        {
 						Animation = JumpAnimation;
 					}
                     if (Velocity.X == 0 && Animation != CrouchAnimation)
                         Animation = IdleAnimation;
 				}
+                    else if (chapter == 6)
+                        Animation = CarAnimation;
+                    else if (chapter == 8)
+                        Animation = CyclingAnimation;
+                }
 
 				PlayingState state = ((PlayingState)Parent.Parent);
 					//state.Timer.Multiplier = 1;
@@ -234,13 +256,10 @@ namespace TickTick.Entities.Tiles.Creatures {
 				if (Position.Y > Parent.Size.Y) {
 					Health = 0;
 				}
-
-
 			}
 
             //Velocity.Y = 0F;
-
-            if (GameHandler.InputHandler.AnyKeyDown(CrouchKey) && chapter == 1)
+            if (GameHandler.InputHandler.AnyKeyDown(CrouchKey) && (chapter == 1 || chapter == 2))
                 Animation = CrouchAnimation;
 			base.Update();
 
@@ -283,6 +302,8 @@ namespace TickTick.Entities.Tiles.Creatures {
                 //Attack move
 				if (GameHandler.InputHandler.AnyKeyDown(AttackKey) && AttackTimer <= 0) { 
                     //TODO attack
+                    Animation = AttackAnimation;
+                    Size = Animation.SpriteSheet.CellSize * 2;
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(LeftKey) && Animation != CrouchAnimation) {
 					Velocity.X = LeftSpeed * speedMultiplier;
@@ -293,6 +314,8 @@ namespace TickTick.Entities.Tiles.Creatures {
 				}
 				if (GameHandler.InputHandler.AnyKeyDown(JumpKey) &&  _OnGround && Animation != CrouchAnimation) {
 					Jump(JumpSpeed);
+                    Animation = JumpAnimation;
+                    Size = Animation.SpriteSheet.CellSize * 2;
 				}
 
 			}
@@ -404,7 +427,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 									//}
 									Velocity.Y = 0F;
 								}
-								if (!(entity is PlatformTile) || (entity is PlatformTile && _OnGround) || entity is TrampolineBedTile) {
+								if (!(entity is PlatformTile) || (entity is PlatformTile && _OnGround)) {
 									Position.Y += depth.Y + 1;
 									Velocity.Y = 0F;
                                 }else if(entity is PlatformTile && !_OnGround && Velocity.Y > 0F)

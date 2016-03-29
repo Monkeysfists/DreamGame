@@ -46,7 +46,9 @@ namespace TickTick.Entities.Tiles.Creatures
         {
             Health = 100;
             Name = "TeddyBear";
+            if (chapter == 3)
             CanCollide = true;
+            else { CanCollide = false; }
             _PreviousY = GlobalCollisionBox.Bottom;
             Visible = true;
             this.Chapter = chapter;

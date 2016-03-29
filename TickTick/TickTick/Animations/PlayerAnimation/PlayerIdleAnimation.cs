@@ -27,6 +27,7 @@ namespace TickTick.Animations {
                     } break;
                 default: SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter4/ch4_joch"); break;
             }
+            
 		}
 	}
 }

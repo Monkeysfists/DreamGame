@@ -12,6 +12,9 @@ namespace TickTick.Entities.Tiles.Platforms
                 case BuildingBlocks.ground:
                     Texture = GameHandler.AssetHandler.GetTexture("grond");
                     break;
+                case BuildingBlocks.wood:
+                    Texture = GameHandler.AssetHandler.GetTexture("hout");
+                    break;
                 case BuildingBlocks.brick:
                     Texture = GameHandler.AssetHandler.GetTexture("chapter1/bed");
                     break;

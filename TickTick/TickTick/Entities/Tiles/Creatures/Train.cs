@@ -49,10 +49,10 @@ namespace TickTick.Entities.Tiles.Creatures
         /// </summary>
         public Train()
         {
-            timerText = new TextEntity(GameHandler.AssetHandler.GetSpriteFont("Fonts/Hud"));
-            timerText.Layer = 0;
-            timerText.Color = Color.White;
-            AddChild(timerText);
+            //timerText = new TextEntity(GameHandler.AssetHandler.GetSpriteFont("Fonts/Hud"));
+            //timerText.Layer = 0;
+            //timerText.Color = Color.White;
+            //AddChild(timerText);
 
             //Movement
             RightSpeed = 200F;
@@ -66,7 +66,7 @@ namespace TickTick.Entities.Tiles.Creatures
             Rightanimation = new TrainMoveAnimation();
             TrainTexture = new TrainIdleAnimation();
             Animation = TrainTexture;
-            timerText.Text = ((int)trainTimer).ToString();
+            //timerText.Text = ((int)trainTimer).ToString();
 
             // Size
             Size = Animation.SpriteSheet.CellSize;
@@ -77,16 +77,16 @@ namespace TickTick.Entities.Tiles.Creatures
 
         public override void Update()
         {
-            timerText.Position = new Vector2(Parent.Position.X - Position.X + GameHandler.GraphicsHandler.ScreenSize.X / 2.2F, Parent.Position.Y - Position.Y + 25);
+            //timerText.Position = new Vector2(Parent.Position.X - Position.X + GameHandler.GraphicsHandler.ScreenSize.X / 2.2F, Parent.Position.Y - Position.Y + 25);
 
-            if (trainTimer > 0)
-            {
-                trainTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
-                timerText.Text = ((int)trainTimer).ToString();
-            }
+            //if (trainTimer > 0)
+            //{
+            //    trainTimer -= (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+            //    timerText.Text = ((int)trainTimer).ToString();
+            //}
 
 
-            if (trainTimer <= 0)
+            if (PlayerCreature._OnRails)
             {
                 StartBool = true;
                 RemoveChild(timerText);
