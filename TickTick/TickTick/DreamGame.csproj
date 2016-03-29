@@ -91,6 +91,7 @@
     <Compile Include="Entities\Tiles\Creatures\TeddyBear.cs" />
     <Compile Include="Entities\Tiles\Creatures\Train.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Board.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter1\Cloud.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Raindrop.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Tunnel.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Umbrella.cs" />

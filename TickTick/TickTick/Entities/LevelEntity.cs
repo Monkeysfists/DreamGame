@@ -276,6 +276,7 @@ namespace TickTick.Entities
                     return new CollisionObject("chapter4/door_closed", new Vector2(20, 100));
 
                 case '$':
+                    return new Cloud();
                 case '%':
                     DefaultPlatform defaultPlatform = new DefaultPlatform();
                     if (character == '$')
@@ -285,6 +286,7 @@ namespace TickTick.Entities
                     return defaultPlatform;
 
                 case '/':
+                    return new Raindrop();
                 case '>':
                     DefaultWall defaultWall = new DefaultWall();
                     if (character == '/')

@@ -28,7 +28,7 @@ namespace TickTick.Entities.Tiles.Platforms
         {
             foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
             {
-                if (entity is Raindrop)
+                if (entity is Raindrop || entity is Cloud)
                 {
                     RemoveChild(entity);
                 }

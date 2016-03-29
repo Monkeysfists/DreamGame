@@ -34,7 +34,7 @@ namespace TickTick.Entities.Tiles.Creatures
 
             Layer = 3;
             umbrella = new Umbrella();
-            //umbrella.Position = Position + new Vector2(0, 100);
+            umbrella.Position = umbrella.Position + new Vector2(5, -40);
             umbrella.Layer = 2;
             this.AddChild(umbrella);
             SpeedTimer = 0;
@@ -57,7 +57,7 @@ namespace TickTick.Entities.Tiles.Creatures
             //umbrella.Position.X = Position.X + 100;
             Velocity.Y += 55F;
             Handlecolission();
-            base.Update();
+            //base.Update();
         }
 
         public void ChangeSpeed()
