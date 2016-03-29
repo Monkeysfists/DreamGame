@@ -357,7 +357,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                                 Jump(JumpSpeed);
                             }
                         }else 
-                        if(entity is Raindrop)
+                        if(entity is Raindrop || entity is Cloud)
                         {
                             Damage();
                             Jump(JumpSpeed * 0.1F);

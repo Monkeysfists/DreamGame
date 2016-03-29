@@ -26,7 +26,7 @@ namespace TickTick.Entities.Tiles.Platforms
 
         public void Handlecolission()
         {
-            foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
+            foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Parent.Parent.Children), Vector2.Zero, Vector2.Zero))
             {
                 if (entity is Raindrop || entity is Cloud)
                 {

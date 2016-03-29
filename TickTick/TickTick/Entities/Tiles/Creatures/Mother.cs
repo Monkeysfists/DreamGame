@@ -8,7 +8,7 @@ using TickTick.Entities.Tiles.Platforms;
 using TickTick.Animations;
 using GameLibrary.Types;
 using Microsoft.Xna.Framework.Graphics;
-
+using TickTick.Entities.Tiles.Platforms.Chapter1;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
@@ -57,7 +57,7 @@ namespace TickTick.Entities.Tiles.Creatures
             //umbrella.Position.X = Position.X + 100;
             Velocity.Y += 55F;
             Handlecolission();
-            //base.Update();
+            base.Update();
         }
 
         public void ChangeSpeed()
@@ -111,7 +111,10 @@ namespace TickTick.Entities.Tiles.Creatures
                                 else if (entity is PlatformTile && !_OnGround && Velocity.Y > 0F)
                                 {
                                     //Position.Y -= depth.Y - 1;
-                                }
+                                }else if(entity is Raindrop)
+                        {
+                            RemoveChild(entity);
+                        }
                             }
                         }
 
