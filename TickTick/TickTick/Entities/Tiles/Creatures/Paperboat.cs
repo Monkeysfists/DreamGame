@@ -20,7 +20,8 @@ namespace TickTick.Entities.Tiles.Creatures
             CanCollide = true;
             Texture = GameHandler.AssetHandler.GetTexture("chapter1/paperboat");
             ResizeToTexture();
-            Size /= 2;
+            Size /= 1;
+
         }
     }
 }

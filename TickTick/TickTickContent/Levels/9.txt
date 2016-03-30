@@ -1,10 +1,14 @@
+..h.............................H
 .
 .
-..
 .
 .
-h#........................T...H...........Pa...
-SSSSSSSSSSzZzZzZzZzZzSSSSSSSSSSSSSSSSSSSSSSSSSS
+..........................T............
+.
+.........................................aP
+.
+.#
+SSSSSSSSSSzZzZzZzZzZzSSSSSSSSSSSSSSSSSSSSSSSSSSS
 G...G...G...G...G...G...G...G...G...G...G...G...
 .
 Street

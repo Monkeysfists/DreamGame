@@ -21,6 +21,7 @@ namespace TickTick.Entities.Tiles.Creatures
         {
             this.right = right;
             Texture = GameHandler.AssetHandler.GetTexture("chapter3/bullet");
+            Size = new Vector2(LevelEntity.TileSize / 10, LevelEntity.TileSize / 10);
         }
 
         public override void Update()

@@ -30,6 +30,8 @@ namespace TickTick.Entities
 
         public Train train;
 
+        public static int TileSize;
+
         /// <summary>
         /// Whether the level is still locked.
         /// </summary>
@@ -73,6 +75,8 @@ namespace TickTick.Entities
         {
             LevelNumber = level;
 
+            TileSize = 40;
+
             // Get level status
             String[] levelStatuses = GameHandler.AssetHandler.ReadFile("Levels/levels_status.txt").Split('\n');
             String[] levelStatus = levelStatuses[LevelNumber - 1].Split(',');
@@ -108,16 +112,34 @@ namespace TickTick.Entities
             }
             switch (LevelNumber)
             {
-                case 3:
-                case 4:
-                    if(state.background.Texture != GameHandler.AssetHandler.GetTexture("background/dark_sky"))
-                        state.background.Texture = GameHandler.AssetHandler.GetTexture("background/dark_sky");
+                case 1:
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("background/achtergrondkamer");
                     break;
-                case 5:
+                case 2:
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("background/rainy_sky");
+                    break;
+                case 3:
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("background/achtergrond_donker");
+                    break;
+                case 4:
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("background/dark_sky");
+                    break;
+                case 5: 
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("background/achtergrondkamer");
+                    break;
                 case 6:
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("background/stars");
+                    break;
+                case 8:
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("background/sky");
+                    break;
+                case 9:
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("background/sky");
+                    break;
+                case 10:
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("backround/achtergrondkamer");
                     break;
                 default:
-                    if (state.background.Texture != GameHandler.AssetHandler.GetTexture("background/sky"))
                         state.background.Texture = GameHandler.AssetHandler.GetTexture("background/sky");
                     break;
 
@@ -128,9 +150,7 @@ namespace TickTick.Entities
 
             if (MathHelper.Distance(teddy.Position.X, player.Position.X) > 20)
             {
-                state.Hint.Text = "robbert is gaaf";
-                
-
+                state.Hint.Text = "WASD";               
                 state.GameOver = false;
 
                 ResizeToContents();
@@ -156,7 +176,7 @@ namespace TickTick.Entities
             // Load tiles
             String level = GameHandler.AssetHandler.ReadFile("Levels/" + LevelNumber + ".txt");
             String[] splitLevel = level.Split('\n');
-            LoadGridEntities(level, ConvertTiles, new Vector2(500, 500), new Point(20, 20), new Point(-1, splitLevel.Length - 2));
+            LoadGridEntities(level, ConvertTiles, new Vector2(500, 500), new Point(TileSize, TileSize), new Point(-1, splitLevel.Length - 2));
 
             // Layer entities
             foreach (Entity entity in Children)
@@ -192,23 +212,21 @@ namespace TickTick.Entities
             {
                 //Building blocks
                 case 'W':
-                    return new CollisionObject("wood", new Vector2(20,100));
+                    return new CollisionObject("wood", new Vector2(TileSize, 5*TileSize));
                 case 'B':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.buildingblock);
+                    return new CollisionObject("chapter1/blokken/blok" + GameHandler.Random.Next(1, 27), new Vector2(TileSize,TileSize));
                 case '*':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.black);
+                    return new CollisionObject("black", new Vector2(TileSize,TileSize));
                 case 'G':
-                    return new CollisionObject("grond", new Vector2(80,1000));
+                    return new CollisionObject("grond", new Vector2(4*TileSize,24*TileSize));
                 case 'S':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.street);
+                    return new CollisionObject("stoep", new Vector2(TileSize,TileSize));
                 case '-':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.etc);
-                case '+':
-                    return new CollisionObject("WoodenFloorTile", new Vector2(100, 100));
                 case '=':
-                    return new CollisionObject("WoodenFloorTile", new Vector2(20, 20));
+                    return new CollisionObject("WoodenFloorTile", new Vector2(TileSize, TileSize));
                 case '_':
-                    return new CollisionObject("InfiniteWood", new Vector2(80,1000));
+                    return new CollisionObject("InfiniteWood", new Vector2(4*TileSize,24*TileSize));
 
                 //Objects used in multiple chapters
                 case 'T':
@@ -230,7 +248,7 @@ namespace TickTick.Entities
                 case 'H':
                     return new HighSchool(LevelNumber);
                 case 'h':
-                    return new NoCollisionObject("achtergrond huis", new Vector2(500,500));
+                    return new NoCollisionObject("achtergrond huis", new Vector2(25*TileSize,25*TileSize));
 
 
                 case '#':
@@ -240,7 +258,7 @@ namespace TickTick.Entities
 
                 //Chapter 1   
                 case 'n':
-                    return new CollisionObject("chapter1/nightstand", new Vector2(120, 100));
+                    return new CollisionObject("chapter1/nightstand", new Vector2(6*TileSize, 5*TileSize));
                 case 'r':
                     return new TrainTracks();
                 case 'k':
@@ -252,7 +270,7 @@ namespace TickTick.Entities
                 case 'd':
                     return new Board();
                 case 'F': 
-                    return new NoCollisionObject("chapter1/flower", new Vector2(20,20));
+                    return new NoCollisionObject("chapter1/flower", new Vector2(TileSize,TileSize));
                 case 'M':
                     return new Mother();
                 case 'w':
@@ -266,13 +284,13 @@ namespace TickTick.Entities
                 case '3':
                     return new Ghost();
                 case 'I':
-                    return new CollisionObject("chapter2/castle_wall", new Vector2(20,20));
+                    return new CollisionObject("chapter2/castle_wall", new Vector2(TileSize,TileSize));
                 case 'J':
-                    return new CollisionObject("chapter2/castle_wall_top", new Vector2(20, 20));
+                    return new CollisionObject("chapter2/castle_wall_top", new Vector2(TileSize, TileSize));
                 case 'j':
-                    return new DefaultPlatform(new Vector2(20, 20));
+                    return new DefaultPlatform(new Vector2(TileSize, TileSize));
                 case 'i':
-                    return new NoCollisionObject("chapter2/castle_wall_background", new Vector2(20,20));
+                    return new NoCollisionObject("chapter2/castle_wall_background", new Vector2(TileSize, TileSize));
                 case 'K':
                     return new LegoBlock();
                 case '(':
@@ -282,16 +300,16 @@ namespace TickTick.Entities
                 case 'l':
                     return new UnderLavaTile();
                 case 'z':
-                    return new CollisionObject("chapter2/zebrawit", new Vector2(20, 20));
+                    return new CollisionObject("chapter2/zebrawit", new Vector2(TileSize, TileSize));
                 case 'Z':
-                    return new CollisionObject("chapter2/zebrazwart", new Vector2(20, 20));
+                    return new CollisionObject("chapter2/zebrazwart", new Vector2(TileSize, TileSize));
 
                 //Chapter 3
                 case '0':
                     return new Bully();
 
                 case '9':
-                    return new CollisionObjectWall("WoodenFloorTile", new Vector2(20, 20));
+                    return new CollisionObjectWall("WoodenFloorTile", new Vector2(TileSize, TileSize));
 
                 case '8':
                     return new FlyingCarCreature();
@@ -301,16 +319,16 @@ namespace TickTick.Entities
 
                 //Chapter 4
                 case 'c':
-                    return new NoCollisionObject("chapter4/closet", new Vector2(40,80));
+                    return new NoCollisionObject("chapter4/closet", new Vector2(2*TileSize, 4*TileSize));
                 case 'a':
-                    return new NoCollisionObject("chapter4/autoleeg", new Vector2(80,60));
+                    return new NoCollisionObject("chapter4/autoleeg", new Vector2(4*TileSize,3*TileSize));
                 case '!':
-                    return new CollisionObject("chapter4/door_closed", new Vector2(20, 100));
+                    return new CollisionObject("chapter4/door_closed", new Vector2(TileSize, 5*TileSize));
 
                 case '$':
                     return new Raindrop();
                 case '%':
-                    DefaultPlatform defaultPlatform = new DefaultPlatform(new Vector2(20,20));
+                    DefaultPlatform defaultPlatform = new DefaultPlatform(new Vector2(TileSize,TileSize));
                     if (character == '$')
                         defaultPlatform.Velocity.X = 100F;
                     else if (character == '%')

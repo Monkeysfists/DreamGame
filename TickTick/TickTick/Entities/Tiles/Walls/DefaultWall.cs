@@ -11,6 +11,7 @@ namespace TickTick.Entities.Tiles.Walls {
 		/// </summary>
 		public DefaultWall() {
 			Texture = GameHandler.AssetHandler.GetTexture("stoep");
+            Size = new Vector2(LevelEntity.TileSize, LevelEntity.TileSize);
 		}
 	}
 }

@@ -397,13 +397,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_teddy_walking%402.png">
-      <Name>ch3_teddy_walking%402</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="chapter4\ch4_teddy.png">
       <Name>ch4_teddy</Name>
       <Importer>TextureImporter</Importer>
@@ -469,13 +462,6 @@
   <ItemGroup>
     <Compile Include="chapter3\pestkop_lopen%404.png">
       <Name>pestkop_lopen%404</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="chapter3\pestkop.png">
-      <Name>pestkop</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -695,11 +681,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="chapter1\ch1_joch_lopen%404.png">
-      <Name>ch1_joch_lopen%404</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="chapter1\ch1_joch_springen.png">
       <Name>ch1_joch_springen</Name>
       <Importer>TextureImporter</Importer>
@@ -826,13 +807,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chapter3\ch3_joch_sword_idle.png">
-      <Name>ch3_joch_sword_idle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="chapter3\ch3_joch_sword_attack%402.png">
       <Name>ch3_joch_sword_attack%402</Name>
       <Importer>TextureImporter</Importer>
@@ -849,13 +823,6 @@
   <ItemGroup>
     <Compile Include="chapter3\ch3_joch_shotgun_springen.png">
       <Name>ch3_joch_shotgun_springen</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="chapter3\ch3_joch_shotgun_schieten%402.png">
-      <Name>ch3_joch_shotgun_schieten%402</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1213,6 +1180,80 @@
   <ItemGroup>
     <Compile Include="InfiniteWood.png">
       <Name>InfiniteWood</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="background\achtergrondkamer.png">
+      <Name>achtergrondkamer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter3\ch3_joch_shotgun_schieten%402.png">
+      <Name>ch3_joch_shotgun_schieten%402</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter3\ch3_joch_sword_idle.png">
+      <Name>ch3_joch_sword_idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="chapter3\ch3_teddy_walking%402.png">
+      <Name>ch3_teddy_walking%402</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chapter3\pestkop.png">
+      <Name>pestkop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buttons\continue1.png">
+      <Name>continue1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Buttons\continue2.png">
+      <Name>continue2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Buttons\newgame1.png">
+      <Name>newgame1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Buttons\newgame2.png">
+      <Name>newgame2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="finish_flag.png">
+      <Name>finish_flag</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="theend.png">
+      <Name>theend</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="background\stars.png">
+      <Name>stars</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

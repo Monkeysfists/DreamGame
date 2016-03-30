@@ -12,7 +12,7 @@ namespace TickTick.Entities.Tiles.Platforms
         public Umbrella()
         {
             Texture = GameHandler.AssetHandler.GetTexture("chapter1/umbrella");
-            Size *= 5;
+            Size = new Vector2(Texture.Width * LevelEntity.TileSize/20, Texture.Height * LevelEntity.TileSize/20);
             CanCollide = true;
 
         }

@@ -17,6 +17,8 @@ namespace TickTick.Entities.Tiles.Platforms
         {
             Texture = GameHandler.AssetHandler.GetTexture("chapter2/legoblock_blank");
             Color = new Color(GameHandler.Random.Next(255), GameHandler.Random.Next(255), GameHandler.Random.Next(255));
+            Size = new Vector2(LevelEntity.TileSize, LevelEntity.TileSize);
+
         }
     }
 }

@@ -88,7 +88,7 @@ namespace TickTick.Entities.Tiles.Creatures
             Animation = IdleAnimation;
 
             // Size
-            Size = Animation.SpriteSheet.CellSize;
+            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize/20;
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
 

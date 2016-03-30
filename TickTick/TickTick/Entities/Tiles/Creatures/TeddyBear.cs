@@ -78,7 +78,10 @@ namespace TickTick.Entities.Tiles.Creatures
                 Animation = TeddyIdleAnimation;
 
             // Size
-            Size = Animation.SpriteSheet.CellSize;
+            if (chapter != 10)
+                Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 10;
+            else
+                Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 20;
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
 
@@ -157,6 +160,8 @@ namespace TickTick.Entities.Tiles.Creatures
 
             TalkBox.Position = Parent.Position - new Vector2(100F,100F);
             //TalkBox.SetTextPosition = Par.Position - new Vector2(90F, 90F);
+            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 15;
+
         }
 
         public override void Draw()

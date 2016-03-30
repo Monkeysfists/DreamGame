@@ -36,14 +36,8 @@ namespace TickTick.Entities.Tiles.Creatures
             Health = 100;
             Name = "Bully";
 
-            // Size
-            //Size = Animation.SpriteSheet.CellSize;
-            Origin.X = (Size.X - 72) / 2;
-            Origin.Y = (Size.Y - 55) / 2;
-
             // Speed
             Speed = 200F;
-
 
             //Timer
             IntervalTimer = 1F;
@@ -53,9 +47,12 @@ namespace TickTick.Entities.Tiles.Creatures
             BullyRunAnimation = new BullyRunAnimation();
             BullyAttackAnimation = new BullyAttackAnimation();
             Animation = BullyIdleAnimation;
-
             GetPlayer();
 
+            // Size
+            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 10;
+            Origin.X = (Size.X - 72) / 2;
+            Origin.Y = (Size.Y - 55) / 2;
 
         }
 
@@ -70,7 +67,7 @@ namespace TickTick.Entities.Tiles.Creatures
             {
                 IdleAnimation.FlipHorizontally = true;
             }
-
+            
             if (IntervalTimer > 0)
             {
                 canAttack = false;
@@ -81,8 +78,8 @@ namespace TickTick.Entities.Tiles.Creatures
             }
 
             HandleCollision();
-            /*
-            if (player.Position.X > Position.X)
+            
+            /*if (player.Position.X > Position.X)
                 mirrored = true;
             if (IntervalTimer == 0 && Visible)
                 GetPlayer();
@@ -93,14 +90,20 @@ namespace TickTick.Entities.Tiles.Creatures
 
             if(MathHelper.Distance(player.Position.X, Position.X) < 20)
             {
-                //Attack();
+                Animation = BullyAttackAnimation;
                 IntervalTimer += (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (mirrored)
+            {
+                Animation.FlipHorizontally = true;
             }
 
             if (IntervalTimer > 2)
                 IntervalTimer = 0;
-                */
+                
             base.Update();
+            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 10;*/
         }
 
         public override void Draw()
@@ -127,6 +130,7 @@ namespace TickTick.Entities.Tiles.Creatures
             EntityList = FindChildrenByName("player", true);
             if (EntityList.Count > 0)
                 player = (PlayerCreature)EntityList[0];
+            //return player;
         }
 
         public void Attack()

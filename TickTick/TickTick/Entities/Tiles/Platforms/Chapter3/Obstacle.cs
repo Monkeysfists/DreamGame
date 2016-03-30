@@ -17,6 +17,7 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter3
         public Obstacle()
         {
             Texture = Texture = GameHandler.AssetHandler.GetTexture("chapter3/obstacle" + GameHandler.Random.Next(1, 4));
+            //Size = new Vector2(LevelEntity.TileSize, LevelEntity.TileSize);
         }
 
         public void Update() { 

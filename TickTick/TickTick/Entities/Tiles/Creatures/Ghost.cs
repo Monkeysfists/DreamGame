@@ -23,6 +23,8 @@ namespace TickTick.Entities.Tiles.Creatures
             Animation = WalkAnimation;
             Moving = false;
             Visible = false;
+            Size = new Vector2(150,280);
+            CanCollide = true;
         }
 
         public override void Update()
@@ -32,7 +34,7 @@ namespace TickTick.Entities.Tiles.Creatures
             if (Moving)
                     Position.X += 0.5f;
 
-            if (Timer > 1 && !Moving)
+            if (Timer > 2 && !Moving)
             {
                 Moving = true;
                 Visible = true;

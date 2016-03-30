@@ -20,7 +20,7 @@ namespace TickTick.Entities.Tiles.Walls
 
             Velocity = Vector2.Zero;
             CanCollide = false;
-            Size = new Vector2(20, 60);
+            Size = new Vector2(LevelEntity.TileSize, 3*LevelEntity.TileSize);
         }
 
         public override void Update()

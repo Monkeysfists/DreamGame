@@ -8,6 +8,7 @@ namespace TickTick.Entities.Tiles.Platforms
         {
             //TODO
             Texture = GameHandler.AssetHandler.GetTexture("chapter1/traintrack");
+            Size = new Microsoft.Xna.Framework.Vector2(LevelEntity.TileSize, LevelEntity.TileSize);
         }
     }
 }

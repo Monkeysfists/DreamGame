@@ -23,7 +23,7 @@ namespace TickTick.Entities.Tiles.Platforms
             //CanCollide = true;
             Velocity = Vector2.Zero;
             // Size
-            Size = Animation.SpriteSheet.CellSize * 2;
+            Size = new Vector2(LevelEntity.TileSize,LevelEntity.TileSize);
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
             Size.X *= 2;

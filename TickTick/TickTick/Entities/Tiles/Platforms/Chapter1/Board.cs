@@ -13,15 +13,16 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter1
         public Board()
         {
             Texture = GameHandler.AssetHandler.GetTexture("chapter1/uithangborden/bord" + GameHandler.Random.Next(1, 4));
-            pole1 = new NoCollisionObject("chapter1/uithangborden/bordpaal1", new Vector2(20,80));
-            pole2 = new NoCollisionObject("chapter1/uithangborden/bordpaal2",new Vector2(20,80));
+            pole1 = new NoCollisionObject("chapter1/uithangborden/bordpaal1", new Vector2(LevelEntity.TileSize, 4 * LevelEntity.TileSize));
+            pole2 = new NoCollisionObject("chapter1/uithangborden/bordpaal2",new Vector2(LevelEntity.TileSize,4*LevelEntity.TileSize));
             pole1.Layer = 1;
             pole2.Layer = 500;
             pole1.Position = this.Position;
             pole2.Position = this.Position;
             this.AddChild(pole1);
             this.AddChild(pole2);
-            Size *= 2;
+            Size = new Vector2(LevelEntity.TileSize, LevelEntity.TileSize);
+            CanCollide = false;
             //TODO: collision met player
         }
     }

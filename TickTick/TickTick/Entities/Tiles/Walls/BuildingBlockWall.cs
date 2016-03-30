@@ -35,7 +35,7 @@ namespace TickTick.Entities.Tiles.Walls
                     break;
             }
 
-            Size = Size * 2;
+           // Size = new Vector2(LevelEntity.TileSize,LevelEntity.TileSize);
         }
     }
 }

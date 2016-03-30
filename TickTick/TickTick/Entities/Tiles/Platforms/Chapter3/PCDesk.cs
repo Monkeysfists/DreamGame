@@ -26,6 +26,7 @@ namespace TickTick.Entities.Tiles.Platforms
             Texture = GameHandler.AssetHandler.GetTexture("chapter3/computer");
             UpdateTimer = 0;
             this.level = level;
+            Size = new Vector2(4*LevelEntity.TileSize,LevelEntity.TileSize*4);
         }
 
         public override void Update()

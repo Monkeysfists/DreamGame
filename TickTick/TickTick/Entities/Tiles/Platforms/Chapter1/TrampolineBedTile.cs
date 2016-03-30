@@ -12,7 +12,7 @@ namespace TickTick.Entities.Tiles.Platforms
             //TODO
             Texture = GameHandler.AssetHandler.GetTexture("chapter1/bed");
             CanCollide = true;
-            Size = new Vector2(220, 80);
+            Size = new Vector2(11*LevelEntity.TileSize, 4*LevelEntity.TileSize);
             /*
             CanCollide = true;
 

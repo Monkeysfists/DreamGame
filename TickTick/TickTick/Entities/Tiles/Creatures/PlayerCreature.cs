@@ -9,6 +9,7 @@ using TickTick.Entities.States;
 using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
 using TickTick.Entities.Tiles.Platforms.Chapter1;
+using TickTick.Entities.Tiles.Platforms.Chapter2;
 using TickTick.Entities.Tiles.Platforms.Chapter3;
 
 namespace TickTick.Entities.Tiles.Creatures {
@@ -115,6 +116,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         public bool Trampo;
         public Vector2 TrainSpeed;
         private float _Timer;
+        bool LightSwitchPressed;
         private int lane;
 
         /// <summary>
@@ -132,6 +134,8 @@ namespace TickTick.Entities.Tiles.Creatures {
             KnockbackTimer = 0;
             NewAnimations = false;
             item = "";
+            Layer = 10;
+            LightSwitchPressed = false;
 
             // Animations
             IdleAnimation = new PlayerIdleAnimation(chapter, item);
@@ -147,7 +151,7 @@ namespace TickTick.Entities.Tiles.Creatures {
             Animation = IdleAnimation;
 
             // Size
-            Size = Animation.SpriteSheet.CellSize * 2;
+            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize/10;
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
 
@@ -188,14 +192,13 @@ namespace TickTick.Entities.Tiles.Creatures {
             JumpAnimation = new PlayerJumpAnimation(chapter, item);
             AttackAnimation = new PlayerAttackAnimation(chapter, item);
             Animation = IdleAnimation;
-            Size = Animation.SpriteSheet.CellSize * 2;
+            Size = Animation.SpriteSheet.CellSize;
         }
 
         bool NewAnimations;
 
         public override void Update()
         {
-
             if (Health > 0)
             {
 
@@ -256,7 +259,9 @@ namespace TickTick.Entities.Tiles.Creatures {
                         if (_OnGround)
                         {
                             if (Velocity.X == 0)
+                            {
                                 Animation = IdleAnimation;
+                            }
                             else
                             {
                                 if (Velocity.X > 0)
@@ -274,7 +279,10 @@ namespace TickTick.Entities.Tiles.Creatures {
                             Animation = JumpAnimation;
                         }
                         if (Velocity.X == 0 && Animation != CrouchAnimation)
-                            Animation = IdleAnimation;
+                        {
+                            Animation = IdleAnimation; 
+                        }
+
                     }
                     else if (chapter == 6) ;
                     //CarLevel();
@@ -294,7 +302,9 @@ namespace TickTick.Entities.Tiles.Creatures {
 
             //Velocity.Y = 0F;
             if (GameHandler.InputHandler.AnyKeyDown(CrouchKey) && (chapter == 1 || chapter == 2))
+            {
                 Animation = CrouchAnimation;
+            }
             base.Update();
 
 
@@ -314,7 +324,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                 HandleCollision();
             }
 
-
+            Size = Animation.SpriteSheet.CellSize;
         }
 
         public override void Draw()
@@ -351,6 +361,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                     }
                     Animation = AttackAnimation;
                     AttackTimer = 2;
+
                 }
                 if (GameHandler.InputHandler.AnyKeyDown(LeftKey) && Animation != CrouchAnimation)
                 {
@@ -364,7 +375,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                 {
                     Velocity.X = 0F;
                 }
-                if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && _OnGround && Animation != CrouchAnimation)
+                if (GameHandler.InputHandler.AnyKeyDown(JumpKey) && _OnGround && Animation != CrouchAnimation && chapter!= 9 && chapter != 10)
                 {
                     Jump(JumpSpeed);
                     Animation = JumpAnimation;
@@ -466,7 +477,6 @@ namespace TickTick.Entities.Tiles.Creatures {
                             if (Velocity.X == 0 && Animation != CrouchAnimation)
                             {
                                 Animation = IdleAnimation;
-
                             }
                             Velocity.X += TrainSpeed.X;
                             System.Diagnostics.Debug.Print(entity.Velocity.ToString());
@@ -475,7 +485,19 @@ namespace TickTick.Entities.Tiles.Creatures {
                             _OnRails = false;
                         else if (entity.Velocity.X < 100)
                             _OnRails = false;
+                       else if (entity is Ghost || entity is Dinosaur)
+                       {
+                            Damage();
+                            KnockBack();
+                            InvinceTimer = 0.3F;
 
+                            //Jump(JumpSpeed);
+                       }else if (entity is LightSwitch)
+                       {
+                           _Timer = 0;
+                           ((PlayingState)Parent.Parent).Won = true;
+                           //change background
+                       }
 
                         if (!(entity is PlayerCreature) || (entity is Train) || (entity is TeddyBear) || !(entity is Raindrop))
                         {
@@ -628,10 +650,6 @@ namespace TickTick.Entities.Tiles.Creatures {
                 //this.Angle -= 1;
             }
 
-            AsteroidSpawner spawner = new AsteroidSpawner();
-            spawner.Position.X = GameHandler.GraphicsHandler.ScreenSize.X;
-            spawner.Position.Y = 0;
-            spawner.Update();
         }
 
     }

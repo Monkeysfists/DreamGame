@@ -91,7 +91,7 @@
     <Compile Include="Entities\Tiles\Creatures\Bullet.cs" />
     <Compile Include="Entities\Tiles\Creatures\Bully.cs" />
     <Compile Include="Entities\Tiles\Creatures\CreatureTileEntity.cs" />
-    <Compile Include="Entities\Tiles\Creatures\Dinosaur.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter2\Dinosaur.cs" />
     <Compile Include="Entities\Tiles\Creatures\FlyingCarCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\Ghost.cs" />
     <Compile Include="Entities\Tiles\Creatures\Mother.cs" />

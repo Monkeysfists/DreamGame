@@ -28,7 +28,8 @@ namespace TickTick.Entities.Tiles.Creatures
             Animation = WalkingAnimation;
             BeginSpeed.X = 100F;
 
-            Size = Animation.SpriteSheet.CellSize * 2;
+            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 10;
+            
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
 

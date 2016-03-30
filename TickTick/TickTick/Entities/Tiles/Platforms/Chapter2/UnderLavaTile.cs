@@ -17,6 +17,7 @@ namespace TickTick.Entities.Tiles.Platforms
         public UnderLavaTile()
         {
             GameHandler.AssetHandler.GetSpriteSheet("chapter2/lava_onder@6");
+            Size = new Vector2(LevelEntity.TileSize, LevelEntity.TileSize);
 
         }
     }
