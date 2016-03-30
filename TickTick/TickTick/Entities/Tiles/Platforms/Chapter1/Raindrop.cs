@@ -56,7 +56,7 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter1
                     reset();
                 }
                 else
-                if (entity is PlayerCreature)
+                if (entity is playerCreature)
                 {
                     reset();
                 }

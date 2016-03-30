@@ -86,7 +86,7 @@ namespace TickTick.Entities.Tiles.Creatures
             //}
 
 
-            if (PlayerCreature._OnRails)
+            if (playerCreature._OnRails)
             {
                 StartBool = true;
                 //RemoveChild(timerText);
@@ -139,7 +139,7 @@ namespace TickTick.Entities.Tiles.Creatures
                     kill();
                 }
 
-                if (StartBool = false && entity is PlayerCreature)
+                if (StartBool = false && entity is playerCreature)
                     StartBool = true;
 
                 if (!(entity is CreatureTileEntity))

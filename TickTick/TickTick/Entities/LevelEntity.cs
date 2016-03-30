@@ -20,7 +20,7 @@ namespace TickTick.Entities
         /// <summary>
         /// Player changes handled here
         /// </summary>
-        public PlayerCreature player;
+        public playerCreature player;
 
         /// <summary>
         /// Teddy handled here
@@ -80,7 +80,7 @@ namespace TickTick.Entities
             _Locked = bool.Parse(levelStatus[0]);
             _Solved = bool.Parse(levelStatus[1]);
 
-            player = new PlayerCreature(level);
+            player = new playerCreature(level);
             teddy = new TeddyBear(level);
             tree = new TreeTile(level);
             train = new Train();
@@ -165,7 +165,7 @@ namespace TickTick.Entities
                 entity.Layer = 10;
             }
 
-            player = new PlayerCreature(LevelNumber);
+            player = new playerCreature(LevelNumber);
             teddy = new TeddyBear(LevelNumber);
             tree = new TreeTile(LevelNumber);
             train = new Train();

@@ -29,11 +29,11 @@ namespace TickTick.Entities.Tiles.Walls
             {
                 foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
                 {
-                    if (entity is PlayerCreature)
+                    if (entity is playerCreature)
                     {
                         Texture = GameHandler.AssetHandler.GetTexture("chapter3/Emptystand");
                         CanCollide = false;
-                        PlayerCreature.item = "shotgun";
+                        playerCreature.item = "shotgun";
                     }
                 }
             }

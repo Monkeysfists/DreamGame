@@ -27,4 +27,4 @@
 .
 .
 7
-Space
+Space W-up S-Down

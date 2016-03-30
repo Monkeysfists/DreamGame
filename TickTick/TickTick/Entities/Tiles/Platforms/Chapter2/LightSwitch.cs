@@ -24,7 +24,7 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter2
 
             foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
             {
-                if (entity is PlayerCreature)
+                if (entity is playerCreature)
                 {
                     Texture = GameHandler.AssetHandler.GetTexture("chapter2/lightswitch_up");
                 }

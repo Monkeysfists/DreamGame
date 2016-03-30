@@ -28,7 +28,7 @@ namespace TickTick.Entities.Tiles.Creatures
         private bool mirrored;
 
         List<Entity> EntityList;
-        PlayerCreature player;
+        playerCreature player;
 
 
         public Bully()
@@ -126,7 +126,7 @@ namespace TickTick.Entities.Tiles.Creatures
         {
             EntityList = FindChildrenByName("player", true);
             if (EntityList.Count > 0)
-                player = (PlayerCreature)EntityList[0];
+                player = (playerCreature)EntityList[0];
         }
 
         public void Attack()

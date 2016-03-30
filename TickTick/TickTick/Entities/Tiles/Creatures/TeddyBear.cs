@@ -9,12 +9,14 @@ using TickTick.Animations;
 using GameLibrary.Types;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TickTick.Entities.Tiles.Walls;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
     public class TeddyBear : CreatureTileEntity
     {
-        private Animation TeddyIdleAnimation;
+        private Animation TeddyIdleAnimationRight;
+        private Animation TeddyIdleAnimationLeft;
         private Animation TeddyRunAnimation;
         private Animation TeddyAttackAnimation;
         private Animation TeddyTalkAnimation;
@@ -30,7 +32,7 @@ namespace TickTick.Entities.Tiles.Creatures
         private bool mirrored;
 
         List<Entity> EntityList;
-        PlayerCreature player;
+        playerCreature player;
 
         private bool _OnGround;
         private float _PreviousY;
@@ -61,40 +63,49 @@ namespace TickTick.Entities.Tiles.Creatures
 
 
             // Speed
-            Speed = 200F;
+            Speed = 700F;
 
 
             //Timer
             IntervalTimer = 1F;
 
             //Animations
-            TeddyIdleAnimation = new TeddyIdleAnimation(chapter);
+            TeddyIdleAnimationRight = new TeddyIdleAnimation(chapter);
+            TeddyIdleAnimationLeft = new TeddyIdleAnimation(chapter);
+            TeddyIdleAnimationLeft.FlipHorizontally = true;
             TeddyRunAnimation = new TeddyRunAnimation();
             TeddyAttackAnimation = new TeddyAttackAnimation();
             TeddyTalkAnimation = new TeddyTalkingAnimation();
-            if(chapter == 1)
+            Animation = TeddyIdleAnimationRight;
+            if (chapter == 1)
                 Animation = TeddyTalkAnimation;
-            if(Chapter != 1)
-                Animation = TeddyIdleAnimation;
 
             // Size
             Size = Animation.SpriteSheet.CellSize;
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
 
+            if (chapter == 5)
+                Velocity.X = Speed;
+
 
         }
 
         public override void Update()
         {
+
+            if(GameHandler.Random.Next(0,100) <= 7)
+            {
+                Velocity.X *= -1;
+            }
             // Animation directions
             if (Velocity.X > 0)
             {
-                IdleAnimation.FlipHorizontally = false;
+                Animation = TeddyIdleAnimationLeft;
             }
             else if (Velocity.X < 0)
             {
-                IdleAnimation.FlipHorizontally = true;
+                Animation = TeddyIdleAnimationRight;
             }
 
             if(IntervalTimer > 0)
@@ -120,7 +131,7 @@ namespace TickTick.Entities.Tiles.Creatures
             if (TalkStage > 9)
             {
                 RemoveChild(TalkBox);
-                Animation = TeddyIdleAnimation;
+                Animation = TeddyIdleAnimationRight;
             }
             /*
             if (player.Position.X > Position.X)
@@ -178,11 +189,13 @@ namespace TickTick.Entities.Tiles.Creatures
                 // Handle collisions
                 foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
                 {
-                if (entity is PlayerCreature)
+                if (entity is playerCreature)
                 {
                     if (Chapter == 5)
                         Animation = TeddyAttackAnimation;
                 }
+
+                else 
                 if (!(entity is CreatureTileEntity) || (entity is Train))
                     {
                         RectangleF playerBounds = GlobalCollisionBox;

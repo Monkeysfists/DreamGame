@@ -22,7 +22,7 @@ namespace TickTick.Entities.Tiles.Platforms {
 					if (entity is WallTile || entity is PlatformTile) {
 						Velocity *= -1;
 					}
-					if (entity is PlayerCreature) {
+					if (entity is playerCreature) {
 						entity.Position += Position - _LastPosition;
 					}
 				}

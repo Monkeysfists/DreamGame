@@ -56,7 +56,7 @@ namespace TickTick.Entities.Tiles.Platforms
             // Handle collisions
             foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
             {
-                if (entity is PlayerCreature || entity is Mother)
+                if (entity is playerCreature || entity is Mother)
                 {
                     Startbool = true;
                 }
@@ -70,7 +70,7 @@ namespace TickTick.Entities.Tiles.Platforms
                 {
                     Active = false;
                 }else
-                if (!(entity is PlayerCreature))
+                if (!(entity is playerCreature))
                 {
                     RectangleF playerBounds = GlobalCollisionBox;
                     RectangleF tileBounds = entity.GlobalCollisionBox;

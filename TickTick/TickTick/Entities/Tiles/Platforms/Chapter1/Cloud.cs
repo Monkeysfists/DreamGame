@@ -38,7 +38,7 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter1
         {
             foreach (Entity entity in GetCollidingEntities(new List<Entity>(Children), Vector2.Zero, Vector2.Zero))
             {
-                if(entity is PlayerCreature)
+                if(entity is playerCreature)
                 {
                     RemoveChild(this);
                 }

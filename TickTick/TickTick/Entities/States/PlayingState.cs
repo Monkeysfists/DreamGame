@@ -112,8 +112,7 @@ namespace TickTick.Entities.States {
                     {
                         _Overlay.Texture = GameHandler.AssetHandler.GetTexture("chapter" + CurrentLevel.Name + 2);
                     }
-                    _Overlay.ResizeToTexture();
-                    _Overlay.Position = (Size - _Overlay.Size) / 2;
+                    //_Overlay.Position = (Size - _Overlay.Size) / 2;
 					//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("black"));
 				}
 			}
