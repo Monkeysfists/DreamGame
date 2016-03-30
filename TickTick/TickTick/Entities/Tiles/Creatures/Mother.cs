@@ -50,7 +50,7 @@ namespace TickTick.Entities.Tiles.Creatures
             //TODO: verschillende snelheden naar rechts lopen
             SpeedTimer += (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
-            if (SpeedTimer > GameHandler.Random.Next(1, 3))
+            if (SpeedTimer > GameHandler.Random.Next(0, 2))
                 ChangeSpeed();
 
             Console.WriteLine(umbrella.Position.ToString());
@@ -62,7 +62,7 @@ namespace TickTick.Entities.Tiles.Creatures
 
         public void ChangeSpeed()
         {
-            Velocity = BeginSpeed * (1F + (float)(GameHandler.Random.Next(10, 80) / 100F));
+            Velocity = BeginSpeed * (1F + (float)(GameHandler.Random.Next(10, 150) / 100F));
             SpeedTimer = 0;
         }
 
@@ -81,7 +81,6 @@ namespace TickTick.Entities.Tiles.Creatures
                 {
                     RemoveChild(entity);
                 }
-
                 if (entity is Paperboat || entity is BlockBoat)
                 {
                     Active = false;

@@ -18,7 +18,7 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter1
             Texture = GameHandler.AssetHandler.GetTexture("chapter1/regendruppel");
             CanCollide = true;
             Size = new Vector2(10, 30);
-            Velocity.Y = 250F * (1 + (GameHandler.Random.Next(1, 5) / 10));
+            Velocity.Y = 350F * (1 + (GameHandler.Random.Next(1, 5) / 10));
             Startposition = Position;
             DelayTimer = 0.3F;
             Reset = false;

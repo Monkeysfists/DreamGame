@@ -26,6 +26,7 @@ namespace TickTick.Entities.Tiles.Platforms
             Size = Animation.SpriteSheet.CellSize * 2;
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
+            Size.X *= 2;
         }
 
         public override void Update()
