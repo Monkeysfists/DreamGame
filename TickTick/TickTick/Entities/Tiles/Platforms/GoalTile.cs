@@ -1,11 +1,12 @@
 ﻿using GameLibrary;
+using TickTick.Entities.Tiles.Walls;
 
 namespace TickTick.Entities.Tiles.Platforms
 {
     /// <summary>
     /// A default platform.
     /// </summary>
-    public class GoalTile : PlatformTile
+    public class GoalTile : WallTile
     {
         /// <summary>
         /// Creates a new DefaultPlatform.

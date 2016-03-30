@@ -8,17 +8,17 @@ using TickTick.Entities.Tiles.Platforms;
 using TickTick.Animations;
 using GameLibrary.Types;
 using Microsoft.Xna.Framework.Graphics;
-using TickTick.Entities.Tiles.Creatures;
+using Microsoft.Xna.Framework.Input;
 
-namespace TickTick.Entities.Tiles.Platforms
+namespace TickTick.Entities.Tiles.Walls
 {
-    public class Asteroid : PlatformTile
+    public class CollisionObjectWall : WallTile
     {
-
-        public Asteroid()
+        public CollisionObjectWall(string name, Vector2 size)
         {
-            Texture = GameHandler.AssetHandler.GetTexture("chapter3/asteroide" + GameHandler.Random.Next(1, 4));
+            Texture = GameHandler.AssetHandler.GetTexture(name);
+            CanCollide = true;
+            Size = size;
         }
-
     }
 }

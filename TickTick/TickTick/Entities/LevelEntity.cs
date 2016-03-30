@@ -84,6 +84,7 @@ namespace TickTick.Entities
             tree = new TreeTile(level);
             train = new Train();
 
+            
         }
 
         public override void Update()
@@ -104,6 +105,25 @@ namespace TickTick.Entities
                     state.Won = false;
                     state.GoToNextLevel();
                 }
+            }
+            switch (LevelNumber)
+            {
+                case 3:
+                case 4:
+                    if(state.background.Texture != GameHandler.AssetHandler.GetTexture("background/dark_sky"))
+                        state.background.Texture = GameHandler.AssetHandler.GetTexture("background/dark_sky");
+                    break;
+                case 5:
+                case 6:
+                    break;
+                default:
+                    if (state.background.Texture != GameHandler.AssetHandler.GetTexture("background/sky"))
+                        state.background.Texture = GameHandler.AssetHandler.GetTexture("background/sky");
+                    break;
+
+
+
+                
             }
 
             if (MathHelper.Distance(teddy.Position.X, player.Position.X) > 20)
@@ -269,6 +289,15 @@ namespace TickTick.Entities
                 //Chapter 3
                 case '0':
                     return new Bully();
+
+                case '9':
+                    return new CollisionObjectWall("WoodenFloorTile", new Vector2(20, 20));
+
+                case '8':
+                    return new FlyingCarCreature();
+
+                case '7':
+                    return new Asteroid();
 
                 //Chapter 4
                 case 'c':

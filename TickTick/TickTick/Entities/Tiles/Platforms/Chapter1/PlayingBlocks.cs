@@ -1,8 +1,8 @@
 ﻿using GameLibrary;
 
-namespace TickTick.Entities.Tiles.Platforms
+namespace TickTick.Entities.Tiles.Walls
 {
-    public class PlayingBlocks : PlatformTile
+    public class PlayingBlocks : WallTile
     {
         public PlayingBlocks()
         {

@@ -5,6 +5,7 @@ using TickTick.Entities.Tiles.Creatures;
 using System.Collections.Generic;
 using GameLibrary.Types;
 using TickTick.Entities.Tiles.Platforms.Chapter1;
+using TickTick.Entities.Tiles.Walls;
 
 namespace TickTick.Entities.Tiles.Platforms
 {
@@ -65,7 +66,7 @@ namespace TickTick.Entities.Tiles.Platforms
                     entity.Velocity.X = 0;
                 }
                 else
-                if(entity is PlatformTile)
+                if(entity is PlatformTile || entity is WallTile)
                 {
                     Active = false;
                 }else
