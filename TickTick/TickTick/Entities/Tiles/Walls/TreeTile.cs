@@ -43,15 +43,15 @@ namespace TickTick.Entities.Tiles.Walls
         {
             if (level == 8)
             {
-                foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
+            foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
+            {
+                if (entity is playerCreature)
                 {
-                    if (entity is PlayerCreature)
-                    {
-                        CanCollide = false;
-                        Texture = GameHandler.AssetHandler.GetTexture("chapter3/ch3_tree_swordless");
-                        PlayerCreature.item = "sword";
-                    }
+                    CanCollide = false;
+                    Texture = GameHandler.AssetHandler.GetTexture("chapter3/ch3_tree_swordless");
+                    playerCreature.item = "sword";
                 }
+            }
             }
             base.Update();
         }

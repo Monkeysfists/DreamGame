@@ -7,11 +7,12 @@ using System.Collections.Generic;
 using TickTick.Animations;
 using TickTick.Entities.States;
 using TickTick.Entities.Tiles.Platforms;
+using TickTick.Entities.Tiles.Platforms.Chapter3;
 using TickTick.Entities.Tiles.Walls;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
-    class FlyingCarCreature : CreatureTileEntity
+    class PlayerBike : CreatureTileEntity
     {
         public int Health
         {
@@ -75,7 +76,7 @@ namespace TickTick.Entities.Tiles.Creatures
         private float InvinceTimer;
         private float _PreviousY;
 
-        public FlyingCarCreature()
+        public PlayerBike()
         {
             Health = 6;
             _PreviousY = GlobalCollisionBox.Bottom;
@@ -84,18 +85,18 @@ namespace TickTick.Entities.Tiles.Creatures
             CanCollide = true;
 
             // Animations
-            IdleAnimation = new PlayerCarAnimation();
+            IdleAnimation = new PlayerCyclingAnimation();
             //RightAnimation = new PlayerMoveAnimation();
             Animation = IdleAnimation;
 
             // Size
-            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize/20;
+            Size = Animation.SpriteSheet.CellSize;
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
 
             // Speed
-            RightSpeed = 400F;
-            YSpeed = 400F;
+            RightSpeed = 200F;
+            YSpeed = 150F;
 
             //Timer
             InvinceTimer = 0;
@@ -146,7 +147,7 @@ namespace TickTick.Entities.Tiles.Creatures
                 Vector2 origin = Position - bound;
                 Parent.DrawOrigin = new Vector2((int)origin.X, (int)origin.Y);
             }
-            
+
             base.Update();
 
         }
@@ -194,7 +195,7 @@ namespace TickTick.Entities.Tiles.Creatures
                     // Win
                     if (entity is GoalTile)
                     {
-                        Velocity.X = 0F;
+                        RightSpeed = 0F;
                         _Won = true;
                         if (_Won)
                         {
@@ -203,33 +204,20 @@ namespace TickTick.Entities.Tiles.Creatures
                         }
                     }
                     else
-                        if (entity is BigAsteroid)
+                        if (entity is Obstacle)
                     {
                         RectangleF playerBounds = GlobalCollisionBox;
                         RectangleF tileBounds = entity.GlobalCollisionBox;
                         playerBounds.Height++;
                         Vector2 depth = CalculateIntersectionDepth(playerBounds, tileBounds);
 
-                        if (depth.X > 40 || depth.Y > 40)
+                        if (depth.X > 50 || depth.Y > 50)
                         {
                             Health = 0;
                             this.Active = false;
                         }
                     }
                     else
-                    if(entity is Asteroid)
-                    {
-                        RectangleF playerBounds = GlobalCollisionBox;
-                        RectangleF tileBounds = entity.GlobalCollisionBox;
-                        playerBounds.Height++;
-                        Vector2 depth = CalculateIntersectionDepth(playerBounds, tileBounds);
-
-                        if (depth.X > 40 || depth.Y > 40)
-                        {
-                            Health = 0;
-                            this.Active = false;
-                        }
-                    }else
                         if (!(entity is CreatureTileEntity))
                     {
                         RectangleF playerBounds = GlobalCollisionBox;
@@ -258,7 +246,7 @@ namespace TickTick.Entities.Tiles.Creatures
                             Position.Y += depth.Y + 1;
                             Velocity.Y = 0F;
                         }
-                    
+
                     }
                 }
             }
@@ -305,5 +293,5 @@ namespace TickTick.Entities.Tiles.Creatures
             }
         }
     }
-    
+
 }

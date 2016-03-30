@@ -87,7 +87,7 @@ namespace TickTick.Entities.Tiles.Creatures
                     Active = false;
                 }
 
-                if (!(entity is PlayerCreature) || !(!(entity is Raindrop)))
+                if (!(entity is playerCreature) || !(!(entity is Raindrop)))
                         {
                             RectangleF playerBounds = GlobalCollisionBox;
                             RectangleF tileBounds = entity.GlobalCollisionBox;

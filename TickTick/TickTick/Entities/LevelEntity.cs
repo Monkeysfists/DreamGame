@@ -11,6 +11,7 @@ using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
 using TickTick.Entities.Tiles.Platforms.Chapter1;
 using TickTick.Entities.Tiles.Platforms.Chapter2;
+using TickTick.Entities.Tiles.Platforms.Chapter3;
 
 namespace TickTick.Entities
 {
@@ -19,7 +20,7 @@ namespace TickTick.Entities
         /// <summary>
         /// Player changes handled here
         /// </summary>
-        public PlayerCreature player;
+        public playerCreature player;
 
         /// <summary>
         /// Teddy handled here
@@ -83,7 +84,7 @@ namespace TickTick.Entities
             _Locked = bool.Parse(levelStatus[0]);
             _Solved = bool.Parse(levelStatus[1]);
 
-            player = new PlayerCreature(level);
+            player = new playerCreature(level);
             teddy = new TeddyBear(level);
             tree = new TreeTile(level);
             train = new Train();
@@ -184,7 +185,7 @@ namespace TickTick.Entities
                 entity.Layer = 10;
             }
 
-            player = new PlayerCreature(LevelNumber);
+            player = new playerCreature(LevelNumber);
             teddy = new TeddyBear(LevelNumber);
             tree = new TreeTile(LevelNumber);
             train = new Train();
@@ -252,7 +253,7 @@ namespace TickTick.Entities
 
 
                 case '#':
-                    return new GoalTile();
+                    return new GoalTile(LevelNumber);
                 case '@':
                    return new BlockBoat();
 
@@ -316,6 +317,15 @@ namespace TickTick.Entities
 
                 case '7':
                     return new Asteroid();
+
+                case '6':
+                    return new BigAsteroid();
+                case '5':
+                    return new Road();
+                case '4':
+                    return new PlayerBike();
+                case ':':
+                    return new Obstacle();               
 
                 //Chapter 4
                 case 'c':

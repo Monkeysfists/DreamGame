@@ -16,7 +16,7 @@ namespace TickTick.Entities.Tiles.Creatures {
     /// <summary>
     /// A controllable player creature.
     /// </summary>
-    public class PlayerCreature : CreatureTileEntity
+    public class playerCreature : CreatureTileEntity
     {
         public int Health
         {
@@ -96,6 +96,7 @@ namespace TickTick.Entities.Tiles.Creatures {
         public Animation CyclingAnimation;
 
 
+
         /// <summary>
         /// Invincible timer control bool
         /// </summary>
@@ -119,10 +120,13 @@ namespace TickTick.Entities.Tiles.Creatures {
         bool LightSwitchPressed;
         private int lane;
 
+        public HealthBar Hearts;
+        public Bullet bullet;
+
         /// <summary>
         /// Creates a new PlayerCreature.
         /// </summary>
-        public PlayerCreature(int chapter)
+        public playerCreature(int chapter)
         {
             Health = 6;
             _PreviousY = GlobalCollisionBox.Bottom;
@@ -199,8 +203,18 @@ namespace TickTick.Entities.Tiles.Creatures {
 
         public override void Update()
         {
+            foreach(Entity entity in FindChildrenByName("Hearts", false))
+                RemoveChild(entity);
+
             if (Health > 0)
             {
+                for (int i = 0; i < Health; i++)
+                {
+                    Hearts = new HealthBar();
+                    AddChild(Hearts);
+                    Hearts.Origin = new Vector2(0 + Hearts.Texture.Width * 3 *i + (GameHandler.GraphicsHandler.ScreenSize.X / 3), GameHandler.GraphicsHandler.ScreenSize.Y / 3);
+                    Hearts.Active = false;
+                }
 
 
                 // Handle physics
@@ -280,8 +294,8 @@ namespace TickTick.Entities.Tiles.Creatures {
                         }
                         if (Velocity.X == 0 && Animation != CrouchAnimation)
                         {
-                            Animation = IdleAnimation; 
-                        }
+                            Animation = IdleAnimation;
+                    }
 
                     }
                     else if (chapter == 6) ;
@@ -347,18 +361,27 @@ namespace TickTick.Entities.Tiles.Creatures {
                 // Handle input
 
                 //Attack move
-                if (GameHandler.InputHandler.AnyKeyDown(AttackKey) && AttackTimer <= 0)
+                if (GameHandler.InputHandler.AnyKeyDown(AttackKey) && AttackTimer <= 0 && item == "shotgun")
                 {
                     if (Velocity.X < 0)
                     {
-                        Bullet bullet = new Bullet(false);
+                        bullet = new Bullet(false);
                         AddChild(bullet);
                     }
                     else if (Velocity.X > 0)
                     {
-                        Bullet bullet = new Bullet(true);
+                        bullet = new Bullet(true);
+                        AddChild(bullet);
+                    }else if(Velocity.X == 0)
+                    {
+                        bullet = new Bullet(true);
                         AddChild(bullet);
                     }
+                    //bullet.Active = false;
+                    bullet.Origin.Y -= 35F;
+                    bullet.Origin.X -= 80F;
+                    bullet.Layer = 15;
+                    bullet.ResizeToTexture();
                     Animation = AttackAnimation;
                     AttackTimer = 2;
 
@@ -399,7 +422,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                 foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
                 {
                     // Win
-                    if (entity is GoalTile)
+                    if (entity is GoalTile || entity is PCDesk)
                     {
                         _Won = true;
                         if (_Won)
@@ -422,12 +445,17 @@ namespace TickTick.Entities.Tiles.Creatures {
                                 KnockBack();
                                 //Jump(JumpSpeed);
                             }
+
+                            if(chapter == 5)
+                            {
+                                Health = 0;
+                            }
                         }
                         else
 
                         if (entity is Raindrop)
                         {
-                            //Damage();
+                            Damage();
                             //Jump(JumpSpeed * 0.1F);
                             InvinceTimer = 0.3F;
                         }
@@ -438,16 +466,21 @@ namespace TickTick.Entities.Tiles.Creatures {
                             //entity.Velocity.X = 200F;
                         }
                         else
-
+                        if(entity is TrampolineBedTile)
+                        {
+                            Trampo = true;
+                        }
+                        else
                         if (entity is Board)
                         {
                             Damage();
                             InvinceTimer = 0.2F;
                         }
+                        else
                         if (entity is CollisionObject)
                         {
                             _OnGround = true;
-                        }
+                        }else
                         if (entity is TrainTracks)
                         {
                             //TODO: add soundeffect
@@ -499,7 +532,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                            //change background
                        }
 
-                        if (!(entity is PlayerCreature) || (entity is Train) || (entity is TeddyBear) || !(entity is Raindrop))
+                        if (!(entity is playerCreature) || (entity is Train) || (entity is TeddyBear) || !(entity is Raindrop))
                         {
                             RectangleF playerBounds = GlobalCollisionBox;
                             RectangleF tileBounds = entity.GlobalCollisionBox;
@@ -518,11 +551,6 @@ namespace TickTick.Entities.Tiles.Creatures {
                                 if (_PreviousY - 1 <= tileBounds.Top && Velocity.Y >= 0)
                                 {
                                     _OnGround = true;
-                                    if (entity is TrampolineBedTile)
-                                    {
-                                        Trampo = true;
-                                        Jump(JumpSpeed * 10F);
-                                    }
 
                                     //if(Velocity.Y > 1500) {
                                     //Health -= (int)((Velocity.Y - 1500) / 50);
@@ -578,7 +606,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 
         public void Jump(float speed)
         {
-            Velocity.Y += speed * 0.8F;
+          Velocity.Y += speed * 0.6F;
             if (Trampo)
                 Velocity.Y += speed;
             //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));

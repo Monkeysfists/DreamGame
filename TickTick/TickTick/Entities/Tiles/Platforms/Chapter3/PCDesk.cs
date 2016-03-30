@@ -14,9 +14,6 @@ namespace TickTick.Entities.Tiles.Platforms
 {
     public class PCDesk : PlatformTile
     {
-        private List<Entity> EntityList;
-        private PlayerCreature player;
-        private Vector2 PlayerPosition;
         private float UpdateTimer;
         private int level;
 
@@ -35,21 +32,8 @@ namespace TickTick.Entities.Tiles.Platforms
             {
                 UpdateTimer += (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
                 UpdateTimer = 0;
-                GetPlayerPos();
             }
-
-            if(player != null)
-                if(MathHelper.Distance(PlayerPosition.X, Position.X) < 20 && level == 5)
-                    //play computer transfer animation
             base.Update();
-        }
-
-        private void GetPlayerPos()
-        {
-            EntityList = FindChildrenByName("player", true);
-            player = (PlayerCreature)EntityList[0];
-            PlayerPosition = player.Position;
-
         }
     }
 }

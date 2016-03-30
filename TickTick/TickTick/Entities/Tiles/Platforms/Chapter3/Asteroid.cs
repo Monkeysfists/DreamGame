@@ -18,7 +18,7 @@ namespace TickTick.Entities.Tiles.Platforms
         public Asteroid()
         {
             Texture = GameHandler.AssetHandler.GetTexture("chapter3/asteroide" + GameHandler.Random.Next(1, 4));
-            Size = new Vector2(Texture.Width * LevelEntity.TileSize/20,Texture.Height* LevelEntity.TileSize/20);
+            CanCollide = true;
         }
 
     }

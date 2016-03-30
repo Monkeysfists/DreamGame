@@ -85,6 +85,7 @@
     <Compile Include="Entities\Buttons\LevelButton.cs" />
     <Compile Include="Entities\Buttons\PlayButton.cs" />
     <Compile Include="Entities\Buttons\QuitButton.cs" />
+    <Compile Include="Entities\HealthBar.cs" />
     <Compile Include="Entities\HintEntity.cs" />
     <Compile Include="Entities\LevelEntity.cs" />
     <Compile Include="Entities\States\FadeState.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Entities\Tiles\Creatures\Ghost.cs" />
     <Compile Include="Entities\Tiles\Creatures\Mother.cs" />
     <Compile Include="Entities\Tiles\Creatures\Paperboat.cs" />
+    <Compile Include="Entities\Tiles\Creatures\PlayerBike.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\TeddyBear.cs" />
     <Compile Include="Entities\Tiles\Creatures\Train.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Entities\Tiles\Platforms\Chapter2\UnderLavaTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Asteroid.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\AsteroidSpawner.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter3\BigAsteroid.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Obstacle.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Road.cs" />
     <Compile Include="Entities\Tiles\Platforms\Ghoststop.cs" />

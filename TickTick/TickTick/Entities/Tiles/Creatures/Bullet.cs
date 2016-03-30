@@ -10,34 +10,38 @@ using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
 using TickTick.Entities.Tiles.Platforms.Chapter1;
 using TickTick.Entities.Tiles.Platforms.Chapter3;
+using TickTick.Entities.Tiles.Creatures;
 
-namespace TickTick.Entities.Tiles.Creatures
+namespace TickTick.Entities.Tiles
 {
-    class Bullet : CreatureTileEntity
+    public class Bullet : TextureEntity
     {
         bool right;
+
+
 
         public Bullet(bool right)
         {
             this.right = right;
             Texture = GameHandler.AssetHandler.GetTexture("chapter3/bullet");
-            Size = new Vector2(LevelEntity.TileSize / 10, LevelEntity.TileSize / 10);
+            CanCollide = true;
         }
 
         public override void Update()
         {            
-            base.Update();
-
             if (right)
-                Position.X += 2;
-            else
-                Position.X -= 2;
-
-            foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
+                Velocity.X = 1000F;
+            else if (!right)
+                Velocity.X = -1000F;   
+            foreach (Entity entity in GetCollidingEntities(new List<Entity>((Parent).Parent.Children), Vector2.Zero, Vector2.Zero))
             {
+            if(entity is TeddyBear)
                 this.Visible = false;
                 Parent.RemoveChild(this);
+                entity.Active = false;
+                RemoveChild(entity);
             }
+            base.Update();
         }
     }
 }

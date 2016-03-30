@@ -37,10 +37,16 @@ namespace GameLibrary {
 				Scale = new Vector2((float)Viewport.Width / (float)Resolution.X, (float)Viewport.Height / (float)Resolution.Y);
 			}
 		}
-		/// <summary>
-		/// The actual size of the screen in pixels.
-		/// </summary>
-		public Point ScreenSize {
+
+        public void DrawTexture(Vector2 position, float rotation, Vector2 size, Texture2D texture, RectangleF section, object p1, object spriteEffects, object p2)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// The actual size of the screen in pixels.
+        /// </summary>
+        public Point ScreenSize {
 			get {
 				return new Point(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
 			}
