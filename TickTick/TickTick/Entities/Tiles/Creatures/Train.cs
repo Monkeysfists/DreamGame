@@ -94,7 +94,7 @@ namespace TickTick.Entities.Tiles.Creatures
 
             if (StartBool)
             {
-                //TODO: add soundeffect
+                GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/train"));
                 Velocity.X = RightSpeed;
             }
             if (Velocity.X == 400)

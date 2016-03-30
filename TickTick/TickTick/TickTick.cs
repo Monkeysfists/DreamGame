@@ -25,7 +25,7 @@ namespace TickTick {
 			StateHandler.AddState("helpMenu", new HelpMenuState());
 			StateHandler.AddState("levelMenu", new LevelMenuState());
 			StateHandler.CurrentState = StateHandler.States["titleMenu"];
-			//AudioHandler.PlaySong(AssetHandler.GetSong("Sounds/snd_music"), true);
+			GameHandler.AudioHandler.PlaySong(AssetHandler.GetSong("Sounds/ch1"), true);
 		}
 	}
 }

@@ -199,7 +199,10 @@ namespace TickTick.Entities.Tiles.Creatures
                 if (entity is playerCreature)
                 {
                     if (Chapter == 5)
+                    {
                         Animation = TeddyAttackAnimation;
+                        GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/bear"));
+                    }
                 }
 
                 else 

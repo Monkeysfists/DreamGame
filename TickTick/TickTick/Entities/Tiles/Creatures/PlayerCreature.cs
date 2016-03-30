@@ -599,7 +599,9 @@ namespace TickTick.Entities.Tiles.Creatures {
         {
           Velocity.Y += speed * 0.6F;
             if (Trampo)
-                Velocity.Y += speed;
+            { Velocity.Y += speed;
+                GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/trampoline"));
+            }
             //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));
         }
 

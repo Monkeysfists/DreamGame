@@ -14,6 +14,7 @@ namespace TickTick.Animations
         public MotherWalkingAnimation()
         {
             SpriteSheet = GameHandler.AssetHandler.GetSpriteSheet("chapter1/mother_walking@2");
+            GameHandler.AudioHandler.PlaySong(GameHandler.AssetHandler.GetSong("Sounds/rain"), false);
             FrameTime = TimeSpan.FromMilliseconds(100);
         }
     }
