@@ -14,7 +14,7 @@ namespace TickTick.Entities.Tiles.Platforms
         public GoalTile()
         {
             //TODO
-            Texture = GameHandler.AssetHandler.GetTexture("grond");
+            Texture = GameHandler.AssetHandler.GetTexture("stoep");
         }
     }
 }

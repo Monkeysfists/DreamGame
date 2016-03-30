@@ -9,22 +9,25 @@ namespace TickTick.Entities.Tiles.Creatures
 {
     public class Dinosaur : CreatureTileEntity
     {
-        Animation IdleAnimation;
+        Animation DAnimation;
 
         public Dinosaur()
         {
-            IdleAnimation = new DinosaurAnimation();
+            DAnimation = new DinosaurAnimation();
+            Animation = DAnimation;
+            Visible = true;
+            CanCollide = false;
         }
 
         public override void Update()
         {
-            if (GameHandler.Random.Next(100) == 0 && IdleAnimation.FlipHorizontally)
+            if (GameHandler.Random.Next(100) == 0 && DAnimation.FlipHorizontally)
             {
-                IdleAnimation.FlipHorizontally = true;
+                DAnimation.FlipHorizontally = true;
             }
-            else if (GameHandler.Random.Next(100) == 0 && !IdleAnimation.FlipHorizontally)
+            else if (GameHandler.Random.Next(100) == 0 && !DAnimation.FlipHorizontally)
             {
-                IdleAnimation.FlipHorizontally = false;
+                DAnimation.FlipHorizontally = false;
             }
         }
     }
