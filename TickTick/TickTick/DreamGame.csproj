@@ -96,6 +96,7 @@
     <Compile Include="Entities\Tiles\Creatures\Ghost.cs" />
     <Compile Include="Entities\Tiles\Creatures\Mother.cs" />
     <Compile Include="Entities\Tiles\Creatures\Paperboat.cs" />
+    <Compile Include="Entities\Tiles\Creatures\PlayerBike.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
     <Compile Include="Entities\Tiles\Creatures\TeddyBear.cs" />
     <Compile Include="Entities\Tiles\Creatures\Train.cs" />

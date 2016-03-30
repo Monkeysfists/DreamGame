@@ -102,9 +102,18 @@ namespace TickTick.Entities.States {
 				_Overlay.Visible = Won;
 				//Timer.Active = !(GameOver || Won);
 				if (Won) {
-					_Overlay.Texture = GameHandler.AssetHandler.GetTexture("black");
-					_Overlay.ResizeToTexture();
-					_Overlay.Position = (Size - _Overlay.Size) / 2;
+                    if (CurrentLevel.LevelNumber > 3)
+                    {
+                        _Overlay.Texture = GameHandler.AssetHandler.GetTexture("black");
+                        _Overlay.Size.X = GameHandler.GraphicsHandler.ScreenSize.X;
+                        _Overlay.Size.Y = GameHandler.GraphicsHandler.ScreenSize.Y;
+                    }
+                    if (!(CurrentLevel.LevelNumber + 2 >= 5))
+                    {
+                        _Overlay.Texture = GameHandler.AssetHandler.GetTexture("chapter" + CurrentLevel.Name + 2);
+                    }
+                    _Overlay.ResizeToTexture();
+                    _Overlay.Position = (Size - _Overlay.Size) / 2;
 					//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("black"));
 				}
 			}

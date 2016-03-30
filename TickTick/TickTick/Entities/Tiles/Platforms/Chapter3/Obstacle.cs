@@ -12,15 +12,12 @@ using TickTick.Entities.Tiles.Creatures;
 
 namespace TickTick.Entities.Tiles.Platforms.Chapter3
 {
-    public class Obstacle : TileEntity
+    public class Obstacle : PlatformTile
     {
         public Obstacle()
         {
             Texture = Texture = GameHandler.AssetHandler.GetTexture("chapter3/obstacle" + GameHandler.Random.Next(1, 4));
-        }
-
-        public void Update() { 
-            Position.X--; 
+            Size *= 3;
         }
     }
 }

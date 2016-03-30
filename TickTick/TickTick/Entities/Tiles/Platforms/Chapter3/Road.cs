@@ -12,11 +12,13 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter3
 {
     public class Road : PlatformTile
     {
-        public Animation RoadAnimation;
 
         public Road()
         {
-            RoadAnimation = new RoadAnimation();
+            Texture = GameHandler.AssetHandler.GetTexture("chapter3/road_animation@3@2");
+            Size.X *= 100;
+            Size.Y *= 30;
+            CanCollide = false;
         }
 
 

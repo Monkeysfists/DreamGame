@@ -388,7 +388,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                 foreach (Entity entity in GetCollidingEntities(new List<Entity>(Parent.Children), Vector2.Zero, Vector2.Zero))
                 {
                     // Win
-                    if (entity is GoalTile)
+                    if (entity is GoalTile || entity is PCDesk)
                     {
                         _Won = true;
                         if (_Won)
@@ -499,7 +499,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                                     if (entity is TrampolineBedTile)
                                     {
                                         Trampo = true;
-                                        Jump(JumpSpeed * 10F);
+                                        //Jump(JumpSpeed * 10F);
                                     }
 
                                     //if(Velocity.Y > 1500) {
@@ -556,7 +556,7 @@ namespace TickTick.Entities.Tiles.Creatures {
 
         public void Jump(float speed)
         {
-            Velocity.Y += speed * 0.8F;
+            Velocity.Y += speed * 0.6F;
             if (Trampo)
                 Velocity.Y += speed;
             //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_jump"));

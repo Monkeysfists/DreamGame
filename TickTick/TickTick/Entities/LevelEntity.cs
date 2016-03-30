@@ -11,6 +11,7 @@ using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
 using TickTick.Entities.Tiles.Platforms.Chapter1;
 using TickTick.Entities.Tiles.Platforms.Chapter2;
+using TickTick.Entities.Tiles.Platforms.Chapter3;
 
 namespace TickTick.Entities
 {
@@ -234,7 +235,7 @@ namespace TickTick.Entities
 
 
                 case '#':
-                    return new GoalTile();
+                    return new GoalTile(LevelNumber);
                 case '@':
                    return new BlockBoat();
 
@@ -301,6 +302,12 @@ namespace TickTick.Entities
 
                 case '6':
                     return new BigAsteroid();
+                case '5':
+                    return new Road();
+                case '4':
+                    return new PlayerBike();
+                case ':':
+                    return new Obstacle();               
 
                 //Chapter 4
                 case 'c':

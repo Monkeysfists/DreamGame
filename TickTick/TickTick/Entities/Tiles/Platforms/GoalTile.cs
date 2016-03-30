@@ -11,10 +11,15 @@ namespace TickTick.Entities.Tiles.Platforms
         /// <summary>
         /// Creates a new DefaultPlatform.
         /// </summary>
-        public GoalTile()
+        public GoalTile(int level)
         {
+            if(level != 6 && level != 7)
+                Texture = GameHandler.AssetHandler.GetTexture("stoep");
             //TODO
-            Texture = GameHandler.AssetHandler.GetTexture("stoep");
+            if (level == 6 || level == 7)
+            {
+                Size.Y = 1000;
+            }
         }
     }
 }
