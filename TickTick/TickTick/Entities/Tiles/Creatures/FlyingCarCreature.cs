@@ -81,6 +81,7 @@ namespace TickTick.Entities.Tiles.Creatures
             _PreviousY = GlobalCollisionBox.Bottom;
             Name = "player";
             _Won = false;
+            CanCollide = true;
 
             // Animations
             IdleAnimation = new PlayerCarAnimation();
@@ -199,35 +200,47 @@ namespace TickTick.Entities.Tiles.Creatures
                             ((PlayingState)Parent.Parent).Won = true;
                             break;
                         }
-                        else if (!(entity is CreatureTileEntity))
-                        {
-                            RectangleF playerBounds = GlobalCollisionBox;
-                            RectangleF tileBounds = entity.GlobalCollisionBox;
-                            playerBounds.Height++;
-                            Vector2 depth = CalculateIntersectionDepth(playerBounds, tileBounds);
+                    }
+                    else
+                        if (entity is BigAsteroid)
+                    {
+                        Health = 0;
+                        this.Active = false;
+                    }
+                    else
+                    if(entity is Asteroid)
+                    {
+                        Health = 0;
+                    }else
+                        if (!(entity is CreatureTileEntity))
+                    {
+                        RectangleF playerBounds = GlobalCollisionBox;
+                        RectangleF tileBounds = entity.GlobalCollisionBox;
+                        playerBounds.Height++;
+                        Vector2 depth = CalculateIntersectionDepth(playerBounds, tileBounds);
 
-                            if (Math.Abs(depth.X) < Math.Abs(depth.Y))
+                        if (Math.Abs(depth.X) < Math.Abs(depth.Y))
+                        {
+                            if (!(entity is PlatformTile))
                             {
-                                if (!(entity is PlatformTile))
-                                {
-                                    Position.X += depth.X;
-                                }
-                            }
-                            else
-                            {
-                                if (_PreviousY - 1 <= tileBounds.Top && Velocity.Y >= 0)
-                                    if (Velocity.Y > 1500)
-                                    {
-                                        Health -= (int)((Velocity.Y - 1500) / 10);
-                                    }
-                                Velocity.Y = 0F;
-                            }
-                            if (!(entity is PlatformTile) || (entity is PlatformTile))
-                            {
-                                Position.Y += depth.Y + 1;
-                                Velocity.Y = 0F;
+                                Position.X += depth.X;
                             }
                         }
+                        else
+                        {
+                            if (_PreviousY - 1 <= tileBounds.Top && Velocity.Y >= 0)
+                                if (Velocity.Y > 1500)
+                                {
+                                    Health -= (int)((Velocity.Y - 1500) / 10);
+                                }
+                            Velocity.Y = 0F;
+                        }
+                        if (!(entity is PlatformTile) || (entity is PlatformTile))
+                        {
+                            Position.Y += depth.Y + 1;
+                            Velocity.Y = 0F;
+                        }
+                    
                     }
                 }
             }

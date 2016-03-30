@@ -296,6 +296,9 @@ namespace TickTick.Entities
                 case '7':
                     return new Asteroid();
 
+                case '6':
+                    return new BigAsteroid();
+
                 //Chapter 4
                 case 'c':
                     return new NoCollisionObject("chapter4/closet", new Vector2(40,80));

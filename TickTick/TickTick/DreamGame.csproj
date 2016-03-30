@@ -110,6 +110,7 @@
     <Compile Include="Entities\Tiles\Platforms\Chapter2\UnderLavaTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Asteroid.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\AsteroidSpawner.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter3\BigAsteroid.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Obstacle.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Road.cs" />
     <Compile Include="Entities\Tiles\Walls\CollisionObject.cs" />

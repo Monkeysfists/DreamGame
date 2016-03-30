@@ -12,12 +12,13 @@ using TickTick.Entities.Tiles.Creatures;
 
 namespace TickTick.Entities.Tiles.Platforms
 {
-    public class Asteroid : PlatformTile
+    public class BigAsteroid : PlatformTile
     {
 
-        public Asteroid()
+        public BigAsteroid()
         {
             Texture = GameHandler.AssetHandler.GetTexture("chapter3/asteroide" + GameHandler.Random.Next(1, 4));
+            Size *= 4;
             CanCollide = true;
         }
 
