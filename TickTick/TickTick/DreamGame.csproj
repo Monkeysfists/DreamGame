@@ -61,6 +61,7 @@
     <Compile Include="Animations\BullyAnimation\BullyIdleAnimation.cs" />
     <Compile Include="Animations\BullyAnimation\BullyRunAnimation.cs" />
     <Compile Include="Animations\DinosaurAnimation.cs" />
+    <Compile Include="Animations\FlyingCarAnimation.cs" />
     <Compile Include="Animations\MotherWalkingAnimation.cs" />
     <Compile Include="Animations\PaperBoatAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerAttackAnimation.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Entities\Tiles\Platforms\BedTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\HighSchool.cs" />
     <Compile Include="Entities\Tiles\Platforms\NoCollisionObject.cs" />
+    <Compile Include="Entities\Tiles\Walls\CollisionObjectWall.cs" />
     <Compile Include="Entities\Tiles\Walls\TreeTile.cs" />
     <Compile Include="Entities\Tiles\Walls\GuitarShotgun.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\PCDesk.cs" />

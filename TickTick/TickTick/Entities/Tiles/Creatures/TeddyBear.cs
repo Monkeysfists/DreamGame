@@ -56,7 +56,7 @@ namespace TickTick.Entities.Tiles.Creatures
             TalkBox.Visible = false;
             TalkStage = 0;
             TalkBox.Text = "Loop met WASD en spring met spatie";
-            AddChild(TalkBox);
+            //AddChild(TalkBox);
             //TalkBox.SetTextPosition = TalkBox.SetTextPosition + new Vector2(0,25);
 
 
@@ -108,6 +108,12 @@ namespace TickTick.Entities.Tiles.Creatures
             if(Chapter == 1)
                 TalkStage += (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
+            if (Chapter == 1)
+                AddChild(TalkBox);
+
+            if(Chapter != 1)
+                RemoveChild(TalkBox);
+
             if (TalkStage > 3 && TalkStage < 6)
                 TalkBox.Text = "Je kan hoger springen door op het bed een sprong te maken!";
 
@@ -151,7 +157,6 @@ namespace TickTick.Entities.Tiles.Creatures
 
             TalkBox.Position = Parent.Position - new Vector2(100F,100F);
             //TalkBox.SetTextPosition = Par.Position - new Vector2(90F, 90F);
-            TalkBox.Visible = true;
         }
 
         public override void Draw()

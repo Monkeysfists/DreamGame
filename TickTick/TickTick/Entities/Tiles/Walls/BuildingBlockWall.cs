@@ -1,9 +1,9 @@
 ﻿using GameLibrary;
 using Microsoft.Xna.Framework;
 
-namespace TickTick.Entities.Tiles.Platforms
+namespace TickTick.Entities.Tiles.Walls
 {
-    public class BuildingBlockWall : PlatformTile
+    public class BuildingBlockWall : WallTile
     {
         public enum BuildingBlocks { wood, brick, black, ground, street, buildingblock, etc};
         public BuildingBlockWall(BuildingBlocks buildingblocks)

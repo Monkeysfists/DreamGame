@@ -25,11 +25,11 @@ namespace TickTick.Entities.Tiles.Creatures
                 {
                     if (Position.Y > Parent.Size.Y)
                     {
-                        GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_fall"));
+                        //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_fall"));
                     }
                     else
                     {
-                        GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_die"));
+                        //GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("Sounds/snd_player_die"));
                     }
                 }
 
@@ -42,7 +42,6 @@ namespace TickTick.Entities.Tiles.Creatures
                         Velocity.Y = -900;
                     }
 
-                    Animation = ExplodeAnimation;
                     ((PlayingState)Parent.Parent).GameOver = true;
                 }
             }
@@ -84,7 +83,7 @@ namespace TickTick.Entities.Tiles.Creatures
             _Won = false;
 
             // Animations
-            //IdleAnimation = new PlayerIdleAnimation();
+            IdleAnimation = new PlayerCarAnimation();
             //RightAnimation = new PlayerMoveAnimation();
             Animation = IdleAnimation;
 
@@ -113,6 +112,8 @@ namespace TickTick.Entities.Tiles.Creatures
 
         public override void Update()
         {
+            Velocity.Y = 0;
+            Velocity.X = RightSpeed;
             if (Health > 0)
             {
                 HandleInput();
@@ -144,6 +145,9 @@ namespace TickTick.Entities.Tiles.Creatures
                 Vector2 origin = Position - bound;
                 Parent.DrawOrigin = new Vector2((int)origin.X, (int)origin.Y);
             }
+            
+            base.Update();
+
         }
 
         public override void Draw()
@@ -266,7 +270,7 @@ namespace TickTick.Entities.Tiles.Creatures
             {
                 Health = 0;
                 Velocity = Vector2.Zero;
-                Animation = ExplodeAnimation;
+                //Animation = ExplodeAnimation;
             }
         }
     }

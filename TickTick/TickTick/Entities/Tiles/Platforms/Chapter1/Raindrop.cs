@@ -5,6 +5,7 @@ using System.Text;
 using GameLibrary;
 using Microsoft.Xna.Framework;
 using TickTick.Entities.Tiles.Creatures;
+using TickTick.Entities.Tiles.Walls;
 
 namespace TickTick.Entities.Tiles.Platforms.Chapter1
 {
@@ -50,7 +51,7 @@ namespace TickTick.Entities.Tiles.Platforms.Chapter1
                     reset();
                 }
                 else
-                if (entity is PlatformTile)
+                if (entity is WallTile)
                 {
                     reset();
                 }

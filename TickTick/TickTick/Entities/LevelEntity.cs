@@ -287,6 +287,15 @@ namespace TickTick.Entities
                 case '0':
                     return new Bully();
 
+                case '9':
+                    return new CollisionObjectWall("WoodenFloorTile", new Vector2(20, 20));
+
+                case '8':
+                    return new FlyingCarCreature();
+
+                case '7':
+                    return new Asteroid();
+
                 //Chapter 4
                 case 'c':
                     return new NoCollisionObject("chapter4/closet", new Vector2(40,80));
