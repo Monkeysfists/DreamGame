@@ -92,6 +92,7 @@
     <Compile Include="Entities\Tiles\Creatures\CreatureTileEntity.cs" />
     <Compile Include="Entities\Tiles\Creatures\Dinosaur.cs" />
     <Compile Include="Entities\Tiles\Creatures\FlyingCarCreature.cs" />
+    <Compile Include="Entities\Tiles\Creatures\Ghost.cs" />
     <Compile Include="Entities\Tiles\Creatures\Mother.cs" />
     <Compile Include="Entities\Tiles\Creatures\Paperboat.cs" />
     <Compile Include="Entities\Tiles\Creatures\PlayerCreature.cs" />
@@ -106,11 +107,13 @@
     <Compile Include="Entities\Tiles\Platforms\Chapter1\Umbrella.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter2\LavaTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter2\LegoBlock.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Chapter2\LightSwitch.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter2\UnderLavaTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Asteroid.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\AsteroidSpawner.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Obstacle.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter3\Road.cs" />
+    <Compile Include="Entities\Tiles\Platforms\Ghoststop.cs" />
     <Compile Include="Entities\Tiles\Walls\CollisionObject.cs" />
     <Compile Include="Entities\Tiles\Platforms\Chapter1\WaterTile.cs" />
     <Compile Include="Entities\Tiles\Platforms\DefaultPlatform.cs" />
@@ -139,6 +142,7 @@
     <Compile Include="TickTick.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\GhostAnimation.cs" />
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>

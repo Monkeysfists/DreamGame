@@ -12,6 +12,7 @@ namespace TickTick.Entities.Tiles.Platforms {
 		public DefaultPlatform(Vector2 size) {
 			Texture = GameHandler.AssetHandler.GetTexture("chapter2/wooden_platform");
             Size = size;
+            Layer = 200;
 		}
 	}
 }

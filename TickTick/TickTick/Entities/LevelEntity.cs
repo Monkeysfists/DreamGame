@@ -10,6 +10,7 @@ using TickTick.Entities.Tiles.Creatures;
 using TickTick.Entities.Tiles.Platforms;
 using TickTick.Entities.Tiles.Walls;
 using TickTick.Entities.Tiles.Platforms.Chapter1;
+using TickTick.Entities.Tiles.Platforms.Chapter2;
 
 namespace TickTick.Entities
 {
@@ -177,7 +178,7 @@ namespace TickTick.Entities
                 case '*':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.black);
                 case 'G':
-                    return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.ground);
+                    return new CollisionObject("grond", new Vector2(80,1000));
                 case 'S':
                     return new BuildingBlockWall(BuildingBlockWall.BuildingBlocks.street);
                 case '-':
@@ -186,6 +187,8 @@ namespace TickTick.Entities
                     return new CollisionObject("WoodenFloorTile", new Vector2(100, 100));
                 case '=':
                     return new CollisionObject("WoodenFloorTile", new Vector2(20, 20));
+                case '_':
+                    return new CollisionObject("InfiniteWood", new Vector2(80,1000));
 
                 //Objects used in multiple chapters
                 case 'T':
@@ -239,9 +242,9 @@ namespace TickTick.Entities
 
                 //Chapter 2
                 case '2':
-                    //return new Dinosaur();
-                //case '3':
-                    //return new Ghost();
+                    return new Dinosaur();
+                case '3':
+                    return new Ghost();
                 case 'I':
                     return new CollisionObject("chapter2/castle_wall", new Vector2(20,20));
                 case 'J':
@@ -252,8 +255,8 @@ namespace TickTick.Entities
                     return new NoCollisionObject("chapter2/castle_wall_background", new Vector2(20,20));
                 case 'K':
                     return new LegoBlock();
-                //case '(':
-                    //return new LightSwitch();
+                case '(':
+                    return new LightSwitch();
                 case 'L':
                     return new LavaTile();
                 case 'l':
