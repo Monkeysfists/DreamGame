@@ -11,7 +11,7 @@ using TickTick.Entities.Tiles.Walls;
 
 namespace TickTick.Entities.Tiles.Creatures
 {
-    public class Ghost : CreatureTileEntity
+    public class Ghost : AnimatedEntity
     {
         public Animation WalkAnimation;
         public bool Moving;

@@ -28,14 +28,14 @@ namespace TickTick.Entities.Tiles.Creatures
             Animation = WalkingAnimation;
             BeginSpeed.X = 100F;
 
-            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 10;
+            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 20;
             
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
 
             Layer = 3;
             umbrella = new Umbrella();
-            umbrella.Position = umbrella.Position + new Vector2(5, -40);
+            umbrella.Position = umbrella.Position + new Vector2(45, -40);
             umbrella.Layer = 2;
             AddChild(umbrella);
             SpeedTimer = 0;
@@ -47,14 +47,11 @@ namespace TickTick.Entities.Tiles.Creatures
         public  override void Update()
         {
             Animation = WalkingAnimation;
-            //umbrella.Position = this.Position + new Vector2(50,-50);
-            //TODO: verschillende snelheden naar rechts lopen
             SpeedTimer += (float)GameHandler.GameTime.ElapsedGameTime.TotalSeconds;
 
             if (SpeedTimer > GameHandler.Random.Next(0, 2))
                 ChangeSpeed();
 
-            Console.WriteLine(umbrella.Position.ToString());
             //umbrella.Position.X = Position.X + 100;
             Velocity.Y += 55F;
             Handlecolission();

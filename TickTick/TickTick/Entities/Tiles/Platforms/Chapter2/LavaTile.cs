@@ -11,14 +11,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TickTick.Entities.Tiles.Platforms
 {
-    public class LavaTile : PlatformTile
+    public class LavaTile : AnimatedEntity
     {
-
+        Animation LavaAnimation;
         public LavaTile()
         {
-            GameHandler.AssetHandler.GetSpriteSheet("chapter2/lava@6");
-            Size = new Vector2(LevelEntity.TileSize, LevelEntity.TileSize);
-
+            LavaAnimation = new LavaAnimation();
+            Animation = LavaAnimation;
+          Size = new Vector2(LevelEntity.TileSize, LevelEntity.TileSize);
+            CanCollide = false;
+            Visible = true;
         }
     }
 }

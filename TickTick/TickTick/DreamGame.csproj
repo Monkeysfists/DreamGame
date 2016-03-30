@@ -62,6 +62,8 @@
     <Compile Include="Animations\BullyAnimation\BullyRunAnimation.cs" />
     <Compile Include="Animations\DinosaurAnimation.cs" />
     <Compile Include="Animations\FlyingCarAnimation.cs" />
+    <Compile Include="Animations\LavaAnimation.cs" />
+    <Compile Include="Animations\LavaUnderAnimation.cs" />
     <Compile Include="Animations\MotherWalkingAnimation.cs" />
     <Compile Include="Animations\PaperBoatAnimation.cs" />
     <Compile Include="Animations\PlayerAnimation\PlayerAttackAnimation.cs" />

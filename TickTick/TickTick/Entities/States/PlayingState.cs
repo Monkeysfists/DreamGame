@@ -115,7 +115,7 @@ namespace TickTick.Entities.States {
                     }
 
                     _Overlay.Position = Vector2.Zero;
-                    Size = new Vector2(GameHandler.GraphicsHandler.ScreenSize.X, GameHandler.GraphicsHandler.ScreenSize.Y);
+                    Size = new Vector2(GameHandler.GraphicsHandler.ScreenSize.X*2, GameHandler.GraphicsHandler.ScreenSize.Y*2);
 					//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("black"));
 				}
 			}

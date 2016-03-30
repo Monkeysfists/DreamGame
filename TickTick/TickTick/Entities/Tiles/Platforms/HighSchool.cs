@@ -15,7 +15,7 @@ namespace TickTick.Entities.Tiles.Platforms
                     break;
             }
             CanCollide = false;
-            Size = new Microsoft.Xna.Framework.Vector2(LevelEntity.TileSize * 4, LevelEntity.TileSize * 8);
+            Size = new Microsoft.Xna.Framework.Vector2(LevelEntity.TileSize * 20, LevelEntity.TileSize * 10);
         }
     }
 }

@@ -76,7 +76,7 @@ namespace TickTick.Entities
         {
             LevelNumber = level;
 
-            TileSize = 40;
+            TileSize = 20;
 
             // Get level status
             String[] levelStatuses = GameHandler.AssetHandler.ReadFile("Levels/levels_status.txt").Split('\n');
@@ -138,7 +138,7 @@ namespace TickTick.Entities
                     state.background.Texture = GameHandler.AssetHandler.GetTexture("background/sky");
                     break;
                 case 10:
-                    state.background.Texture = GameHandler.AssetHandler.GetTexture("backround/achtergrondkamer");
+                    state.background.Texture = GameHandler.AssetHandler.GetTexture("background/achtergrondkamer");
                     break;
                 default:
                         state.background.Texture = GameHandler.AssetHandler.GetTexture("background/sky");
@@ -215,7 +215,7 @@ namespace TickTick.Entities
                 case 'W':
                     return new CollisionObject("wood", new Vector2(TileSize, 5*TileSize));
                 case 'B':
-                    return new CollisionObject("chapter1/blokken/blok" + GameHandler.Random.Next(1, 27), new Vector2(TileSize,TileSize));
+                    return new CollisionObject("chapter1/blokken/blok" + GameHandler.Random.Next(1, 27), new Vector2(TileSize*2,TileSize*2));
                 case '*':
                     return new CollisionObject("black", new Vector2(TileSize,TileSize));
                 case 'G':
@@ -249,7 +249,7 @@ namespace TickTick.Entities
                 case 'H':
                     return new HighSchool(LevelNumber);
                 case 'h':
-                    return new NoCollisionObject("achtergrond huis", new Vector2(25*TileSize,25*TileSize));
+                    return new NoCollisionObject("achtergrond huis", new Vector2(16*TileSize,16*TileSize));
 
 
                 case '#':
@@ -331,9 +331,11 @@ namespace TickTick.Entities
                 case 'c':
                     return new NoCollisionObject("chapter4/closet", new Vector2(2*TileSize, 4*TileSize));
                 case 'a':
-                    return new NoCollisionObject("chapter4/autoleeg", new Vector2(4*TileSize,3*TileSize));
+                    return new NoCollisionObject("chapter4/autoleeg", new Vector2(6*TileSize,3*TileSize));
                 case '!':
                     return new CollisionObject("chapter4/door_closed", new Vector2(TileSize, 5*TileSize));
+                case 'u':
+                    return new NoCollisionObject("chapter3/computer", new Vector2(TileSize*6,TileSize*4));
 
                 case '$':
                     return new Raindrop();

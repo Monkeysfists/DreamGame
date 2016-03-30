@@ -43,7 +43,6 @@ namespace TickTick.Entities.Tiles.Creatures
         public float TalkStage;
 
 
-
         public TeddyBear(int chapter)
         {
             Health = 5;
@@ -80,11 +79,7 @@ namespace TickTick.Entities.Tiles.Creatures
             if (chapter == 1)
                 Animation = TeddyTalkAnimation;
 
-            // Size
-            if (chapter != 10)
-                Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 10;
-            else
-                Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 20;
+
             Origin.X = (Size.X - 72) / 2;
             Origin.Y = (Size.Y - 55) / 2;
 
@@ -171,8 +166,15 @@ namespace TickTick.Entities.Tiles.Creatures
 
             TalkBox.Position = Parent.Position - new Vector2(100F,100F);
             //TalkBox.SetTextPosition = Par.Position - new Vector2(90F, 90F);
-            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 15;
 
+            // Size
+            switch (Chapter)
+            {
+                case 1: Size = new Vector2(LevelEntity.TileSize * 2, LevelEntity.TileSize * 4); break;
+                case 3: Size = new Vector2(LevelEntity.TileSize * 2, LevelEntity.TileSize * 2); break;
+                case 5: Size = Animation.SpriteSheet.CellSize / 2; break;
+                default: Size = Animation.SpriteSheet.CellSize; break;
+            }
         }
 
         public override void Draw()

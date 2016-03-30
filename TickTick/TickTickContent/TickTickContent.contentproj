@@ -617,11 +617,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Backgrounds\spr_levelselect.jpg">
-      <Name>spr_levelselect</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Backgrounds\spr_mountain_1.png">
       <Name>spr_mountain_1</Name>
       <Importer>TextureImporter</Importer>
@@ -634,11 +629,6 @@
     </Compile>
     <Compile Include="Backgrounds\spr_sky.jpg">
       <Name>spr_sky</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Backgrounds\spr_title.jpg">
-      <Name>spr_title</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1254,6 +1244,20 @@
   <ItemGroup>
     <Compile Include="background\stars.png">
       <Name>stars</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Backgrounds\spr_levelselect.png">
+      <Name>spr_levelselect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Backgrounds\spr_title.png">
+      <Name>spr_title</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

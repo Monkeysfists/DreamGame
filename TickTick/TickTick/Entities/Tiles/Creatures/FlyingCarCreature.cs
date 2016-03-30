@@ -149,6 +149,8 @@ namespace TickTick.Entities.Tiles.Creatures
             
             base.Update();
 
+            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 80;
+
         }
 
         public override void Draw()

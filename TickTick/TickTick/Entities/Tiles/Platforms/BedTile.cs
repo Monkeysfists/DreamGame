@@ -13,7 +13,7 @@ namespace TickTick.Entities.Tiles.Platforms
                 default: Texture = GameHandler.AssetHandler.GetTexture("chapter4/bed chapter 4"); break;
             }
             CanCollide = false;
-            Size = new Microsoft.Xna.Framework.Vector2(Texture.Width, Texture.Height) * LevelEntity.TileSize/20;
+            Size = new Microsoft.Xna.Framework.Vector2(Texture.Width, Texture.Height) * LevelEntity.TileSize/10;
         }
     }
 }

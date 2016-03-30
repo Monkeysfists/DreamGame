@@ -95,7 +95,7 @@ namespace TickTick.Entities.Tiles.Creatures
             Origin.Y = (Size.Y - 55) / 2;
 
             // Speed
-            RightSpeed = 200F;
+            RightSpeed = 150F;
             YSpeed = 150F;
 
             //Timer
@@ -149,6 +149,7 @@ namespace TickTick.Entities.Tiles.Creatures
             }
 
             base.Update();
+            Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 80;
 
         }
 

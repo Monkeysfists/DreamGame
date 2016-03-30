@@ -196,7 +196,6 @@ namespace TickTick.Entities.Tiles.Creatures {
             JumpAnimation = new PlayerJumpAnimation(chapter, item);
             AttackAnimation = new PlayerAttackAnimation(chapter, item);
             Animation = IdleAnimation;
-            Size = Animation.SpriteSheet.CellSize;
         }
 
         bool NewAnimations;
@@ -212,7 +211,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                 {
                     Hearts = new HealthBar();
                     AddChild(Hearts);
-                    Hearts.Origin = new Vector2(0 + Hearts.Texture.Width * 3 *i + (GameHandler.GraphicsHandler.ScreenSize.X / 3), GameHandler.GraphicsHandler.ScreenSize.Y / 3);
+                    Hearts.Origin = new Vector2(0 + Hearts.Texture.Width * 3 * i + (GameHandler.GraphicsHandler.ScreenSize.X / 3), GameHandler.GraphicsHandler.ScreenSize.Y / 3);                   
                     Hearts.Active = false;
                 }
 
@@ -223,7 +222,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                     Velocity.Y += 55F; // Fall speed
                 }
 
-                if ((item == "shotgun" || item == "sword") && !NewAnimations && (chapter == 5 || chapter == 8))
+                if ((item == "shotgun") && !NewAnimations && (chapter == 5 || chapter == 8))
                 {
                     LoadAnimations();
                     NewAnimations = true;
@@ -321,8 +320,6 @@ namespace TickTick.Entities.Tiles.Creatures {
             }
             base.Update();
 
-
-
             if (Health > 0)
             {
                 Vector2 bound = (new Vector2(GameHandler.GraphicsHandler.Resolution.X, GameHandler.GraphicsHandler.Resolution.Y) - Size) / 2;
@@ -338,7 +335,9 @@ namespace TickTick.Entities.Tiles.Creatures {
                 HandleCollision();
             }
 
-            Size = Animation.SpriteSheet.CellSize;
+
+                Size = Animation.SpriteSheet.CellSize * LevelEntity.TileSize / 40;
+  
         }
 
         public override void Draw()
@@ -451,9 +450,13 @@ namespace TickTick.Entities.Tiles.Creatures {
                                 Health = 0;
                             }
                         }
-                        else
-
-                        if (entity is Raindrop)
+                        else if (entity is Ghost || entity is Dinosaur)
+                        {
+                            Damage();
+                            InvinceTimer = 0.5F;
+                            //Jump(JumpSpeed);
+                        }
+                        else if (entity is Raindrop)
                         {
                             Damage();
                             //Jump(JumpSpeed * 0.1F);
@@ -518,19 +521,7 @@ namespace TickTick.Entities.Tiles.Creatures {
                             _OnRails = false;
                         else if (entity.Velocity.X < 100)
                             _OnRails = false;
-                       else if (entity is Ghost || entity is Dinosaur)
-                       {
-                            Damage();
-                            KnockBack();
-                            InvinceTimer = 0.3F;
-
-                            //Jump(JumpSpeed);
-                       }else if (entity is LightSwitch)
-                       {
-                           _Timer = 0;
-                           ((PlayingState)Parent.Parent).Won = true;
-                           //change background
-                       }
+                       
 
                         if (!(entity is playerCreature) || (entity is Train) || (entity is TeddyBear) || !(entity is Raindrop))
                         {
