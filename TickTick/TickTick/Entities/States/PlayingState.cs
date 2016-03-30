@@ -110,12 +110,14 @@ namespace TickTick.Entities.States {
                             break;
                         case 8: _Overlay.Texture = GameHandler.AssetHandler.GetTexture("chapter4");
                             break;
+                        case 10: _Overlay.Texture = GameHandler.AssetHandler.GetTexture("theend");
+                            break;
                         default: _Overlay.Texture = GameHandler.AssetHandler.GetTexture("black");
                             break;
                     }
 
                     _Overlay.Position = Vector2.Zero;
-                    Size = new Vector2(GameHandler.GraphicsHandler.ScreenSize.X*2, GameHandler.GraphicsHandler.ScreenSize.Y*2);
+                    _Overlay.Size = new Vector2(GameHandler.GraphicsHandler.ScreenSize.X, GameHandler.GraphicsHandler.ScreenSize.Y);
 					//GameHandler.AudioHandler.PlaySoundEffect(GameHandler.AssetHandler.GetSoundEffect("black"));
 				}
 			}

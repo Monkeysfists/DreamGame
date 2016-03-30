@@ -14,7 +14,7 @@ h
 .
 .P............................................................................#
 .
-SSSSSSSSSSSSSSSSSSSSSSSLzzLLzzLzLLLLzzLzzLLLzzLLLLzzLLLzzLLSSSSSSSSSSSSSSSSSSSSSSS
+SSSSSSSSSSSSSSSSSSSSSSSLzzLLzzLzzLLLLzzLzzLLLzzLLLzzLLLzzLLSSSSSSSSSSSSSSSSSSSSSSS
 G...G...G...G...G..G...llllllllllllllllllllllllllllllllllllG...G...G...G...G...G...
 .......................llllllllllllllllllllllllllllllllllll
 .......................llllllllllllllllllllllllllllllllllll
